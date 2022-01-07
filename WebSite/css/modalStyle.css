@@ -1,0 +1,15 @@
+.modal-msg-successfull {
+    background-color: greenyellow;
+}
+
+.modal-msg-error {
+    background-color: orangered;
+}
+
+.modal-msg-warning {
+    background-color: orange;
+}
+
+.modal-msg-info {
+    background-color: rgb(21, 167, 252);
+}

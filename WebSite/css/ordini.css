@@ -1,0 +1,93 @@
+.ordini-container {
+    height: 150px;
+    width: 40%;
+    display: inline-block;
+    margin: 25px 5%;
+    padding: 30px;
+    border-radius: 20px;
+    font-family: Lato;
+    color: black;
+}
+
+.ordine-consegnato {
+    background-color: #DCB000;
+}
+
+.ordine-non-consegnato {
+    background-color: #FFCB00;
+}
+
+.ordini-container>.indirizzo {
+    position: relative;
+    top: -30px;
+    left: 10px;
+    width: 50%;
+    font-size: 16px;
+}
+
+.ordini-container>.indirizzo>span {
+    color: #A80004;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.ordini-container>.data-ordine {
+    position: relative;
+    top: -10px;
+    left: 55%;
+    font-size: 16px;
+}
+
+.ordini-container>.data-ordine>span {
+    font-size: 22px;
+    color: #FD0006;
+}
+
+.ordini-container>.data {
+    position: relative;
+    top: -35px;
+    left: 55%;
+    font-size: 16px;
+}
+
+.ordini-container>.data>span {
+    font-size: 22px;
+    color: #FE1C22;
+}
+
+.ordini-container>.pagamento {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    bottom: 95px;
+    left: 3%;
+}
+
+.ordini-container>.carta {
+    position: relative;
+    bottom: 130px;
+    left: 15%;
+    width: 300px;
+    font-size: 20px;
+}
+
+.ordini-container>.totale {
+    position: relative;
+    bottom: 40px;
+    left: 70%;
+    font-size: 20px;
+}
+
+.ordini-container>.totale>span {
+    font-weight: bold;
+    font-size: 38px;
+    color: #2104C3;
+}
+
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    .ordini-container {
+        width: 80%;
+        display: block;
+        margin: 25px 10%;
+    }
+}

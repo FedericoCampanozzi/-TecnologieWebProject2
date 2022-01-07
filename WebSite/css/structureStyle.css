@@ -1,0 +1,98 @@
+footer {
+    height: 50px;
+    width: 100%;
+    background-color: #FFCB00;
+    text-align: center;
+    height: 60px;
+}
+
+header {
+    width: 100%;
+    background-color: #FFCB00;
+    text-align: center;
+    height: 60px;
+}
+
+header h1,
+header h2 {
+    display: inline-block;
+}
+
+header h1 {
+    font-size: 35px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    color: black;
+}
+
+header>div,
+footer>div {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+footer p {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 18px;
+}
+
+footer span:first-child {
+    font-size: 22px;
+    margin: 10px 20px;
+    font-weight: bold;
+}
+
+footer span:nth-child(2) {
+    font-size: 20px;
+    margin: 10px 20px;
+}
+
+footer span:nth-child(3) {
+    font-size: 15px;
+    margin: 10px 20px;
+}
+
+.navbar {
+    width: 100%;
+    background-color: black;
+}
+
+.navbar a {
+    float: left;
+    padding: 12px;
+    font-size: 17px;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar a :hover {
+    text-decoration: none;
+}
+
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    footer p:first-child {
+        font-size: 16px;
+        margin: 5px 10px;
+        font-weight: bold;
+    }
+    footer p:nth-child(2) {
+        font-size: 14px;
+        margin: 5px 10px;
+    }
+    footer p:nth-child(3) {
+        font-size: 10px;
+        margin: 5px 10px;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
+    header h1 {
+        font-size: 28px;
+    }
+    header h1 p {
+        font-size: 14px;
+        display: block;
+    }
+}
