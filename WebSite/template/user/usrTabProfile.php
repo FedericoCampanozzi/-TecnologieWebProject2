@@ -6,7 +6,7 @@
     </div>
     <div class="col-6">
         <form action="utils/update.php" method="post">
-            <input type="hidden" name="obj_to_update" value="password">
+            <input type="hidden" name="codiceUpdate" value="password">
             <div class="form-group">
                 <label for="old_psw">Vecchia Password:</label>
                 <input type="password" class="form-control" id="old_psw" name="old_psw" placeholder="Old Password">
@@ -33,7 +33,7 @@
 <form action="utils/update.php" method="get">
     <div class="row">
         <div class="col-6">
-            <input type="hidden" name="obj_to_update" value="user">
+            <input type="hidden" name="codiceUpdate" value="user">
             <div class="form-group">
                 <label for="username">Username : </label>
                 <input type="text" class="form-control" name="username" id="username" value="<?php echo $_SESSION["usr_un"]; ?>" />

@@ -4,7 +4,7 @@ $(document).ready(function() {
     $(".change_to_admin").click(function() {
         const id_parts = $(this).attr("id").split("_");
         $.post("utils/update.php", {
-            obj_to_update: "usr_ruolo",
+            codiceUpdate: "usr_ruolo",
             IdUtenteCambio: document.getElementById("IdUtente_" + id_parts[1]).value,
             IdNuovoRuolo: 3,
             P_IVA: null
@@ -19,7 +19,7 @@ $(document).ready(function() {
         const new_idr = parseInt(document.getElementById("ruolo_" + id_parts[1]).value);
         let piva = null;
         $.post('utils/update.php', {
-            obj_to_update: "usr_ruolo",
+            codiceUpdate: "usr_ruolo",
             IdUtenteCambio: document.getElementById("IdUtente_" + id_parts[1]).value,
             IdNuovoRuolo: new_idr,
             P_IVA: piva

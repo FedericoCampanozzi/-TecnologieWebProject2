@@ -1,9 +1,8 @@
 .ordini-container {
-    height: 150px;
+    height: 125px;
     width: 40%;
     display: inline-block;
-    margin: 25px 5%;
-    padding: 30px;
+    margin: 25px 4%;
     border-radius: 20px;
     font-family: Lato;
     color: black;
@@ -19,9 +18,9 @@
 
 .ordini-container>.indirizzo {
     position: relative;
-    top: -30px;
+    top: 10px;
     left: 10px;
-    width: 50%;
+    width: 90%;
     font-size: 16px;
 }
 
@@ -33,61 +32,60 @@
 
 .ordini-container>.data-ordine {
     position: relative;
-    top: -10px;
-    left: 55%;
+    top: 10px;
+    left: 10px;
     font-size: 16px;
+    width: 90%;
 }
 
 .ordini-container>.data-ordine>span {
-    font-size: 22px;
+    font-size: 20px;
     color: #FD0006;
 }
 
 .ordini-container>.data {
     position: relative;
-    top: -35px;
-    left: 55%;
+    top: 10px;
+    left: 10px;
+    width: 90%;
     font-size: 16px;
 }
 
 .ordini-container>.data>span {
-    font-size: 22px;
+    font-size: 20px;
     color: #FE1C22;
 }
 
 .ordini-container>.pagamento {
-    width: 48px;
-    height: 48px;
     position: relative;
-    bottom: 95px;
-    left: 3%;
-}
-
-.ordini-container>.carta {
-    position: relative;
-    bottom: 130px;
-    left: 15%;
-    width: 300px;
-    font-size: 20px;
+    top: -15px;
+    left: 40%;
+    width: 50px;
 }
 
 .ordini-container>.totale {
     position: relative;
-    bottom: 40px;
-    left: 70%;
-    font-size: 20px;
+    top: 10px;
+    left: 10px;
+}
+
+.ordini-container>.carta {
+    position: relative;
+    top: -60px;
+    left: 60%;
+    width: 140px;
 }
 
 .ordini-container>.totale>span {
     font-weight: bold;
-    font-size: 38px;
+    font-size: 30px;
     color: #2104C3;
 }
 
 @media screen and (min-width: 0px) and (max-width: 700px) {
     .ordini-container {
-        width: 80%;
-        display: block;
-        margin: 25px 10%;
+        width: 85%;
+        margin: 25px 7.5%;
+        height: 135px;
     }
 }

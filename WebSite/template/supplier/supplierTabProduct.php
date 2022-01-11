@@ -10,7 +10,7 @@
 </div>
 <div class="scrollable-content">
     <form action="utils/insert.php" method="get">
-        <input type="hidden" name="obj_to_insert" value="prodotto">
+        <input type="hidden" name="codiceInsert" value="prodotto">
         <div class="container">
             <div class="table-caption">
                 Elenco Prodotti

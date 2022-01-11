@@ -10,7 +10,7 @@
         </div>
     </div>
     <form action="utils/insert.php" method="get">
-        <input type="hidden" name="obj_to_insert" value="fornitura">
+        <input type="hidden" name="codiceInsert" value="fornitura">
         <div class="my-table-container table-responsive">
             <div class="table-caption">
                 Dettaglio Forniture

@@ -10,24 +10,29 @@ $codice = $_REQUEST["codiceUpdate"];
 switch ($codice) {
     case ("fornitore"):
         if ($dbh->update_fornitore($_SESSION["PIVA_Azienda"],$_REQUEST["via"],$_REQUEST["numero_civico"],$_REQUEST["citta"],$_REQUEST["pecMail"],$_REQUEST["infoMail"],$_REQUEST["tell"],$_REQUEST["fax"]))
-            show_in_next_page("dati aggiornati", "homepageSupplier?showTab=supp_profile", "supp_profile", MsgType::Successfull, $dbg);
+            show_in_next_page("i dati sono stati aggiornati correttamente", 
+            "datiAggiornati", "homepageSupplier?showTab=supp_profile", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("dati non aggiornati", "homepageSupplier?showTab=supp_profile", "supp_profile", MsgType::Error, $dbg);
+            show_in_next_page("i dati non sono stati aggiornati", 
+            "datiAggiornati", "homepageSupplier?showTab=supp_profile", MsgType::Error, $dbg);
         break;
     case ("password"):
         if ($dbh->find_login($_SESSION["IdUtente"], $_REQUEST["old_psw"]))
             if ($dbh->update_user_psw($_SESSION["IdUtente"], $_REQUEST["new_psw"]))
-                show_in_next_page("dati aggiornati", "userProfile.php?showTab=usr_profile", "usr_profile", MsgType::Successfull, $dbg);
+                show_in_next_page("i dati sono stati aggiornati correttamente", 
+                "datiAggiornati", "userProfilePage.php?showTab=usr_profile", MsgType::Successfull, $dbg);
             else
-                show_in_next_page("dati non aggiornati", "userProfile.php?showTab=usr_profile", "usr_profile", MsgType::Error, $dbg);
+                show_in_next_page("dati non aggiornati", 
+                "datiAggiornati", "userProfilePage.php?showTab=usr_profile", MsgType::Error, $dbg);
         else
-            show_in_next_page("le password non corrispondono", "userProfile.php?showTab=usr_profile", "usr_profile", MsgType::Error, $dbg);
+            show_in_next_page("le password non corrispondono", 
+            "userProfilePage.php?showTab=usr_profile", "usr_profile", MsgType::Error, $dbg);
         break;
     case ("user"):
-        $img_msg = $hh->uploadImage("./images/utenti/", $_FILES["Immagine"]);
-        if(strlen($img_msg) > 0){
-            show_in_next_page("Non &egrave; stao possibile caricare l'immagine per i seguenti motivi : </br> ".$img_msg, "userProfile.php?showTab=usr_profile", "error_img", MsgType::Warning, $dbg);
-        }
+        //$img_msg = uploadImage(UPLOAD_USER_DIR, $_FILES["Immagine"]);
+        //if(strlen($img_msg[0]) > 0){
+        //    show_in_next_page("Non &egrave; stao possibile caricare l'immagine per i seguenti motivi : </br> ".$img_msg, "userProfile.php?showTab=usr_profile", "error_img", MsgType::Warning, $dbg);
+        //}
         if ($dbh->update_user($_SESSION["IdUtente"], $_REQUEST["username"], $_REQUEST["email"], $_REQUEST["tell"]))
             show_in_next_page("dati aggiornati", "userProfile.php?showTab=usr_profile", "usr_profile", MsgType::Successfull, $dbg);
         else

@@ -80,7 +80,7 @@ class DatabaseHelper
   }
   public function get_role()
   {
-    $stmt = $this->db->prepare("SELECT * FROM ruolo WHERE ID <> 3");
+    $stmt = $this->db->prepare("SELECT * FROM ruolo");
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
@@ -95,6 +95,22 @@ class DatabaseHelper
   public function get_products()
   {
     $stmt = $this->db->prepare("SELECT * FROM info_prodotto");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
+  public function get_notifiche($idUtente)
+  {
+    $stmt = $this->db->prepare("SELECT * FROM info_notifica WHERE IdUtenteCreazione = ? OR IdUtenteNotificato = ? ORDER BY DataInvio DESC LIMIT 50");
+    $stmt->bind_param("ii", $idUtente, $idUtente);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
+  public function get_products_byid($id)
+  {
+    $stmt = $this->db->prepare("SELECT * FROM info_prodotto WHERE ID = ?");
+    $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);

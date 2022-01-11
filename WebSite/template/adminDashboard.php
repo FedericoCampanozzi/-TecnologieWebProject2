@@ -14,7 +14,6 @@
                 <th>Ruolo</th>
                 <th>Azienda P. IVA</th>
                 <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -22,46 +21,43 @@
             $users = $dbh->get_users();
             $all_role = $dbh->get_role();
             $all_az = $dbh->get_fornitori();
-            for ($i = 0; $i < sizeof($users); $i++) {
-                echo "
-                                            <tr>
-                                                <td>" . $users[$i]["Username"] . "</td>
-                                                <td>
-                                                    <select class=\"form-control\" id=\"ruolo_" . $i . "\">";
-                for ($j = 0; $j < sizeof($all_role); $j++) {
-                    if ($users[$i]["IdRuolo"] == $all_role[$j]["ID"])
-                        echo "<option value=\"" . $all_role[$j]["ID"] . "\" selected>" . $all_role[$j]["Nome"] . "</option>";
-                    else
-                        echo "<option value=\"" . $all_role[$j]["ID"] . "\">" . $all_role[$j]["Nome"] . "</option>";
-                }
-                echo "
-                                                    </select> 
-                                                </td>
-                                                <td> <select class=\"form-control\" id=\"forn_" . $i . "\">
-                                                     <option value=\"NULL\"> NULL </option>";
-                for ($j = 0; $j < sizeof($all_az); $j++) {
-                    if (isset($all_az[$j]["PIVA"]) && $users[$i]["PIVA"] == $all_az[$j]["PIVA"])
-                        echo "<option value=\"" . $all_az[$j]["PIVA"] . "\" selected>" . $all_az[$j]["RagioneSociale"] . "</option>";
-                    else
-                        echo "<option value=\"" . $all_az[$j]["PIVA"] . "\">" . $all_az[$j]["RagioneSociale"] . "</option>";
-                }
-                echo "</select> </td>";
-
-                if ($users[$i]["IdRuolo"] != 3) {
-                    echo "
-                                                    <td> 
-                                                        <button class=\"custom-btn btn-13 change_to_admin\" id=\"admin_" . $i . "\">Supervisore</button>
-                                                    </td>";
-                } else {
-                    echo "<td> </td>";
-                }
-                echo "
-                                                    <td>
-                                                        <input type=\"hidden\" id=\"IdUtente_" . $i . "\" value=\"" . $users[$i]["ID"] . "\">
-                                                        <button class=\"custom-btn btn-9 change_ruolo\" id=\"cambia_" . $i . "\">Cambia</button>
-                                                    </td>
-                                                </tr>";
-            }
+            for ($i = 0; $i < sizeof($users); $i++) : ?>
+                <tr>
+                    <td><?php echo $users[$i]["Username"]; ?></td>
+                    <td>
+                        <select class="form-control" id="ruolo_<?php echo $i; ?>">";
+                            <?php
+                            foreach ($all_role as $r) :
+                                if ($users[$i]["IdRuolo"] == $all_role[$j]["ID"]) :
+                                ?>
+                                <option value="<?php echo $r["ID"]; ?>" selected><?php echo $r["Nome"]; ?></option>
+                                <?php else :?>
+                                <option value="<?php echo $r["ID"]; ?>"><?php echo $r["Nome"]; ?></option>
+                            <?php endif;
+                            endforeach ?>
+                        </select>
+                    </td>
+                    <td> 
+                        <select class="form-control" id="forn_<?php echo $i; ?>">
+                            <option value="NULL"> NULL </option>
+                            <?php
+                            foreach ($all_az as $az) :
+                                if (isset($all_az[$j]["PIVA"]) && $users[$i]["PIVA"] == $all_az[$j]["PIVA"]) : ?>
+                                    <option value="<?php echo $az["PIVA"]; ?>" selected><?php echo $az["RagioneSociale"]; ?></option>
+                                <?php else : ?>
+                                    <option value="<?php echo $az["PIVA"]; ?>"><?php echo $az["RagioneSociale"]; ?></option>
+                            <?php endif;
+                            endforeach;
+                            ?>
+                        </select> 
+                    </td>
+                    <td>
+                        <input type="hidden" id="IdUtente_<?php echo $i; ?>" value="<?php echo $users[$i]["ID"]; ?>">
+                        <button class="custom-btn btn-9 change_ruolo" id="cambia_<?php echo $i; ?>">Cambia</button>
+                    </td>
+                </tr>
+            <?php
+            endfor
             ?>
         </tbody>
     </table>
@@ -82,13 +78,14 @@
             </thead>
             <?php
             $cat = $dbh->get_categoria();
-            for ($i = 0; $i < sizeof($cat); $i++) {
-                echo "<tr>
-                                    <td>" . $cat[$i]["Nome"] . "</td>
-                                    <td>" . $cat[$i]["Descrizione"] . "</td>
-                                    <td> </td>
-                                </tr>";
-            }
+            foreach ($cat as $c) : ?>
+                <tr>
+                    <td><?php echo $c["Nome"]; ?></td>
+                    <td><?php echo $c["Descrizione"]; ?></td>
+                    <td> </td>
+                </tr>
+            <?php
+            endforeach
             ?>
             <tr>
                 <td>
@@ -108,7 +105,7 @@
 </form>
 <div class="container">
     <form action="utils/insert.php" method="get">
-        <input type="hidden" name="obj_to_insert" value="fornitore">
+        <input type="hidden" name="codiceInsert" value="fornitore">
         <div class="form-group">
             <label for="p_iva">Partita IVA (16 caratteri) : </label>
             <input type="text" class="form-control" name="p_iva" id="p_iva" placeholder="Partita IVA">

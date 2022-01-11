@@ -1,6 +1,6 @@
 <section class="container top-40">
     <form action="utils/insert.php" method="post">
-        <input type="hidden" name="obj_to_insert" value="user">
+        <input type="hidden" name="codiceInsert" value="user">
         <div class="form-group">
             <label for="username">Username : </label>
             <input type="text" class="form-control" name="username" id="username" placeholder="">

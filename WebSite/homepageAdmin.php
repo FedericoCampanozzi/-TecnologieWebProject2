@@ -6,6 +6,7 @@ $templateParams["sottotitoloHeader"] = "";
 $templateParams["specificTemplate"] = "template/adminDashboard.php";
 $templateParams["specificNavbar"] = null;
 $templateParams["checkNotifiche"] = true;
+$templateParams["modals"] = array("cambio", "nuovoFornitore");
 $templateParams["usaGrafici"] = true;
 $templateParams["usaTabelle"] = true;
 require 'template/base.php';
