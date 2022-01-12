@@ -1,9 +1,6 @@
 <?php
 $products = $dbh->get_products();
-
-for ($i = 0; $i < sizeof($products); $i++) :
-    if ($products)
-?>
+for ($i = 0; $i < sizeof($products); $i++) : ?>
     <div class="product-container">
         <input type="hidden" id="IdProdtto_<?php echo $i; ?>" value="<?php echo $products[$i]["ID"]; ?>">
         <div class="nome-prodotto"><?php echo $products[$i]["Nome"]; ?></div>
@@ -13,17 +10,20 @@ for ($i = 0; $i < sizeof($products); $i++) :
         <div class="giacenza">
             Pezzi Rimanenti : <span id="giacenza_<?php echo $i; ?>"><?php echo $products[$i]["Giacenza"]; ?></span>
         </div>
+        <div class="descrizione">
+            <?php echo $products[$i]["Descrizione"]; ?>
+        </div>
         <div class="prezzo"><?php echo $products[$i]["Prezzo"]; ?>&euro;</div>
         <?php
         if ($products[$i]["Giacenza"] > 0) :
         ?>
-        <div class="add-btn">
+        <div class="acquista">
             <button type="submit" class="custom-btn btn-17 bg-white add-product" id="add_<?php echo $i; ?>"> Aggiungi </button>
         </div>
-        <a class="link-dettaglio" target="_blank" href="productDetails.php?id=<?php echo $products[$i]["ID"]; ?>">dettaglio</a>
         <?php
         endif
         ?>
+        <a class="dettaglio" target="_blank" href="productDetails.php?id=<?php echo $products[$i]["ID"]; ?>">dettaglio</a>
     </div>
 <?php
 endfor

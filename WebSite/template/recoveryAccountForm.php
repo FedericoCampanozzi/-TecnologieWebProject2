@@ -1,4 +1,4 @@
-<section>
+<section class="container top-40">
     <form action="utils/update.php" method="post">
         <input type="hidden" name="codiceUpdate" value="account">
         <div class="form-group">
@@ -8,6 +8,6 @@
         <button type="submit" class="custom-btn btn-15 btn-big">Recupera Account</button>
     </form>
 </section>
-<section>
+<section class="container top-40">
     Clicca <a href="index.php">qui</a> per tornare alla homepage
 </section>

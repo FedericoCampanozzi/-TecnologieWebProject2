@@ -4,7 +4,6 @@ $templateParams["titolo"] = "Logout";
 $templateParams["titoloHeader"] = "Grazie e Arrivederci";
 $templateParams["sottotitoloHeader"] = null;
 $templateParams["specificTemplate"] = "template/logoutForm.php";
-$templateParams["checkNotifiche"] = false;
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
 require 'template/base.php';

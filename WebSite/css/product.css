@@ -6,12 +6,13 @@
         border-radius: 50px;
     }
     
-    .product-container>.titolo {
+    .product-container>.nome-prodotto {
         position: relative;
         top: 10px;
         left: 25px;
         font-size: 22px;
         font-weight: bold;
+        width: 50%;
     }
     
     .product-container>.immagine {
@@ -24,126 +25,18 @@
     
     .product-container>.prezzo {
         position: relative;
-        top: 10px;
-        left: 25px;
+        top: -160px;
+        left: 50px;
+        font-size: 24px;
+        font-weight: bold;
+        width: 50%;
     }
     
     .product-container>.giacenza {
         position: relative;
         top: -176px;
-        left: 186px;
-    }
-    
-    .product-container>.descrizione {
-        position: relative;
-        top: -166px;
-        left: 190px;
-        width: 150px;
-        font-size: 15px;
-        height: 150px;
-        overflow-y: hidden;
-    }
-    
-    .product-container>.descrizione {
-        position: relative;
-        top: -166px;
-        left: 190px;
-        width: 150px;
-        font-size: 15px;
-        height: 150px;
-        overflow-y: hidden;
-    }
-    
-    .product-container>.acquista {
-        position: relative;
-        top: -146px;
-        left: 25px;
-    }
-    
-    .product-container>.dettaglio {
-        position: relative;
-        top: -166px;
-        left: 150px;
-    }
-    
-    @media screen and (min-width: 0px) and (max-width: 700px) {
-        .container {
-            width: 80%;
-            margin: 10px 10%;
-        }
-        .container>.immagine {
-            position: relative;
-            top: 20px;
-            left: 55px;
-            width: 96px;
-            height: 96px;
-        }
-        .container>.giacenza {
-            position: relative;
-            top: -120px;
-            left: 155px;
-        }
-        .container>.descrizione {
-            display: none;
-        }
-        .container>.prezzo {
-            position: relative;
-            top: 90px;
-            left: 30px;
-            font-weight: bold;
-            font-size: 24px;
-        }
-        .container>.acquista {
-            position: relative;
-            top: 60px;
-            left: 85px;
-        }
-        .container>.dettaglio {
-            position: relative;
-            top: 30px;
-            left: 185px;
-        }
-    }
-    /*
-    .product-container {
-        height: 250px;
-        width: 80%;
-        margin: 25px 10%;
-        padding: 10px;
-        background-color: #25F11A;
-        border-radius: 20px;
-        color: black;
-        font-family: Lato;
-    }
-    
-    .product-container>.nome-prodotto {
-        position: relative;
-        top: -10px;
-        left: 10px;
-        width: 156px;
-        padding: 2px;
-        font-size: 32px;
-        font-weight: bold;
-    }
-    
-    .product-container>.immagine {
-        position: relative;
-        bottom: 60px;
-        left: 10px;
-        width: 156px;
-        height: 156px;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .product-container>.giacenza {
-        position: relative;
-        bottom: 50px;
-        left: 70%;
-        width: 40%;
-        font-size: 12px;
-        margin: 0;
-        padding: 0;
+        left: 60%;
+        width: 50%;
     }
     
     .product-container>.giacenza>span {
@@ -152,102 +45,38 @@
         font-weight: bold;
         margin: 0;
         padding: 0;
+        width: 50%;
     }
     
-    .product-container>.categoria {
+    .product-container>.descrizione {
         position: relative;
-        top: -150px;
-        left: 30%;
-        font-size: 24px;
-        color: black;
-        width: 30%;
-        margin: 0;
-        padding: 0;
+        top: -166px;
+        left: 35%;
+        width: 150px;
+        font-size: 15px;
+        height: 150px;
+        overflow-y: hidden;
+        width: 50%;
     }
     
-    .product-container>.desc {
+    .product-container>.acquista {
         position: relative;
-        bottom: 200px;
-        left: 30%;
-        font-size: 18px;
-        width: 70%;
-        height: 80px;
-        margin-right: 0;
-        margin: 0;
-        padding: 0;
+        top: -210px;
+        left: 40%;
+        width: 50%;
     }
     
-    .product-container>.prezzo {
+    .product-container>.dettaglio {
         position: relative;
-        bottom: 185px;
-        left: 60%;
-        font-size: 24px;
-        float: left;
-        width: 100px;
-        font-weight: bold;
+        top: -210px;
+        left: 70%;
+        font-size: 20px;
+        width: 50%;
     }
     
-    .product-container>.produttore {
-        position: relative;
-        bottom: 255px;
-        left: 25%;
-        font-size: 18px;
-        width: 20%;
+    @media screen and (min-width: 0px) and (max-width: 700px) {
+        .product-container {
+            width: 90%;
+            margin: 10px 5%;
+        }
     }
-    
-    .product-container>.produttore>span {
-        color: blue;
-    }
-    
-    .product-container>.add-btn {
-        position: relative;
-        top: -245px;
-        left: 82.5%;
-    }
-    
-    .link-dettaglio {}
-    
-    @media screen and (min-width: 0px) and (max-width: 400px) {
-        .product-container>.nome-prodotto {
-            position: relative;
-            top: -20px;
-            left: 10px;
-            width: 48%;
-            margin: 0 1%;
-        }
-        .product-container>.giacenza {
-            position: relative;
-            top: 0px;
-            left: 0;
-            width: 48%;
-            margin: 0 1%;
-            font-size: 12px;
-        }
-        .product-container>.immagine {
-            position: relative;
-            top: 10px;
-            left: 10px;
-        }
-        .product-container>.prezzo {
-            position: relative;
-            top: 0px;
-            left: 60%;
-        }
-        .product-container>.produttore {
-            position: relative;
-            bottom: 255px;
-            left: 25%;
-            font-size: 18px;
-            width: 20%;
-        }
-        .product-container>.add-btn {
-            position: relative;
-            top: -245px;
-            left: 82.5%;
-        }
-        .link-dettaglio {
-            position: relative;
-            bottom: 0;
-            left: 0;
-        }
-    }*/

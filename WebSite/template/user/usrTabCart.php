@@ -22,9 +22,9 @@
                         <td><img src="<?php echo UPLOAD_PRODUCT_DIR . $usr_cart[$i]["ImagePath"]; ?>" alt="" width="64" height="64"></td>
                         <td><?php echo $usr_cart[$i]["Nome"]; ?></td>
                         <td><?php echo $usr_cart[$i]["RagioneSociale"]; ?></td>
-                        <td><?php echo $usr_cart[$i]["Qta"]; ?></td>
-                        <td><?php echo $usr_cart[$i]["PrezzoUnitario"]; ?>&euro;</td>
-                        <td><?php echo $usr_cart[$i]["PrezzoTotale"]; ?>&euro;</td>
+                        <td id="Qta_<?php echo $i; ?>"><?php echo $usr_cart[$i]["Qta"]; ?></td>
+                        <td id="PrezzoU_<?php echo $i; ?>"><?php echo $usr_cart[$i]["PrezzoUnitario"]; ?>&euro;</td>
+                        <td id="PrezzoTotale_<?php echo $i; ?>"><?php echo $usr_cart[$i]["PrezzoTotale"]; ?>&euro;</td>
                         <td>
                             <input type="hidden" id="IdProdtto_<?php echo $i; ?>" value="<?php echo $usr_cart[$i]["IdProdotto"]; ?>">
                             <button type="submit" class="custom-btn btn-18 move-svg add-to-cart" id="addToCart_<?php echo $i; ?>">
@@ -52,7 +52,7 @@
                         <td> </td>
                         <td> </td>
                         <td> </td>
-                        <td class="bold"> <?php echo $tot; ?>&euro;</td>
+                        <td class="bold" id="totaleCarrello"> <?php echo $tot; ?>&euro;</td>
                         <td></td>
                         <td>
                             <form action="pagamento.php" method="get">

@@ -208,7 +208,7 @@ class DatabaseHelper
   {
     $query = "INSERT INTO `prodotto`(`Nome`, `Descrizione`, `Prezzo`, `PIVA_Fornitore`, `ImagePath`, `IdCategoria`) VALUES (?,?,?,?,?,?)";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("ssdsi", $nome, $descrizione, $prezzo, $piva, $imgPath, $categoria);
+    $stmt->bind_param("ssdssi", $nome, $descrizione, $prezzo, $piva, $imgPath, $categoria);
     return $stmt->execute();
   }
   public function insert_fornitura($qta, $idProdotto)
@@ -290,10 +290,16 @@ class DatabaseHelper
   /*-----------------------------------------------------------------------------------------------------------*/
   /* UPDATE */
   public function update_fornitore($p_iva, $via, $nc, $citta, $infoMail, $pecMail, $fax, $tell)
-  {
-    $query = "UPDATE `fornitore` SET Via = ?, NumeroCivico = ?, Citta = ?, InfoMail = ?, PerMail = ?, Fax = ?, Telefono = ? WHERE PIVA = ?";
+  { 
+    if(empty($infoMail)) $infoMail = "NULL";
+    if(empty($pecMail)) $pecMail = "NULL";
+    if(empty($fax)) $fax = "NULL";
+    if(empty($tell)) $tell = "NULL";
+
+    $query = "UPDATE `fornitore` SET Via = ?, NumeroCivico = ?, Citta = ?, InfoMail = ".$infoMail.", 
+    PecMail = ".$pecMail.", Fax = ".$fax.", Telefono = ".$tell." WHERE PIVA = ?";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("sissssss", $via, $nc, $citta, $infoMail, $pecMail, $fax, $tell, $p_iva);
+    $stmt->bind_param("siss", $via, $nc, $citta, $p_iva);
     return $stmt->execute();
   }
   public function update_riga_carrello($idUtente, $idprodotto, $idOrdine)

@@ -32,13 +32,6 @@
 </head>
 
 <body>
-    <?php
-    if(isset($templateParams["modals"])):
-        foreach($templateParams["modals"] as $modals):
-            check_modals($modals);
-        endforeach;
-    endif;
-    ?>
     <header>
         <div>
             <h1><?php echo $templateParams["titoloHeader"] ?></h1>
@@ -52,9 +45,14 @@
     ?>
     <main>
         <?php
-        if (isset($templateParams["specificTemplate"])) {
+        if (isset($templateParams["specificTemplate"])):
             require($templateParams["specificTemplate"]);
-        }
+        endif;
+        if(isset($templateParams["modals"])):
+            foreach($templateParams["modals"] as $m):
+                check_modals($m);
+            endforeach;
+        endif;
         ?>
     </main>
     <footer>

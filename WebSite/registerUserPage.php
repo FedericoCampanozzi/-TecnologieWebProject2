@@ -1,10 +1,10 @@
 <?php
 require_once 'bootstrap.php';
-$templateParams["titolo"] = "E-Plant Login";
-$templateParams["titoloHeader"] = "<strong>Welcome</strong> in E-Plant";
-$templateParams["sottotitoloHeader"] = "the best flower and plant e-commerce";
-$templateParams["specificTemplate"] = "recoveryAccountForm.php";
-$templateParams["checkNotifiche"] = true;
+$templateParams["titolo"] = "Account";
+$templateParams["titoloHeader"] = "Create yuor Account";
+$templateParams["sottotitoloHeader"] = "for the best ux ever";
+$templateParams["specificTemplate"] = "registerUserForm.php";
+$templateParams["messages"] = array("create", "err");
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
 require 'template/base.php';

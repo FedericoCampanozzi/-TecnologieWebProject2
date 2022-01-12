@@ -1,4 +1,4 @@
-<section>
+<section class="container top-40">
     <form action="utils/update.php" method="post">
         <fieldset class="border p-3">
             <legend class="w-auto text-big">Login Form</legend>
@@ -22,8 +22,8 @@
         </fieldset>
     </form>
 </section>
-<section>
+<section class="container top-40">
       <p>Clicca <a href="recoveryAccountPage.php">qui</a> per recuperare la password</p>
       <p>Clicca <a href="registerUserPage.php">qui</a> per creare un account</p>
-      <p>Per contattare l'assistenza scrivere una mail al seguente indirizzo : <br> federico.campanozzi@studio.unibo.it</p>
+      <p><a href="logoutPage.php">DBG LOGOUT PAGE</a></p>
 </section>

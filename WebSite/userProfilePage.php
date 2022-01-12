@@ -5,7 +5,7 @@ $templateParams["titoloHeader"] = "Profilo Utente";
 $templateParams["sottotitoloHeader"] = null;
 $templateParams["specificTemplate"] = "template\user\usrTabs.php";
 $templateParams["specificNavbar"] = "template\user\userNavbar.php";
-$templateParams["checkNotifiche"] = true;
+$templateParams["modals"] = array("datiAgg","pswErr");
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = true;
 require 'template/base.php';

@@ -32,6 +32,6 @@
         <button type="submit" class="custom-btn btn-14">Registrazione</button>
     </form>
 </section>
-<section>
+<section class="container top-40">
     Clicca <a href="index.php">qui</a> per tornare alla homepage
 </section>

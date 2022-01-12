@@ -4,7 +4,7 @@ $templateParams["titolo"] = "E-Plant Login";
 $templateParams["titoloHeader"] = "<strong>Welcome</strong> in E-Plant";
 $templateParams["sottotitoloHeader"] = "the best flower and plant e-commerce";
 $templateParams["specificTemplate"] = "loginForm.php";
-$templateParams["checkNotifiche"] = true;
+$templateParams["modals"] = array("pswErr", "userErr", "accRec");
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
 require 'template/base.php';

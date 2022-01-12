@@ -1,9 +1,8 @@
 /*
-    colori scelti : https://paletton.com/#uid=71k1v0kVjCosuRJKUUaVmrEU+li
+colori scelti : https://paletton.com/#uid=71k1v0kVjCosuRJKUUaVmrEU+li
 */
 
 @import "reset.css";
-@import "modalStyle.css";
 @import "structureStyle.css";
 @import "product.css";
 @import "ordini.css";
@@ -16,6 +15,7 @@ body {
 form>fieldset {
     background-color: rgb(224, 224, 224);
     border-radius: 20px;
+    margin: 20% auto;
 }
 
 form>fieldset>legend {
@@ -200,6 +200,35 @@ nav.navbar {
     bottom: 0;
 }
 
+.modal-msg-successfull {
+    background-color: greenyellow;
+}
+
+.modal-msg-error {
+    background-color: orangered;
+}
+
+.modal-msg-warning {
+    background-color: orange;
+}
+
+.modal-msg-info {
+    background-color: rgb(21, 167, 252);
+}
+
+section p {
+    margin: 15px auto;
+}
+
+.m-badge-cart {
+    position: relative;
+    top: -15px;
+    left: -20px;
+    margin: 0;
+    color: red;
+    background-color: sandybrown;
+}
+
 @media screen and (min-width: 0px) and (max-width: 700px) {
     .gfx-link {
         margin: 10px 25px;
@@ -207,16 +236,14 @@ nav.navbar {
     }
 }
 
-@media screen and (min-width: 0px) and (max-width: 400px) {
-    /*.fix-on-bot {
-        position: unset;
+@media screen and (min-width: 0px) and (max-width: 789px) {
+    .nav-tabs,
+    .nav-link {
+        display: list-item !important;
     }
-    */
-    /*
-    footer>div {
-        margin: 1px 5px;
-        margin-top: 20px;
-    }*/
+}
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
     div.container>canvas {
         height: 400px;
     }
@@ -224,13 +251,5 @@ nav.navbar {
         width: 80%;
         height: 80%;
         margin: 10% 10%;
-    }
-    .centerd-itm {
-        width: 50%;
-        margin: 50px 25%;
-    }
-    .nav-tabs,
-    .nav-link {
-        display: list-item !important;
     }
 }

@@ -48,7 +48,7 @@
             </tbody>
         </table>
 </section>
-<section>
+<section class="container top-40">
     Clicca <a href="logoutPage.php">qui</a> per effettuare il logout
 </section>
 <script src="./js/homepageDeliveryMan.js"></script>

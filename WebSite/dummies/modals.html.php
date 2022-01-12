@@ -139,11 +139,11 @@ session_start();
             ?>
             let mod = <?php echo $mod; ?>
 
-            if (mod % 5 == 0) $('#mod-succ').modal('show');
-            if (mod % 5 == 1) $('#mod-warning').modal('show');
-            if (mod % 5 == 2) $('#mod-info').modal('show');
-            if (mod % 5 == 3) $('#mod-err').modal('show');
-            if (mod % 5 == 4) $('#mod-warning-yn').modal('show');
+            if (mod % 6 == 0) $('#mod-succ').modal('show');
+            if (mod % 6 == 1) $('#mod-warning').modal('show');
+            if (mod % 6 == 2) $('#mod-info').modal('show');
+            if (mod % 6 == 3) $('#mod-err').modal('show');
+            if (mod % 6 == 4) $('#mod-warning-yn').modal('show');
         });
     </script>
 </body>
