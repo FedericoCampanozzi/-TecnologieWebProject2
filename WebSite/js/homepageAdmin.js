@@ -1,23 +1,14 @@
 $(document).ready(function() {
     $('#tbl_categorie').DataTable();
     $('#tbl_ruoli_utente').DataTable();
-    $(".change_to_admin").click(function() {
-        const id_parts = $(this).attr("id").split("_");
-        $.post("utils/update.php", {
-            codiceUpdate: "usr_ruolo",
-            IdUtenteCambio: document.getElementById("IdUtente_" + id_parts[1]).value,
-            IdNuovoRuolo: 3,
-            P_IVA: null
-        }, function(response) {
-            console.log("Response: " + response);
-            location.reload();
-        });
-    });
-
     $(".change_ruolo").click(function() {
         const id_parts = $(this).attr("id").split("_");
         const new_idr = parseInt(document.getElementById("ruolo_" + id_parts[1]).value);
-        let piva = null;
+        let piva = document.getElementById("forn_" + id_parts[1]).value;
+        if ((new_idr == 5 || new_idr == 6) && piva == "NULL") {
+            console.log("SELEZIONARE PARTITA IVA");
+            return;
+        }
         $.post('utils/update.php', {
             codiceUpdate: "usr_ruolo",
             IdUtenteCambio: document.getElementById("IdUtente_" + id_parts[1]).value,
@@ -25,7 +16,8 @@ $(document).ready(function() {
             P_IVA: piva
         }, function(response) {
             console.log("Response: " + response);
-            location.reload();
+            //location.reload();
         });
+        return false;
     });
 });

@@ -28,7 +28,7 @@
                         <select class="form-control" id="ruolo_<?php echo $i; ?>">";
                             <?php
                             foreach ($all_role as $r) :
-                                if ($users[$i]["IdRuolo"] == $all_role[$j]["ID"]) :
+                                if ($users[$i]["IdRuolo"] == $r["ID"]) :
                                 ?>
                                 <option value="<?php echo $r["ID"]; ?>" selected><?php echo $r["Nome"]; ?></option>
                                 <?php else :?>
@@ -42,7 +42,7 @@
                             <option value="NULL"> NULL </option>
                             <?php
                             foreach ($all_az as $az) :
-                                if (isset($all_az[$j]["PIVA"]) && $users[$i]["PIVA"] == $all_az[$j]["PIVA"]) : ?>
+                                if (isset($az["PIVA"]) && $users[$i]["PIVA"] == $az["PIVA"]) : ?>
                                     <option value="<?php echo $az["PIVA"]; ?>" selected><?php echo $az["RagioneSociale"]; ?></option>
                                 <?php else : ?>
                                     <option value="<?php echo $az["PIVA"]; ?>"><?php echo $az["RagioneSociale"]; ?></option>

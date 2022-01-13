@@ -14,6 +14,9 @@ $(document).ready(function() {
             document.getElementById("Qta_" + id_parts[1]).innerHTML = qta;
             document.getElementById("PrezzoTotale_" + id_parts[1]).innerHTML = (tr + pu) + "&euro;";
             document.getElementById("totaleCarrello").innerHTML = (tc + pu) + "&euro;";
+            let n_pezzi = parseInt(document.getElementById("usr_cart_items").innerText);
+            n_pezzi = n_pezzi + 1;
+            document.getElementById("usr_cart_items").textContent = n_pezzi;
         });
         return false;
     });
@@ -36,6 +39,9 @@ $(document).ready(function() {
             document.getElementById("Qta_" + id_parts[1]).innerHTML = qta;
             document.getElementById("PrezzoTotale_" + id_parts[1]).innerHTML = (tr - pu) + "&euro;";
             document.getElementById("totaleCarrello").innerHTML = tc - pu;
+            let n_pezzi = parseInt(document.getElementById("usr_cart_items").innerText);
+            n_pezzi = n_pezzi - 1;
+            document.getElementById("usr_cart_items").textContent = n_pezzi;
         });
         return false;
     });

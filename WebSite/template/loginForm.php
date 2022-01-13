@@ -25,5 +25,4 @@
 <section class="container top-40">
       <p>Clicca <a href="recoveryAccountPage.php">qui</a> per recuperare la password</p>
       <p>Clicca <a href="registerUserPage.php">qui</a> per creare un account</p>
-      <p><a href="logoutPage.php">DBG LOGOUT PAGE</a></p>
 </section>

@@ -13,7 +13,8 @@ function getIdFromName($name)
 
 function registerUser($user)
 {
-    $_SESSION["IdUtente"] = $user[0]["ID"];
+    $_SESSION["IdUtente"] = $user[0]["ID"];    
+    $_SESSION["IdRuolo"] = $user[0]["IdRuolo"];
     $_SESSION["usr_un"] = $user[0]["Username"];
     $_SESSION["usr_nome"] = $user[0]["Nome"];
     $_SESSION["usr_cognome"] = $user[0]["Cognome"];
@@ -107,13 +108,6 @@ function check_modals($check)
         else modals_information();
         $_SESSION["show_modal"] = false;
     endif;
-}
-
-function ajax_response($msg, $page_from, $msg_type)
-{
-    echo json_decode("{
-
-    }");
 }
 
 function generate_js_array($phpArray, $propName)

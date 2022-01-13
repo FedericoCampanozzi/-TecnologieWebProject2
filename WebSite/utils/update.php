@@ -9,9 +9,11 @@ if ($dbg) {
 $codice = $_REQUEST["codiceUpdate"];
 switch ($codice) {
     case ("fornitore"):
-        if ($dbh->update_fornitore($_SESSION["PIVA_Azienda"],$_REQUEST["via"],$_REQUEST["numero_civico"],$_REQUEST["citta"],$_REQUEST["pecMail"],$_REQUEST["infoMail"],$_REQUEST["tell"],$_REQUEST["fax"]))
+        if ($dbh->update_fornitore($_SESSION["PIVA_Azienda"],$_REQUEST["via"],$_REQUEST["numero_civico"],$_REQUEST["citta"],$_REQUEST["pecMail"],$_REQUEST["infoMail"],$_REQUEST["tell"],$_REQUEST["fax"])){
+            registerSupplier($dbh->get_login_by_id($_SESSION["IdUtente"]));
             show_in_next_page("i dati sono stati aggiornati correttamente", 
             "datiAgg", "homepageSupplier.php", MsgType::Successfull, $dbg);
+        }
         else
             show_in_next_page("i dati non sono stati aggiornati", 
             "datiAgg", "homepageSupplier.php", MsgType::Error, $dbg);
@@ -29,8 +31,10 @@ switch ($codice) {
             "pswErr", "userProfilePage.php", MsgType::Error, $dbg);
         break;
     case ("user"):
-        if ($dbh->update_user($_SESSION["IdUtente"], $_REQUEST["username"], $_REQUEST["email"], $_REQUEST["tell"]))
+        if ($dbh->update_user($_SESSION["IdUtente"], $_REQUEST["username"], $_REQUEST["email"], $_REQUEST["tell"])){
+            registerUser($dbh->get_login_by_id($_SESSION["IdUtente"]));
             show_in_next_page("dati aggiornati", "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
+        }
         else
             show_in_next_page("dati non aggiornati", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
         break;
@@ -71,10 +75,7 @@ switch ($codice) {
             show_in_next_page("Consegna errata", "cons", "homepageDeliveryMan.php", MsgType::Error, $dbg);
         break;
     case ("usr_ruolo"):
-        if ($dbh->update_user_ruolo($_REQUEST["IdUtenteCambio"], $_REQUEST["IdNuovoRuolo"], $_REQUEST["P_IVA"]))
-            ajax_response("Consegna registrata correttamente", "", "homepageAdmin.php", MsgType::Successfull, $dbg);
-        else
-            ajax_response("Consegna registrata correttamente", "", "homepageAdmin.php", MsgType::Successfull, $dbg);
+        $dbh->update_user_ruolo($_REQUEST["IdUtenteCambio"], $_REQUEST["IdNuovoRuolo"], $_REQUEST["P_IVA"]);
         break;
     case ("denaro"):
         if ($dbh->update_conto($_REQUEST["numero_carta"], 100.0))
@@ -82,6 +83,8 @@ switch ($codice) {
         else
             show_in_next_page("<strong>Transazione annullata</strong>", "add-card", "userProfilePage.php?showTab=card", MsgType::Error, $dbg);
         break;
+    case("notifica"):
+        $dbn->update_notica($_REQUEST["idNotifica"]);
     default:
         die("codice inserimento non trovato");
         break;

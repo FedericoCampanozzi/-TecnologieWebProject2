@@ -229,6 +229,32 @@ section p {
     background-color: sandybrown;
 }
 
+.m-badge-notifiche {
+    position: relative;
+    top: -8px;
+    left: 0;
+    margin: 0;
+    color: yellow;
+    background-color: black;
+}
+
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
 @media screen and (min-width: 0px) and (max-width: 700px) {
     .gfx-link {
         margin: 10px 25px;

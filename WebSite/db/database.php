@@ -12,6 +12,9 @@ class DatabaseHelper
   /* MISC */
   private function get_cripted_password($data){
     return hash("sha256", "2342werfwexv".$data."vghjklp,.m,£$%&");
+  }  
+  private function get_cripted_ccv($data){
+    return hash("sha256", "1werrt)?)gbhnh41".$data."!!24311?'\acx");
   }
   public function find_user_from_username($user)
   {
@@ -60,8 +63,42 @@ class DatabaseHelper
     $result = $result->fetch_all(MYSQLI_ASSOC);
     return $result[0]["Giacenza"];
   }
+  public function numero_prodotti($idUtente){
+    $stmt = $this->db->prepare("SELECT COUNT(*) AS NumeroProdotti FROM riga_carrello AS rc WHERE rc.IdUtente = ? AND rc.IdOrdine IS NULL");
+    $stmt->bind_param("i", $idUtente);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $result = $result->fetch_all(MYSQLI_ASSOC);
+    return $result[0]["NumeroProdotti"];
+  }
+  public function check_ccv($NumeroCarta, $ccv){
+    $ccv = $this->get_cripted_ccv($ccv);
+    $stmt = $this->db->prepare("SELECT * FROM carta WHERE Numero = ? AND CCV = ?");
+    $stmt->bind_param("is", $NumeroCarta, $ccv);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $result->fetch_all(MYSQLI_ASSOC);
+    return $stmt->affected_rows == 1;
+  }
+  public function get_notifiche_nonlette($idUtente){
+    $stmt = $this->db->prepare("SELECT COUNT(*) AS NrNotifiche FROM info_notifica WHERE IdUtenteCreazione = ? AND DataLettura IS NULL");
+    $stmt->bind_param("i", $idUtente);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $result = $result->fetch_all(MYSQLI_ASSOC);
+    return $result[0]["NrNotifiche"];
+
+  }
   /*-----------------------------------------------------------------------------------------------------------*/
   /* GET */
+  public function get_login_by_id($id)
+  {
+    $stmt = $this->db->prepare("SELECT * FROM ruoli_utente WHERE ID = ? ");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
   public function get_login($user, $password)
   {
     $password = $this->get_cripted_password($password);
@@ -195,6 +232,14 @@ class DatabaseHelper
   }
   /*-----------------------------------------------------------------------------------------------------------*/
   /* INSERT */
+  public function insert_notifica($idUtCreazione, $idUtNotificato, $messagio, $titolo)
+  {
+    $query = "INSERT INTO `notifica`(`IdUtenteCreazione`, `IdUtenteNotificato`, `Messaggio`, `Titolo`, `DataInvio`, `DataLettura`) 
+      VALUES (?,?,?,?,CURRENT_TIMESTAMP(),NULL)";
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("iiss", $idUtCreazione, $idUtNotificato, $messagio, $titolo);
+    return $stmt->execute();
+  }
   public function insert_user($username, $psw, $nome, $cognome, $dataNascita, $email, $tell)
   {
     $psw = $this->get_cripted_password($psw);
@@ -227,9 +272,10 @@ class DatabaseHelper
   }
   public function insert_carta($numero, $dataScadenza, $ccv, $tipo, $idUtente)
   {
+    $ccv = $this->get_cripted_ccv($ccv);
     $query = "INSERT INTO `carta`(`Numero`,`DataScadenza`, `CCV`, `Tipo`, `IdUtente`, Disponibilita) VALUES (?,?,?,?,?,0)";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("isisi", $numero, $dataScadenza, $ccv, $tipo, $idUtente);
+    $stmt->bind_param("isssi", $numero, $dataScadenza, $ccv, $tipo, $idUtente);
     return $stmt->execute();
   }
   public function insert_categoria($nome, $descrizione)
@@ -292,8 +338,11 @@ class DatabaseHelper
   public function update_fornitore($p_iva, $via, $nc, $citta, $infoMail, $pecMail, $fax, $tell)
   { 
     if(empty($infoMail)) $infoMail = "NULL";
+    else $infoMail = "'".$infoMail."'";
     if(empty($pecMail)) $pecMail = "NULL";
+    else $pecMail = "'".$pecMail."'";
     if(empty($fax)) $fax = "NULL";
+    else $fax = "'".$fax."'";
     if(empty($tell)) $tell = "NULL";
 
     $query = "UPDATE `fornitore` SET Via = ?, NumeroCivico = ?, Citta = ?, InfoMail = ".$infoMail.", 
@@ -307,6 +356,13 @@ class DatabaseHelper
     $query = "UPDATE `riga_carrello` SET IdOrdine = ? WHERE IdUtente = ? AND IdProdotto = ? AND IdOrdine IS NULL";
     $stmt = $this->db->prepare($query);
     $stmt->bind_param("iii", $idOrdine, $idUtente, $idprodotto);
+    return $stmt->execute();
+  }
+  public function update_notica($idNotifica)
+  {
+    $query = "UPDATE `notifica` SET DataLettura = CURRENT_TIMESTAMP(), WHERE IdNotifica = ?";
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("i", $idNotifica);
     return $stmt->execute();
   }
   public function update_ordine($idFattorino, $idOrdine)
