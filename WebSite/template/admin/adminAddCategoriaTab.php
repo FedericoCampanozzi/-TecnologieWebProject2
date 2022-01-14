@@ -31,7 +31,7 @@
                     <textarea class="form-control gfx-not-resizable" name="desc" id="desc" placeholder="Descrizione" rows="3"> </textarea>
                 </td>
                 <td>
-                    <button type="submit" class="custom-btn btn-grid-1">Inserisce</button>
+                    <button type="submit" class="custom-btn btn-grid-1">Inserisci</button>
                 </td>
             </tr>
             <tbody>

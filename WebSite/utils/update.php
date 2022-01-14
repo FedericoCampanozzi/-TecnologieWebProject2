@@ -3,8 +3,11 @@ require_once '../bootstrap.php';
 $dbg = false;
 if ($dbg) {
     var_dump($_SESSION);
-    ?> <br> <br> <br> <?php
+    ?> <br> <br> <?php
     var_dump($_REQUEST);
+    ?> <br> <br> <?php
+    var_dump($_FILES);
+    ?> <br> <br> <?php
 }
 $codice = $_REQUEST["codiceUpdate"];
 switch ($codice) {
@@ -27,15 +30,22 @@ switch ($codice) {
                 show_in_next_page("dati non aggiornati", 
                 "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
         else
-            show_in_next_page("le password non corrispondono", 
+            show_in_next_page("le password non corrispondono",
             "pswErr", "userProfilePage.php", MsgType::Error, $dbg);
         break;
+    case("immagine"):
+        list($result, $msg) = uploadImage(UPLOAD_USER_DIR, $_FILES["Immagine"]);
+        if($result && $dbh->update_image_user($_SESSION["IdUtente"], $msg)) {
+            show_in_next_page("Immagine caricata", "ImgAgg", "userProfilePage.php", MsgType::Warning, $dbg);
+        }else{
+            show_in_next_page("Immagine non caricata per il seguente motivo : <br>".$msg, "ImgAgg", "userProfilePage.php", MsgType::Warning, $dbg);
+        }
+        break;
     case ("user"):
-        if ($dbh->update_user($_SESSION["IdUtente"], $_REQUEST["username"], $_REQUEST["email"], $_REQUEST["tell"])){
+        if ($dbh->update_user($_SESSION["IdUtente"], $_REQUEST["username"], $_REQUEST["email"], $_REQUEST["tell"])) {
             registerUser($dbh->get_login_by_id($_SESSION["IdUtente"]));
             show_in_next_page("dati aggiornati", "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
-        }
-        else
+        } else
             show_in_next_page("dati non aggiornati", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
         break;
     case ("login"):
@@ -79,12 +89,13 @@ switch ($codice) {
         break;
     case ("denaro"):
         if ($dbh->update_conto($_REQUEST["numero_carta"], 100.0))
-            show_in_next_page("Transazione avvenuta corretamente", "add-card", "userProfilePage.php?showTab=card", MsgType::Successfull, $dbg);
+            show_in_next_page("Transazione avvenuta corretamente", "denaro", "userProfilePage.php?showTab=card", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("<strong>Transazione annullata</strong>", "add-card", "userProfilePage.php?showTab=card", MsgType::Error, $dbg);
+            show_in_next_page("<strong>Transazione annullata</strong>", "denaro", "userProfilePage.php?showTab=card", MsgType::Error, $dbg);
         break;
     case("notifica"):
-        $dbn->update_notica($_REQUEST["idNotifica"]);
+        $dbh->update_notica($_REQUEST["idNotifica"]);
+        break;
     default:
         die("codice inserimento non trovato");
         break;

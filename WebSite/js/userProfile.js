@@ -45,6 +45,25 @@ $(document).ready(function() {
         });
         return false;
     });
+    $("#addCard").click(function() {
+        let data = document.getElementById("datascadenza").value;
+        $.post("utils/insert.php", {
+            codiceInsert: "carta",
+            numero: document.getElementById("numero").value,
+            datascadenza: data,
+            ccv: document.getElementById("ccv").value,
+            tipo_carta: document.getElementById("tipo_carta").value,
+        }, function(response) {
+            console.log("Response: " + response);
+            document.getElementById("numero").value = "";
+            document.getElementById("datascadenza").value = "";
+            document.getElementById("ccv").value = "";
+            document.getElementById("tipo_carta").selectedIndex = "0";
+            var url = new URL(window.location.href);
+            url.searchParams.set('showTab', 'card');
+            window.location.href = url.href;
+        });
+    });
     $("#tbl_carrello_utente").DataTable();
     $("#tbl_carte_utente").DataTable();
     $("#tbl_recapiti_utente").DataTable();

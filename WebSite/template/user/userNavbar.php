@@ -37,7 +37,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item ml-auto bg-white">
+                <li class="nav-item ml-auto nav-usr-name">
                     <div>
                         <?php echo $_SESSION["usr_un"]; ?>
                     </div>

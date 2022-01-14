@@ -1,10 +1,21 @@
 <div class="row">
-    <div class="col-6">
-        <button title="aggiornmaneto immagine disabilitato" disabled>
-            <img class="usr-profile-image" alt="" src="<?php echo UPLOAD_USER_DIR.$_SESSION["usr_image"]; ?>">
-        </button>
+    <div class="col-4">
+        <img class="usr-profile-image" alt="" src="<?php echo UPLOAD_USER_DIR . $_SESSION["usr_image"]; ?>">
     </div>
-    <div class="col-6">
+    <div class="col-4">
+        <form action="utils/update.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="codiceUpdate" value="immagine">
+            <div class="row">
+                <div class="col-6">
+                    <input class="top-40" type="file" name="Immagine" id="Immagine" title="Immagine" accept="image/*" />
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="custom-btn btn-5 top-40">Carica</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-4">
         <form action="utils/update.php" method="post">
             <input type="hidden" name="codiceUpdate" value="password">
             <div class="form-group">
@@ -30,10 +41,10 @@
         <p>Data di nascita : <?php echo $_SESSION["usr_dn"]; ?></p>
     </div>
 </div>
-<form action="utils/update.php" method="get">
+<form action="utils/update.php" method="post">
+    <input type="hidden" name="codiceUpdate" value="user">
     <div class="row">
         <div class="col-6">
-            <input type="hidden" name="codiceUpdate" value="user">
             <div class="form-group">
                 <label for="username">Username : </label>
                 <input type="text" class="form-control" name="username" id="username" value="<?php echo $_SESSION["usr_un"]; ?>" />
@@ -47,13 +58,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-4">
             <div class="form-group">
                 <label for="tell">Telefono : </label>
                 <input type="text" class="form-control" name="tell" id="tell" value="<?php echo $_SESSION["usr_tell"]; ?>" />
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-8">
             <button type="submit" class="custom-btn btn-5 top-40">Aggiorna</button>
         </div>
     </div>

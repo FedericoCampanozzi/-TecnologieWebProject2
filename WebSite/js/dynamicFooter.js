@@ -7,7 +7,7 @@ $(document).ready(function() {
 function resizeEvent() {
     const body = document.getElementsByTagName("body")[0].getBoundingClientRect();
     const footer = document.getElementsByTagName("footer")[0];
-    if (body.height + 200 < screen.height && !footer.classList.contains("fix-on-bot")) {
+    if (body.height < screen.height && !footer.classList.contains("fix-on-bot")) {
         footer.classList.add("fix-on-bot");
     }
     if (body.height > screen.height && footer.classList.contains("fix-on-bot")) {

@@ -3,8 +3,11 @@ require_once '../bootstrap.php';
 $dbg = false;
 if ($dbg) {
     var_dump($_SESSION);
-    ?> <br> <br> <br> <?php
+    ?> <br> <br> <?php
     var_dump($_REQUEST);
+    ?> <br> <br> <?php
+    var_dump($_FILES);
+    ?> <br> <br> <?php
 }
 $codice = $_REQUEST["codiceInsert"];
 switch ($codice) {
@@ -31,11 +34,19 @@ switch ($codice) {
     case ("notifica"):
         $dbh->insert_notifica($_SESSION["IdUtente"], $_REQUEST["To"], $_REQUEST["Messaggio"], $_REQUEST["Titolo"]);
         break;
+    case ("notifica_broadcast"):
+        $dbh->insert_notifica_broadcast($_SESSION["IdUtente"], $_REQUEST["Messaggio"], $_REQUEST["Titolo"]);
+        break;
     case ("prodotto"):
-        if ($dbh->insert_prodotto($_REQUEST["nome"], $_REQUEST["desc"], $_REQUEST["prezzo"], $_SESSION["PIVA_Azienda"], 'cactus.jpg', $_REQUEST["categoria"]))
+        list($result, $msg) = uploadImage(UPLOAD_PRODUCT_DIR, $_FILES["Immagine"]);
+        if ($result) {
+            if ($dbh->insert_prodotto($_REQUEST["nome"], $_REQUEST["desc"], $_REQUEST["prezzo"], $_SESSION["PIVA_Azienda"], $msg, $_REQUEST["categoria"]))
             show_in_next_page("prodotto inserito correttamente", "addProduct", "homepageSupplier.php?showTab=product", MsgType::Successfull, $dbg);
-        else
-            show_in_next_page("prodotto non inserito", "addProduct", "homepageSupplier.php?showTab=product", MsgType::Error, $dbg);
+            else
+                show_in_next_page("prodotto non inserito", "addProduct", "homepageSupplier.php?showTab=product", MsgType::Error, $dbg);
+        } else {
+            show_in_next_page("Immagine non caricata per il seguente motivo : <br>" . $msg, "addProduct", "homepageSupplier.php?showTab=product", MsgType::Error, $dbg);
+        }
         break;
     case ("user"):
         if ($dbh->insert_user($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"]))
@@ -44,16 +55,13 @@ switch ($codice) {
             show_in_next_page("C'&egrave; stato un problema inaspettato<br>Riprova pi&ugrave; tardi oppure contatta il servizio clienti", "newUser", "newUser.php", MsgType::Error, $dbg);
         break;
     case ("carta"):
-        if ($dbh->insert_carta($_REQUEST["numero"], $_REQUEST["datascadenza"], $_REQUEST["ccv"], $_REQUEST["tipo_carta"], $_SESSION["IdUtente"]))
-            show_in_next_page("carta inserita correttamente", "userProfile.php?showTab=card", "card", MsgType::Successfull, $dbg);
-        else
-            show_in_next_page("<strong> carta di pagamento non inserito</strong>", "userProfile.php?showTab=card", "card", MsgType::Error, $dbg);
+        $dbh->insert_carta($_REQUEST["numero"], $_REQUEST["datascadenza"], $_REQUEST["ccv"], $_REQUEST["tipo_carta"], $_SESSION["IdUtente"]);
         break;
     case ("recapito"):
         if ($dbh->insert_recapito($_REQUEST["via"], $_REQUEST["nc"], $_REQUEST["citta"], $_REQUEST["interno"], $_SESSION["IdUtente"]))
-            show_in_next_page("recapito inserito correttamente", "userProfile.php?showTab=address", "address", MsgType::Successfull, $dbg);
+            show_in_next_page("recapito inserito correttamente", "address", "userProfile.php?showTab=address", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("<strong>recapito non inserito</strong>", "userProfile.php?showTab=address", "address", MsgType::Error, $dbg);
+            show_in_next_page("<strong>recapito non inserito</strong>", "address", "userProfile.php?showTab=address", MsgType::Error, $dbg);
         break;
     case ("ordine"):
         $usr_cart = $dbh->get_carrello($_SESSION["IdUtente"]);

@@ -81,13 +81,12 @@ class DatabaseHelper
     return $stmt->affected_rows == 1;
   }
   public function get_notifiche_nonlette($idUtente){
-    $stmt = $this->db->prepare("SELECT COUNT(*) AS NrNotifiche FROM info_notifica WHERE IdUtenteCreazione = ? AND DataLettura IS NULL");
+    $stmt = $this->db->prepare("SELECT COUNT(*) AS NrNotifiche FROM info_notifica WHERE IdUtenteNotificato = ? AND DataLettura IS NULL");
     $stmt->bind_param("i", $idUtente);
     $stmt->execute();
     $result = $stmt->get_result();
     $result = $result->fetch_all(MYSQLI_ASSOC);
     return $result[0]["NrNotifiche"];
-
   }
   /*-----------------------------------------------------------------------------------------------------------*/
   /* GET */
@@ -138,7 +137,7 @@ class DatabaseHelper
   }
   public function get_notifiche($idUtente)
   {
-    $stmt = $this->db->prepare("SELECT * FROM info_notifica WHERE IdUtenteCreazione = ? OR IdUtenteNotificato = ? ORDER BY DataInvio DESC LIMIT 50");
+    $stmt = $this->db->prepare("SELECT * FROM info_notifica WHERE IdUtenteCreazione = ? OR IdUtenteNotificato = ? OR IdUtenteNotificato IS NULL ORDER BY DataInvio DESC LIMIT 50");
     $stmt->bind_param("ii", $idUtente, $idUtente);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -230,6 +229,13 @@ class DatabaseHelper
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
   }
+  public function get_role_user()
+  {
+    $stmt = $this->db->prepare("SELECT * FROM utente WHERE IdRuolo = 4");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
   /*-----------------------------------------------------------------------------------------------------------*/
   /* INSERT */
   public function insert_notifica($idUtCreazione, $idUtNotificato, $messagio, $titolo)
@@ -238,6 +244,14 @@ class DatabaseHelper
       VALUES (?,?,?,?,CURRENT_TIMESTAMP(),NULL)";
     $stmt = $this->db->prepare($query);
     $stmt->bind_param("iiss", $idUtCreazione, $idUtNotificato, $messagio, $titolo);
+    return $stmt->execute();
+  }
+  public function insert_notifica_broadcast($idUtCreazione, $messagio, $titolo)
+  {
+    $query = "INSERT INTO `notifica`(`IdUtenteCreazione`, `IdUtenteNotificato`, `Messaggio`, `Titolo`, `DataInvio`, `DataLettura`) 
+      VALUES (?,NULL,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("iss", $idUtCreazione, $messagio, $titolo);
     return $stmt->execute();
   }
   public function insert_user($username, $psw, $nome, $cognome, $dataNascita, $email, $tell)
@@ -360,7 +374,7 @@ class DatabaseHelper
   }
   public function update_notica($idNotifica)
   {
-    $query = "UPDATE `notifica` SET DataLettura = CURRENT_TIMESTAMP(), WHERE IdNotifica = ?";
+    $query = "UPDATE `notifica` SET DataLettura = CURRENT_TIMESTAMP() WHERE IdNotifica = ? AND DataLettura IS NULL";
     $stmt = $this->db->prepare($query);
     $stmt->bind_param("i", $idNotifica);
     return $stmt->execute();
@@ -377,6 +391,13 @@ class DatabaseHelper
     $query = "UPDATE `utente` SET Username = ?, EMail = ?, Telefono = ? WHERE ID = ?";
     $stmt = $this->db->prepare($query);
     $stmt->bind_param("ssii", $username, $email, $tell, $idUtente);
+    return $stmt->execute();
+  }
+  public function update_image_user($idUtente, $img)
+  {
+    $query = "UPDATE `utente` SET ImagePath = ? WHERE ID = ?";
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("si", $img, $idUtente);
     return $stmt->execute();
   }
   public function update_user_psw($username, $newPsw)

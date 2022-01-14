@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="scrollable-content">
-    <form action="utils/insert.php" method="get">
+    <form action="utils/insert.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="codiceInsert" value="prodotto">
         <div class="container">
             <div class="table-caption">
@@ -51,7 +51,11 @@
                             <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
                         </td>
                         <td>
-
+                            <form>
+                        <div class="form-group">
+                            <input class="form-control form-control-sm" type="file" name="Immagine" id="Immagine" title="Immagine" accept="image/*" />
+                    </div>
+                            </form>
                         </td>
                         <td>
                             <textarea name="desc" id="desc" placeholder="Descrizione" class="md-textarea form-control gfx-not-resizable" rows="4"></textarea>

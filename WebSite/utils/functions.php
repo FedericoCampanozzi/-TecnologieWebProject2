@@ -1,16 +1,4 @@
 <?php
-function isActive($pagename)
-{
-    if (basename($_SERVER['PHP_SELF']) == $pagename) {
-        echo " class='active' ";
-    }
-}
-
-function getIdFromName($name)
-{
-    return preg_replace("/[^a-z]/", '', strtolower($name));
-}
-
 function registerUser($user)
 {
     $_SESSION["IdUtente"] = $user[0]["ID"];    
@@ -72,7 +60,6 @@ function uploadImage($path, $image)
         } while (file_exists($path . $imageName));
         $fullPath = $path . $imageName;
     }
-
     //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
     if (strlen($msg) == 0) {
         if (!move_uploaded_file($image["tmp_name"], $fullPath)) {

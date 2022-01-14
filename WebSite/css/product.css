@@ -1,82 +1,136 @@
+.product-container {
+    width: 40%;
+    height: 250px;
+    margin: 10px 4%;
+    border-radius: 50px;
+    display: inline-block;
+    background-color: #0CF500;
+    color: black;
+}
+
+.product-container>.nome-prodotto {
+    position: relative;
+    top: 20px;
+    left: 25px;
+    font-size: 32px;
+    font-weight: bold;
+    width: 156px;
+    height: 50px;
+}
+
+.product-container>.immagine {
+    position: relative;
+    top: 10px;
+    left: 25px;
+    width: 106px;
+    height: 106px;
+}
+
+.product-container>.giacenza {
+    position: relative;
+    top: -136px;
+    left: 55%;
+    width: 40%;
+    height: 50px;
+}
+
+.product-container>.prezzo {
+    position: relative;
+    top: -140px;
+    left: 45%;
+    font-size: 32px;
+    font-weight: bold;
+    width: 50%;
+    height: 50px;
+}
+
+.product-container>.giacenza>span {
+    font-size: 32px;
+    color: #140375;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    height: 50px;
+}
+
+.product-container>.acquista {
+    position: relative;
+    top: -140px;
+    left: 45%;
+    width: 50%;
+    height: 50px;
+}
+
+.product-container>.dettaglio {
+    position: relative;
+    top: -140px;
+    left: 45%;
+    width: 50%;
+    height: 50px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 800px) {
     .product-container {
-        width: 50%;
-        height: 250px;
-        margin: 10px 25%;
-        background-color: aquamarine;
-        border-radius: 50px;
+        width: 90%;
+        margin: 10px 5%;
+        display: block;
+        height: 196px;
     }
-    
-    .product-container>.nome-prodotto {
-        position: relative;
-        top: 10px;
-        left: 25px;
-        font-size: 22px;
-        font-weight: bold;
-        width: 50%;
+    .product-container>.immagine>img {
+        width: 96px;
+        height: 96px;
     }
-    
-    .product-container>.immagine {
-        position: relative;
-        top: 10px;
-        left: 25px;
-        width: 156px;
-        height: 156px;
-    }
-    
-    .product-container>.prezzo {
-        position: relative;
-        top: -160px;
-        left: 50px;
-        font-size: 24px;
-        font-weight: bold;
-        width: 50%;
-    }
-    
-    .product-container>.giacenza {
-        position: relative;
-        top: -176px;
-        left: 60%;
-        width: 50%;
-    }
-    
-    .product-container>.giacenza>span {
-        font-size: 32px;
-        color: #140375;
-        font-weight: bold;
-        margin: 0;
-        padding: 0;
-        width: 50%;
-    }
-    
-    .product-container>.descrizione {
-        position: relative;
-        top: -166px;
-        left: 35%;
-        width: 150px;
-        font-size: 15px;
-        height: 150px;
-        overflow-y: hidden;
-        width: 50%;
-    }
-    
-    .product-container>.acquista {
-        position: relative;
-        top: -210px;
-        left: 40%;
-        width: 50%;
-    }
-    
-    .product-container>.dettaglio {
-        position: relative;
-        top: -210px;
-        left: 70%;
-        font-size: 20px;
-        width: 50%;
-    }
-    
-    @media screen and (min-width: 0px) and (max-width: 700px) {
-        .product-container {
-            width: 90%;
-            margin: 10px 5%;
-        }
-    }
+}
+
+.product-dtl-container {
+    width: 80%;
+    height: 80%;
+    margin: 10% 10%;
+}
+
+.product-dtl-container>.nome-prodotto {
+    font-size: 32px;
+}
+
+.product-dtl-container>.categoria {
+    font-size: 22px;
+}
+
+.product-dtl-container>.categoria>span {
+    font-size: 32px;
+    color: blue;
+    font-weight: bold;
+}
+
+.product-dtl-container>.descrizione {
+    font-size: 24px;
+}
+
+.product-dtl-container>.fornitore {
+    color: rgb(43, 198, 226);
+    font-size: 22px;
+}
+
+.product-dtl-container>.fornitore>span {
+    color: blueviolet;
+    font-size: 30px;
+}
+
+.product-dtl-container>.prezzo {
+    font-size: 13px;
+}
+
+.product-dtl-container>.prezzo>span {
+    color: rgb(107, 0, 150);
+    font-size: 26px;
+}
+
+.product-dtl-container>.giacenza {
+    font-size: 26px;
+}
+
+.product-dtl-container>.giacenza>span {
+    color: rgb(101, 226, 43);
+    font-size: 26px;
+}
