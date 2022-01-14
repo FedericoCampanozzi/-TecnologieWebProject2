@@ -24,7 +24,7 @@
                         <td><?php echo $c["Qta"]; ?></td>
                         <td><?php echo $c["PrezzoUnitario"]; ?> &euro;</td>
                         <td><?php echo $c["PrezzoTotale"]; ?> &euro;</td>
-                    </tr> ";
+                    </tr>
                 <?php
                     $tot += $c["PrezzoTotale"];
                 endforeach ?>

@@ -34,9 +34,10 @@ switch ($codice) {
             "pswErr", "userProfilePage.php", MsgType::Error, $dbg);
         break;
     case("immagine"):
-        list($result, $msg) = uploadImage(UPLOAD_USER_DIR, $_FILES["Immagine"]);
+        list($result, $msg) = uploadImage("../".UPLOAD_USER_DIR, $_FILES["Immagine"]);
         if($result && $dbh->update_image_user($_SESSION["IdUtente"], $msg)) {
-            show_in_next_page("Immagine caricata", "ImgAgg", "userProfilePage.php", MsgType::Warning, $dbg);
+            registerUser($dbh->get_login_by_id($_SESSION["IdUtente"]));
+            show_in_next_page("Immagine caricata", "ImgAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
         }else{
             show_in_next_page("Immagine non caricata per il seguente motivo : <br>".$msg, "ImgAgg", "userProfilePage.php", MsgType::Warning, $dbg);
         }

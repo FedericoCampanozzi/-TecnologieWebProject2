@@ -5,14 +5,8 @@
     <div class="col-4">
         <form action="utils/update.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="codiceUpdate" value="immagine">
-            <div class="row">
-                <div class="col-6">
-                    <input class="top-40" type="file" name="Immagine" id="Immagine" title="Immagine" accept="image/*" />
-                </div>
-                <div class="col-6">
-                    <button type="submit" class="custom-btn btn-5 top-40">Carica</button>
-                </div>
-            </div>
+            <input class="top-40" type="file" name="Immagine" id="Immagine" title="Immagine" accept="image/*" />
+            <button type="submit" class="custom-btn top-40">Carica</button>
         </form>
     </div>
     <div class="col-4">

@@ -38,7 +38,7 @@ switch ($codice) {
         $dbh->insert_notifica_broadcast($_SESSION["IdUtente"], $_REQUEST["Messaggio"], $_REQUEST["Titolo"]);
         break;
     case ("prodotto"):
-        list($result, $msg) = uploadImage(UPLOAD_PRODUCT_DIR, $_FILES["Immagine"]);
+        list($result, $msg) = uploadImage("../".UPLOAD_PRODUCT_DIR, $_FILES["Immagine"]);
         if ($result) {
             if ($dbh->insert_prodotto($_REQUEST["nome"], $_REQUEST["desc"], $_REQUEST["prezzo"], $_SESSION["PIVA_Azienda"], $msg, $_REQUEST["categoria"]))
             show_in_next_page("prodotto inserito correttamente", "addProduct", "homepageSupplier.php?showTab=product", MsgType::Successfull, $dbg);
@@ -59,9 +59,9 @@ switch ($codice) {
         break;
     case ("recapito"):
         if ($dbh->insert_recapito($_REQUEST["via"], $_REQUEST["nc"], $_REQUEST["citta"], $_REQUEST["interno"], $_SESSION["IdUtente"]))
-            show_in_next_page("recapito inserito correttamente", "address", "userProfile.php?showTab=address", MsgType::Successfull, $dbg);
+            show_in_next_page("recapito inserito correttamente", "address", "userProfilePage.php?showTab=address", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("<strong>recapito non inserito</strong>", "address", "userProfile.php?showTab=address", MsgType::Error, $dbg);
+            show_in_next_page("<strong>recapito non inserito</strong>", "address", "userProfilePage.php?showTab=address", MsgType::Error, $dbg);
         break;
     case ("ordine"):
         $usr_cart = $dbh->get_carrello($_SESSION["IdUtente"]);
@@ -74,7 +74,7 @@ switch ($codice) {
             }
         }
         if ($disp) {
-            if ($_REQUEST["useContanti"] == "NO") {
+            if ($_REQUEST["usaContanti"] == "NO") {
                 // USO CARTA --> CONTROLLO SE IL CCV E' CORRETTO
                 if ($dbh->check_ccv($_REQUEST["select_carta"], $_REQUEST["CCV"])) {
                     // CONTROLLO SE CI SONO I SOLDI

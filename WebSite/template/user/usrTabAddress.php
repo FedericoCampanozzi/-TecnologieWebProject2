@@ -7,7 +7,7 @@
                     <th>Via</th>
                     <th>Numero Civico</th>
                     <th>Citt&agrave;</th>
-                    <th>Interno(*)</th>
+                    <th>Interno (Opzionale)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -16,7 +16,7 @@
                 $recapiti = $dbh->get_recapiti($_SESSION["IdUtente"]);
                 foreach ($recapiti as $r) :
                     $interno = "mancante";
-                    if (isset($recapiti[$i]["Interno"])) $interno = $recapiti[$i]["Interno"];
+                    if (isset($r["Interno"])) $interno = $r["Interno"];
                 ?>
                     <tr>
                         <td><?php echo $r["Via"]; ?></td>
@@ -42,7 +42,7 @@
                         <input type="text" class="form-control" name="interno" id="interno" placeholder="Interno">
                     </td>
                     <td>
-                        <button type="submit" class="custom-btn btn-grid-1">Aggiungi</button>
+                        <button type="submit" class="custom-btn">Aggiungi</button>
                     </td>
                 </tr>
             </tbody>
