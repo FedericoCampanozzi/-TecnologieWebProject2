@@ -80,7 +80,7 @@ a>span {
 
 .grid-input-restrict {
     max-width: 220px;
-    height: 200px;
+    height: 200px ;
     overflow-y: scroll;
 }
 
@@ -441,4 +441,8 @@ h4.mb-0>button {
         height: 80%;
         margin: 10% 10%;
     }
+}
+
+.scrollable-item {
+    overflow-y: scroll;
 }

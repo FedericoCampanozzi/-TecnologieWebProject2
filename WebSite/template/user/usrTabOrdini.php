@@ -1,3 +1,4 @@
+<div class="scrollable-item">
 <?php
 $userOrdini = $dbh->get_user_ordini($_SESSION["IdUtente"]);
 foreach ($userOrdini as $ordini) :
@@ -44,3 +45,4 @@ foreach ($userOrdini as $ordini) :
 <?php
 endforeach
 ?>
+</div>

@@ -1,4 +1,4 @@
-<div class="scrollable-content">
+<div class="scrollable-item">
     <div class="container">
         <div class="table-caption">
             Grafico Forniture

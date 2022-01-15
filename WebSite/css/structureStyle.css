@@ -5,6 +5,8 @@ footer {
     text-align: center;
     height: 60px;
     margin-top: 20px;
+    position:absolute;
+    bottom: 0;
 }
 
 header {

@@ -45,6 +45,7 @@
         require($templateParams["specificNavbar"]);
     }
     ?>
+    <div id="primaDelMain"></div>
     <main>
         <?php
         if (isset($templateParams["specificTemplate"])):
@@ -57,6 +58,7 @@
         endif;
         ?>
     </main>
+    <div id="dopoIlMain" style="position: absolute;bottom: 60px;"></div>
     <footer>
         <div>
             <p>Federico Campanozzi</p>
@@ -64,7 +66,6 @@
             <p>Alma Mater Studiorum Bologna - Sede di Cesena</p>
         </div>
     </footer>
-
 </body>
 
 </html>
