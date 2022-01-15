@@ -3,7 +3,7 @@ require_once 'bootstrap.php';
 $templateParams["titolo"] = "Homepage";
 $templateParams["titoloHeader"] = "Homepage Fornitore";
 $templateParams["sottotitoloHeader"] = "";
-$templateParams["specificTemplate"] = "template/deliveryManDashboard.php";
+$templateParams["specificTemplate"] = "template/deliveryMan/deliveryManTabs.php";
 $templateParams["specificNavbar"] = null;
 $templateParams["checkNotifiche"] = true;
 $templateParams["usaGrafici"] = true;

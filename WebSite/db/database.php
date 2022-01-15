@@ -182,6 +182,13 @@ class DatabaseHelper
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
   }
+  public function get_tot_products_admin()
+  {
+    $stmt = $this->db->prepare("SELECT * FROM totali_vendite_prodotto");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
   public function get_tot_forniture($pivaFornitore)
   {
     $stmt = $this->db->prepare("SELECT * FROM totali_fornitura WHERE PIVA_Fornitore = ?");
@@ -254,13 +261,13 @@ class DatabaseHelper
     $stmt->bind_param("iss", $idUtCreazione, $messagio, $titolo);
     return $stmt->execute();
   }
-  public function insert_user($username, $psw, $nome, $cognome, $dataNascita, $email, $tell)
+  public function insert_user($username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $IdRuolo)
   {
     $psw = $this->get_cripted_password($psw);
     $query = "INSERT INTO `utente`(`Username`, `Psw`, `Nome`, `Cognome`, `DataDiNascita`,`EMail`,`Telefono`,`IdRuolo`, `ImagePath`, `PIVA_Fornitore`) 
-      VALUES (?,?,?,?,?,?,?,4,'base.png', NULL)";
+      VALUES (?,?,?,?,?,?,?,?,'base.png', NULL)";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("ssssssi", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell);
+    $stmt->bind_param("ssssssii", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $IdRuolo);
     return $stmt->execute();
   }
   public function insert_prodotto($nome, $descrizione, $prezzo, $piva, $imgPath, $categoria)

@@ -25,4 +25,6 @@
 <section class="container top-40">
       <p class="gfx-link">Clicca <a href="recoveryAccountPage.php">qui</a> per recuperare la password</p>
       <p class="gfx-link">Clicca <a href="registerUserPage.php">qui</a> per creare un account</p>
+      <p class="gfx-link">Clicca <a href="registerSupplierPage.php">qui</a> per creare un account venditore</p>
+      <p class="gfx-link">Clicca <a href="registerDeliveryManPage.php">qui</a> per creare un account fottorino</p>
 </section>

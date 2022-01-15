@@ -3,6 +3,7 @@
         <fieldset class="border p-3">
             <legend class="w-auto text-big">Registration Form</legend>
             <input type="hidden" name="codiceInsert" value="user">
+            <input type="hidden" name="IdRuolo" value="<?php echo $templateParams["IdRuolo"];?>">
             <div class="form-group">
                 <label for="username">Username : </label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="">
@@ -35,6 +36,6 @@
         </fieldset>
     </form>
 </section>
-<section class="container top-40">
+<section class="container top-40 gfx-link">
     Clicca <a href="index.php">qui</a> per tornare alla homepage
 </section>

@@ -8,6 +8,6 @@
         <button type="submit" class="custom-btn btn-15 btn-big">Recupera Account</button>
     </form>
 </section>
-<section class="container top-40">
+<section class="container top-40 gfx-link">
     Clicca <a href="index.php">qui</a> per tornare alla homepage
 </section>

@@ -7,5 +7,6 @@ $templateParams["specificTemplate"] = "loginForm.php";
 $templateParams["modals"] = array("pswErr", "userErr", "accRec");
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
+$templateParams["IdRuolo"] = 4;
 require 'template/base.php';
 ?>

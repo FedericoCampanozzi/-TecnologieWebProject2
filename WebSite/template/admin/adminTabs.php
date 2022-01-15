@@ -57,7 +57,7 @@ if (isset($_GET["showTab"])) {
         <?php require_once 'adminChangeRoleTab.php'; ?>
     </div>
     <div class="tab-pane top-40" id="addFornitore" role="tabpanel" aria-labelledby="addFornitore-tab">
-        <?php require_once 'adminAddFornitoreTab.php'; ?>
+        <?php require_once 'template/supplier/supplierTabProduct.php'; ?>
     </div>
     <div class="tab-pane" id="categorie" role="tabpanel" aria-labelledby="categorie-tab">
         <?php require_once 'adminAddCategoriaTab.php'; ?>
@@ -66,8 +66,31 @@ if (isset($_GET["showTab"])) {
         <?php require_once 'template/user/usrTabNotifiche.php'; ?>
     </div>
 </div>
+<script src="./js/color.js"></script>
+<script src="./js/graph.js"></script>
 <script>
     $(document).ready(function() {
+        let venLabel = [<?php generate_js_array_2($dbh->get_tot_products_admin(), array("Nome","PIVA_Fornitore")) ?>];
+        let venGuadagnoData = [<?php generate_js_array($dbh->get_tot_products_admin(), "GuadagnoTotale") ?>];
+        let venData = [<?php generate_js_array($dbh->get_tot_products_admin(), "QtaVenduta") ?>];
+
+        let gd_ven = []
+
+        gd_ven.push(new GraphDataGenerator(
+            new Color(55, 153, 153, 255),
+            new Color(51, 102, 120, 150),
+            venData,
+            "vendite"
+        ));
+        gd_ven.push(new GraphDataGenerator(
+            new Color(153, 96, 255, 255),
+            new Color(0, 204, 153, 150),
+            venGuadagnoData,
+            "guadagno"
+        ));
+
+        generateBarGraph("graficoVenditeProdUser", gd_ven, "Prodotti", "Qt.à Venduta / Guadagno(€)", venLabel, 0, 300);
+
         $('a[href="#<?php echo $tab; ?>"]').addClass("active");
         $('#<?php echo $tab; ?>').addClass("active");
     });

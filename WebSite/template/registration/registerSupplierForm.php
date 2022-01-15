@@ -1,7 +1,7 @@
 <div class="container">
     <form action="utils/insert.php" method="get">
         <fieldset class="border p-3">
-            <legend class="w-auto text-big">Inserimento Fornitore</legend>
+            <legend class="w-auto text-big">Register Venditore</legend>
             <input type="hidden" name="codiceInsert" value="fornitore">
             <div class="form-group">
                 <label for="p_iva">Partita IVA (16 caratteri) : </label>
@@ -24,8 +24,11 @@
                 <input type="text" class="form-control" name="citta" id="citta" placeholder="citt&agrave;">
             </div>
             <button type="submit" class="custom-btn btn-6 text-small">
-                Aggiungi Fornitore
+                Registrazione
             </button>
         </fieldset>
     </form>
 </div>
+<section class="container top-40 gfx-link">
+    Clicca <a href="index.php">qui</a> per tornare alla homepage
+</section>

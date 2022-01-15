@@ -5,9 +5,10 @@
     <canvas id="graficoVenditeProdUser" height="200">
     </canvas>
     <div class="table-description">
-        In questa tabella ci sono tutti i prodotti che l'azienda vende, con la possibilit&agrave; di aggiungerne di nuovi
+        In questo grafico sono rappresentate, per ogni prodotto <?php if($_SESSION["IdRuolo"] == 3): echo "di ogni azienda"; endif;?>, il numero di articoli venduti
     </div>
 </div>
+<?php if($_SESSION["IdRuolo"] == 5): ?>
 <div class="scrollable-content">
     <form action="utils/insert.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="codiceInsert" value="prodotto">
@@ -38,7 +39,7 @@
                         <tr>
                             <td><?php echo $p["Nome"]; ?></td>
                             <td><img alt="" src="<?php echo UPLOAD_PRODUCT_DIR . $p["ImagePath"]; ?>" width="64" height="64"></td>
-                            <td><?php echo $p["Descrizione"]; ?></td>
+                            <td class="grid-input-restrict"><?php echo $p["Descrizione"]; ?></td>
                             <td class="grid-input-big"><?php echo $p["Prezzo"]; ?>&euro;</td>
                             <td><?php echo $p["NomeC"]; ?></td>
                             <td> </td>
@@ -85,3 +86,4 @@
         </div>
     </form>
 </div>
+<?php endif; ?>

@@ -49,7 +49,7 @@ switch ($codice) {
         }
         break;
     case ("user"):
-        if ($dbh->insert_user($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"]))
+        if ($dbh->insert_user($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"], $_REQUEST["IdRuolo"]))
             show_in_next_page("<strong>Complimenti !!!</strong> ti sei registrato al nostro webstore", "newUser", "index.php", MsgType::Successfull, $dbg);
         else
             show_in_next_page("C'&egrave; stato un problema inaspettato<br>Account non creato", "newUser", "registerUserPage.php", MsgType::Error, $dbg);
