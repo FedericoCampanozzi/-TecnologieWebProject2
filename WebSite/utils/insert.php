@@ -125,6 +125,13 @@ switch ($codice) {
     case ("rc_usr_prof"):
         $dbh->insert_rc($_REQUEST["product_id"], $_SESSION["IdUtente"]);
         break;
+    case ("rc_dlt"):
+        if($dbh->insert_rc($_REQUEST["product_id"], $_SESSION["IdUtente"])){
+            show_next_page("homepageUser.php", $dbg);
+        } else{
+            show_in_next_page("C'&egrave; stato un problema inaspettato", "errCar", "homepageUser.php", MsgType::Error, $dbg);
+        }
+        break;
     default:
         die("codice inserimento non trovato");
         break;

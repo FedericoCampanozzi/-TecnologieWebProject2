@@ -82,7 +82,7 @@ function show_ajax_next_page($msg, $cod_msg, $msg_type, $dgb)
 
 function show_next_page($page_to, $dgb)
 {
-    if (!$dgb) header($page_to);
+    if (!$dgb) header("Location: ../".$page_to);
 }
 
 function show_in_next_page($msg, $cod_msg, $page_to, $msg_type, $dgb)

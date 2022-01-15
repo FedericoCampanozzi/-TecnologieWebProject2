@@ -23,7 +23,7 @@ for ($i = 0; $i < sizeof($products); $i++) :
         <?php
         endif
         ?>
-        <a class="dettaglio" target="_blank" href="productDetails.php?id=<?php echo $products[$i]["ID"]; ?>">dettaglio</a>
+        <a class="dettaglio" href="productDetails.php?id=<?php echo $products[$i]["ID"]; ?>">dettaglio</a>
     </div>
 <?php
 endfor

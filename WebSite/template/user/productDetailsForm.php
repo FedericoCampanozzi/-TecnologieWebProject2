@@ -1,29 +1,32 @@
 <?php
     $info = $dbh->get_products_byid($_GET["id"]);
 ?>
-<section class="container top-40">
+<section>
     <div class="product-dtl-container">
         <div class="nome-prodotto">
             <span><?php echo $info[0]["Nome"] ?></span>
         </div>
-        <div>
-            <img alt="" src="<?php echo UPLOAD_PRODUCT_DIR . $info[0]["ImagePath"] ?>" width="256" height="256">
-        </div>
-        <div class="categoria">
-            Categoria : <span><?php echo $info[0]["NomeC"] ?></span>
-        </div>
+        <img alt="" src="<?php echo UPLOAD_PRODUCT_DIR . $info[0]["ImagePath"] ?>" class="responsive" >
+        <p><strong>Categoria</strong> : <span><?php echo $info[0]["NomeC"] ?></span></p>
+        <p><strong>Fornitore</strong> : <span><?php echo $info[0]["RagioneSociale"] ?></span>
         <div class="descrizione">
-            Descrizione : <span><?php echo $info[0]["Descrizione"] ?></span>
+            Descrizione : <p><?php echo $info[0]["Descrizione"] ?></p>
         </div>
-        <div class="fornitore">
-            Fornitore : <span><?php echo $info[0]["RagioneSociale"] ?></span>
+        <hr>
+        <div class="magazzino">
+            Pezzi in magazzino : <span><?php if(!isset($info[0]["Giacenza"])) echo "0"; else echo $info[0]["Giacenza"]; ?></span>
+        </div>
+        <div class="magazzino">
+            Pezzi Venduti : <span><?php if(!isset($info[0]["PezziVenduti"])) echo "0"; else echo $info[0]["PezziVenduti"]; ?></span>
         </div>
         <div class="prezzo">
             Prezzo : <span><?php echo $info[0]["Prezzo"] ?></span> &euro;
         </div>
-        <div class="giacenza">
-            Pezzi Rimanenti : <span><?php echo $info[0]["Giacenza"] ?></span>
-        </div>
+        <form action="utils/insert.php" method="post">
+            <input type="hidden" name="codiceInsert" value="rc_dlt">
+            <input type="hidden" name="product_id" value="<?php echo $products[$i]["ID"]; ?>">
+            <button type="submit" class="custom-btn">Aggiungi al carello</button>
+        </form>
     </div>
 </section>
 <section class="container top-40">

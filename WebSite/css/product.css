@@ -86,11 +86,19 @@
 .product-dtl-container {
     width: 80%;
     height: 80%;
-    margin: 10% 10%;
+    margin: 20px 10%;
 }
 
+.product-dtl-container> img{
+    margin-left: 5% !important;
+}
 .product-dtl-container>.nome-prodotto {
     font-size: 32px;
+}
+
+.product-dtl-container>.immagine {
+    width: 80%;
+    margin: 20px 10%;
 }
 
 .product-dtl-container>.categoria {
@@ -99,38 +107,32 @@
 
 .product-dtl-container>.categoria>span {
     font-size: 32px;
-    color: blue;
+}
+
+strong{
     font-weight: bold;
 }
 
-.product-dtl-container>.descrizione {
+.product-dtl-container>.descrizione>p{
+    font-size: 16px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.product-dtl-container>.prezzo {    
     font-size: 24px;
 }
 
-.product-dtl-container>.fornitore {
-    color: rgb(43, 198, 226);
-    font-size: 22px;
-}
-
-.product-dtl-container>.fornitore>span {
-    color: blueviolet;
-    font-size: 30px;
-}
-
-.product-dtl-container>.prezzo {
-    font-size: 13px;
-}
-
 .product-dtl-container>.prezzo>span {
-    color: rgb(107, 0, 150);
+    color: rgb(0, 13, 196);
+    font-size: 28px;
+}
+
+.product-dtl-container>.magazzino {
     font-size: 26px;
 }
 
-.product-dtl-container>.giacenza {
-    font-size: 26px;
-}
-
-.product-dtl-container>.giacenza>span {
-    color: rgb(101, 226, 43);
+.product-dtl-container>.magazzino>span {
+    color: rgb(102, 255, 0);
     font-size: 26px;
 }
