@@ -24,7 +24,7 @@
         </form>
     </div>
 </div>
-<div class="row">
+<div class="row h-50">
     <div class="col-4">
         <p>Nome : <?php echo $_SESSION["usr_nome"]; ?></p>
     </div>

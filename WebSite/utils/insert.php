@@ -52,10 +52,13 @@ switch ($codice) {
         if ($dbh->insert_user($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"]))
             show_in_next_page("<strong>Complimenti !!!</strong> ti sei registrato al nostro webstore", "newUser", "index.php", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("C'&egrave; stato un problema inaspettato<br>Riprova pi&ugrave; tardi oppure contatta il servizio clienti", "newUser", "newUser.php", MsgType::Error, $dbg);
+            show_in_next_page("C'&egrave; stato un problema inaspettato<br>Account non creato", "newUser", "registerUserPage.php", MsgType::Error, $dbg);
         break;
     case ("carta"):
-        $dbh->insert_carta($_REQUEST["numero"], $_REQUEST["datascadenza"], $_REQUEST["ccv"], $_REQUEST["tipo_carta"], $_SESSION["IdUtente"]);
+        if ($dbh->insert_carta($_REQUEST["numero"], $_REQUEST["datascadenza"], $_REQUEST["ccv"], $_REQUEST["tipo_carta"], $_SESSION["IdUtente"]))
+            show_ajax_next_page("carta inserita correttamente", "card", MsgType::Successfull, $dbg);
+        else
+            show_ajax_next_page("<strong>carta non inserita</strong>", "card", MsgType::Error, $dbg);
         break;
     case ("recapito"):
         if ($dbh->insert_recapito($_REQUEST["via"], $_REQUEST["nc"], $_REQUEST["citta"], $_REQUEST["interno"], $_SESSION["IdUtente"]))
@@ -74,7 +77,7 @@ switch ($codice) {
             }
         }
         if ($disp) {
-            if ($_REQUEST["usaContanti"] == "NO") {
+            if ($_REQUEST["usaContanti"] == "no") {
                 // USO CARTA --> CONTROLLO SE IL CCV E' CORRETTO
                 if ($dbh->check_ccv($_REQUEST["select_carta"], $_REQUEST["CCV"])) {
                     // CONTROLLO SE CI SONO I SOLDI
@@ -107,13 +110,13 @@ switch ($codice) {
                     for ($i = 0; $i < sizeof($usr_cart); $i++) {
                         $dbh->update_riga_carrello($_SESSION["IdUtente"], $usr_cart[$i]["IdProdotto"], $id_ordine);
                     }
-                    show_in_next_page("ordine inserito", "pagamento.php", "homepageUser.php", MsgType::Successfull, $dbg);
+                    show_in_next_page("ordine inserito", "pag", "homepageUser.php", MsgType::Successfull, $dbg);
                 } else {
-                    show_in_next_page("<strong>ordine non inserito</strong>", "pagamento.php", "pagamento.php", MsgType::Error, $dbg);
+                    show_in_next_page("<strong>ordine non inserito</strong>", "pag", "pagamento.php", MsgType::Error, $dbg);
                 }
             }
         } else {
-            show_in_next_page("siamo spiacenti ma il prodotto " . $usr_cart[$i]["Nome"] . "non &egrave; pi&ugrave; disponibile", "pagamento.php", "pagamento.php", MsgType::Warning, $dbg);
+            show_in_next_page("siamo spiacenti ma il prodotto " . $usr_cart[$i]["Nome"] . "non &egrave; pi&ugrave; disponibile", "pag", "homepageUser.php", MsgType::Warning, $dbg);
         }
         break;
     case ("rc_usr_hp"):

@@ -74,7 +74,7 @@ switch ($codice) {
             var_dump($newPsw);
             $dbh->update_user_psw($_REQUEST["user"], $newPsw);
             $login = $dbh->get_login($_REQUEST["user"], $newPsw);
-            show_in_next_page("abbiamo cambiato la password per l'utente" . $login[0]["Username"] . " con e-mail : " . $login[0]["EMail"] . " in " . $newPsw,"accRec", "index.php", MsgType::Information, $dbg);
+            show_in_next_page("abbiamo cambiato la password per l'utente \"" . $login[0]["Username"] . "\" con e-mail : \"" . $login[0]["EMail"] . "\" in \"" . $newPsw,"\" accRec", "index.php", MsgType::Information, $dbg);
         } else {
             show_in_next_page("utente non trovato", "accRec", "recoveryAccountPage.php", MsgType::Error, $dbg);
         }

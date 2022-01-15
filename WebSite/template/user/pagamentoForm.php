@@ -42,15 +42,15 @@
         <form action="utils/insert.php" method="post">
             <input type="hidden" name="totale" value="<?php echo $tot; ?>">
             <input type="hidden" value="ordine" name="codiceInsert" id="codiceInsert">
-            <p> Quale metodo di pagamento vuoi utilizzare ?</p>
-            <div class="form-check form-check-inline">
-                <label class="hidden-field" for="usaContanti">Usare Contanti?</label>
-                <input class="form-check-input" type="radio" name="usaContanti" id="usaContanti" value="SI" checked>
-                <p> Contanti (alla consegna) </p>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="usaContanti" id="usaCarte" value="NO">
-                <p> Carta </p>
+            <input type="hidden" name="usaContanti" id="usaContanti">
+            <div role="radiogroup" aria-labelledby="grpTipoPagamento" id="rgTipoPagamento"> 
+                <h3 id="grpTipoPagamento"> Quale metodo di pagamento vuoi utilizzare ? </h3>
+                <div role="radio" aria-checked="true" tabindex="0" id="contanti">
+                    Contanti     
+                </div>
+                <div role="radio" aria-checked="false" tabindex="-1" id="carta">
+                    Carta
+                </div>
             </div>
             <div class="row" id="carta_div">
                 <div class="col-8">
@@ -103,4 +103,6 @@
         </div>
     </div>
 </div>
+<script src="js/radioButton.js"></script>
+<script src="js/radioGroup.js"></script>
 <script src="js/pagamento.js"></script>

@@ -72,6 +72,14 @@ function uploadImage($path, $image)
     return array($result, $msg);
 }
 
+function show_ajax_next_page($msg, $cod_msg, $msg_type, $dgb)
+{
+    $_SESSION["show_modal"] = true;
+    $_SESSION["cod_msg"] = $cod_msg;
+    $_SESSION["msg"] = $msg;
+    $_SESSION["msg_type"] = $msg_type;
+}
+
 function show_next_page($page_to, $dgb)
 {
     if (!$dgb) header($page_to);

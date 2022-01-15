@@ -64,6 +64,7 @@
             <p>Alma Mater Studiorum Bologna - Sede di Cesena</p>
         </div>
     </footer>
+
 </body>
 
 </html>
