@@ -80,7 +80,8 @@ a>span {
 
 .grid-input-restrict {
     max-width: 220px;
-    overflow: hidden;
+    height: 200px;
+    overflow-y: scroll;
 }
 
 .grid-input-small {

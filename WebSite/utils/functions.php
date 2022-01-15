@@ -52,6 +52,12 @@ function uploadImage($path, $image)
     }
 
     //Controllo se esiste file con stesso nome ed eventualmente lo rinomino
+    if (file_exists($fullPath)){
+        $msg =  $imageName;
+        $result = 1;
+        return array($result, $msg);
+    }
+    /*
     if (file_exists($fullPath)) {
         $i = 1;
         do {
@@ -60,6 +66,7 @@ function uploadImage($path, $image)
         } while (file_exists($path . $imageName));
         $fullPath = $path . $imageName;
     }
+    */
     //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
     if (strlen($msg) == 0) {
         if (!move_uploaded_file($image["tmp_name"], $fullPath)) {

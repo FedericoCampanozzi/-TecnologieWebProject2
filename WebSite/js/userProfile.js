@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $(".add-to-cart").click(function() {
+        $(this).attr("disabled", "disabled");
         const id_parts = $(this).attr("id").split("_");
         $.post("utils/insert.php", {
             codiceInsert: "rc_usr_prof",
@@ -12,15 +13,17 @@ $(document).ready(function() {
             let tc = parseFloat(document.getElementById("totaleCarrello").innerHTML);
             qta = qta + 1;
             document.getElementById("Qta_" + id_parts[1]).innerHTML = qta;
-            document.getElementById("PrezzoTotale_" + id_parts[1]).innerHTML = (tr + pu) + "&euro;";
-            document.getElementById("totaleCarrello").innerHTML = (tc + pu) + "&euro;";
+            document.getElementById("PrezzoTotale_" + id_parts[1]).innerHTML = (parseFloat(tr + pu)).toFixed(2) + "&euro;";
+            document.getElementById("totaleCarrello").innerHTML = (parseFloat(tc + pu)).toFixed(2) + "&euro;";
             let n_pezzi = parseInt(document.getElementById("usr_cart_items").innerText);
             n_pezzi = n_pezzi + 1;
             document.getElementById("usr_cart_items").textContent = n_pezzi;
         });
+        $(this).removeAttr("disabled");
         return false;
     });
     $(".remove-from-cart").click(function() {
+        $(this).attr("disabled", "disabled");
         const id_parts = $(this).attr("id").split("_");
         $.post("utils/delete.php", {
             codiceDelete: "riga_carrello",
@@ -37,12 +40,13 @@ $(document).ready(function() {
                 return;
             }
             document.getElementById("Qta_" + id_parts[1]).innerHTML = qta;
-            document.getElementById("PrezzoTotale_" + id_parts[1]).innerHTML = (tr - pu) + "&euro;";
-            document.getElementById("totaleCarrello").innerHTML = tc - pu;
+            document.getElementById("PrezzoTotale_" + id_parts[1]).innerHTML = (parseFloat(tr - pu)).toFixed(2) + "&euro;";
+            document.getElementById("totaleCarrello").innerHTML = (parseFloat(tc - pu)).toFixed(2) + "&euro;";
             let n_pezzi = parseInt(document.getElementById("usr_cart_items").innerText);
             n_pezzi = n_pezzi - 1;
             document.getElementById("usr_cart_items").textContent = n_pezzi;
         });
+        $(this).removeAttr("disabled");
         return false;
     });
     $("#addCard").click(function() {
@@ -67,4 +71,30 @@ $(document).ready(function() {
     $("#tbl_carrello_utente").DataTable();
     $("#tbl_carte_utente").DataTable();
     $("#tbl_recapiti_utente").DataTable();
+    $("#loadImg").click(function(){
+        document.getElementById("Immagine").click();
+    });
+    $("#Immagine").on('change', function(){
+        var formData = new FormData($("#formLoadImage")[0]);
+        jQuery.ajax({
+            url: 'utils/update.php',
+            type: "POST",
+            data: formData,
+            success: function(data) {
+                console.log("immagine caricata");
+                var url = new URL(window.location.href);
+                url.searchParams.set('showTab', 'usr_profile');
+                window.location.href = url.href;
+            },
+            error: function(data) {
+                console.log("immagine non caricata");
+                var url = new URL(window.location.href);
+                url.searchParams.set('showTab', 'usr_profile');
+                window.location.href = url.href;
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+        });
+    });
 });

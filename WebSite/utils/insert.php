@@ -13,15 +13,20 @@ $codice = $_REQUEST["codiceInsert"];
 switch ($codice) {
     case ("categoria"):
         if ($dbh->insert_categoria($_REQUEST["nome"], $_REQUEST["desc"]))
-            show_in_next_page("categoria inserito correttamente", "categoria", "homepageAdmin.php?showTab=categorie", MsgType::Successfull, $dbg);
+            show_in_next_page("categoria inserita correttamente", "categoria", "homepageAdmin.php?showTab=categorie", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("<strong> categoria non inserito</strong>", "categoria", "homepageAdmin.php?showTab=categorie", MsgType::Error, $dbg);
+            show_in_next_page("<strong> categoria non inserita</strong>", "categoria", "homepageAdmin.php?showTab=categorie", MsgType::Error, $dbg);
         break;
     case ("fornitore"):
-        if ($dbh->insert_fornitore($_REQUEST["p_iva"], $_REQUEST["ragione_sociale"], $_REQUEST["via"], $_REQUEST["numero_civico"], $_REQUEST["citta"]))
-            show_in_next_page("fornitore inserito correttamente", "nuovoFornitore", "homepageAdmin.php?showTab=addFornitore", MsgType::Successfull, $dbg);
-        else
-            show_in_next_page("<strong> fornitore non inserito</strong>", "nuovoFornitore", "homepageAdmin.php?showTab=addFornitore", MsgType::Error, $dbg);
+        if ($dbh->insert_user_fornitore($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"], $_REQUEST["p_iva"])){
+            if ($dbh->insert_fornitore($_REQUEST["p_iva"], $_REQUEST["ragione_sociale"], $_REQUEST["via"], $_REQUEST["numero_civico"], $_REQUEST["citta"]))
+                show_in_next_page("fornitore inserito correttamente", "nuovoFornitore", "index.php", MsgType::Successfull, $dbg);
+            else
+                show_in_next_page("<strong> fornitore non inserito</strong>", "nuovoFornitore", "registerSupplierPage.php", MsgType::Error, $dbg);
+        }
+        else{
+            show_in_next_page("Errore inserimento utente", "nuovoFornitore", "registerSupplierPage.php", MsgType::Error, $dbg);
+        }
         break;
     case ("fornitura"):
         if ($dbh->insert_fornitura($_REQUEST["qta"], $_REQUEST["az_prodotto"], $_SESSION["PIVA_Azienda"]))

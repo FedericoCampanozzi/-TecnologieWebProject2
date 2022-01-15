@@ -8,7 +8,7 @@ foreach ($userOrdini as $ordini) :
     endif; ?>
     <div class="data-ordine"> Ordinato il <span><?php echo $ordini["DataOrdine"] ?></span></div>
     <div class="indirizzo">
-        Indirizzo : <span> <?php echo $ordini["Via"] . "," . $ordini["NumeroCivico"] . " - " . $ordini["Citta"]; ?></span>
+        Indirizzo : <span> <?php echo $ordini["Via"] . ", " . $ordini["NumeroCivico"] . " - " . $ordini["Citta"]; ?></span>
     </div>
     <?php
     if (isset($userOrdini[$i]["DataConsegna"])) : ?>

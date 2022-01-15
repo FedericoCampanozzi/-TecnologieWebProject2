@@ -69,7 +69,7 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="CCV">CCV : </label>
-                        <input class="form-control" type="text" name="CCV" id="CCV">
+                        <input class="form-control" type="password" name="CCV" id="CCV">
                     </div>
                 </div>
             </div>

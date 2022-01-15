@@ -14,32 +14,31 @@ switch ($codice) {
     case ("fornitore"):
         if ($dbh->update_fornitore($_SESSION["PIVA_Azienda"],$_REQUEST["via"],$_REQUEST["numero_civico"],$_REQUEST["citta"],$_REQUEST["pecMail"],$_REQUEST["infoMail"],$_REQUEST["tell"],$_REQUEST["fax"])){
             registerSupplier($dbh->get_login_by_id($_SESSION["IdUtente"]));
-            show_in_next_page("i dati sono stati aggiornati correttamente", 
-            "datiAgg", "homepageSupplier.php", MsgType::Successfull, $dbg);
+            show_in_next_page("i dati sono stati aggiornati correttamente", "datiAgg", "homepageSupplier.php", MsgType::Successfull, $dbg);
         }
         else
-            show_in_next_page("i dati non sono stati aggiornati", 
-            "datiAgg", "homepageSupplier.php", MsgType::Error, $dbg);
+            show_in_next_page("i dati non sono stati aggiornati", "datiAgg", "homepageSupplier.php", MsgType::Error, $dbg);
         break;
     case ("password"):
-        if ($dbh->find_login($_SESSION["IdUtente"], $_REQUEST["old_psw"]))
-            if ($dbh->update_user_psw($_SESSION["IdUtente"], $_REQUEST["new_psw"]))
-                show_in_next_page("i dati sono stati aggiornati correttamente", 
-                "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
-            else
-                show_in_next_page("dati non aggiornati", 
-                "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
+        if ($_REQUEST["conf_psw"] == $_REQUEST["new_psw"])
+            if($_SESSION["IdUtente"] == $dbh->get_id_utente($_SESSION["usr_un"], $_REQUEST["old_psw"])){
+                if ($dbh->update_user_psw($_SESSION["IdUtente"], $_REQUEST["new_psw"]))
+                    show_in_next_page("i dati sono stati aggiornati correttamente", "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
+                else
+                    show_in_next_page("dati non aggiornati", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
+            }else{
+                show_in_next_page("la vecchia password non corrisponde", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
+            }
         else
-            show_in_next_page("le password non corrispondono",
-            "pswErr", "userProfilePage.php", MsgType::Error, $dbg);
+            show_in_next_page("le password non corrispondono", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
         break;
     case("immagine"):
         list($result, $msg) = uploadImage("../".UPLOAD_USER_DIR, $_FILES["Immagine"]);
         if($result && $dbh->update_image_user($_SESSION["IdUtente"], $msg)) {
             registerUser($dbh->get_login_by_id($_SESSION["IdUtente"]));
-            show_in_next_page("Immagine caricata", "ImgAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
+            show_ajax_next_page("Immagine aggiornata", "ImgAgg", MsgType::Successfull, $dbg);
         }else{
-            show_in_next_page("Immagine non caricata per il seguente motivo : <br>".$msg, "ImgAgg", "userProfilePage.php", MsgType::Warning, $dbg);
+            show_ajax_next_page("Immagine non aggiornata per il seguente motivo : <br>".$msg, "ImgAgg", MsgType::Warning, $dbg);
         }
         break;
     case ("user"):

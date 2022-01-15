@@ -43,7 +43,10 @@ $(document).ready(function() {
                 let classes = el.parent().parent().parent().attr("class").split(" ");
                 if (classes.indexOf("notifica-non-letta") > -1) {
                     el.parent().parent().parent().removeClass("notifica-non-letta");
-                    $("span.m-badge-notifiche").addClass("hidden-field");
+                    let nn = $("span.m-badge-notifiche").text();
+                    nn = nn -1;
+                    if(nn <= 0) $("span.m-badge-notifiche").addClass("hidden-field");
+                    else $("span.m-badge-notifiche").text(nn);
                 }
             });
         }

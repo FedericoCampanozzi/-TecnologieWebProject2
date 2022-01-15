@@ -6,5 +6,5 @@ require_once("utils/enum.php");
 require_once("utils/msgTypeClass.php");
 require_once("utils/functions.php");
 require_once("db/database.php");
-$dbh = new DatabaseHelper("localhost", "root", "", "plant", 3306);
+$dbh = new DatabaseHelper("localhost", "root", "", "e-plant", 3306);
 ?>

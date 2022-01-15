@@ -16,13 +16,23 @@ class DatabaseHelper
   private function get_cripted_ccv($data){
     return hash("sha256", "1werrt)?)gbhnh41".$data."!!24311?'\acx");
   }
+  public function get_id_utente($user, $psw)
+  {
+    $psw = $this->get_cripted_password($psw);
+    $stmt = $this->db->prepare("SELECT * FROM ruoli_utente WHERE Username = ? AND Psw = ?");
+    $stmt->bind_param("ss", $user, $psw);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $result = $result->fetch_all(MYSQLI_ASSOC);
+    if($stmt->affected_rows == 0) return -1;
+    return $result[0]["ID"];
+  }
   public function find_user_from_username($user)
   {
     $stmt = $this->db->prepare("SELECT * FROM ruoli_utente WHERE (Username = ? OR EMail = ?)");
     $stmt->bind_param("ss", $user, $user);
     $stmt->execute();
     $result = $stmt->get_result();
-    $result->fetch_all(MYSQLI_ASSOC);
     return $stmt->affected_rows == 1;
   }
   public function find_login($user, $password)
@@ -32,7 +42,6 @@ class DatabaseHelper
     $stmt->bind_param("sss", $user, $user, $password);
     $stmt->execute();
     $result = $stmt->get_result();
-    $result->fetch_all(MYSQLI_ASSOC);
     return $stmt->affected_rows == 1;
   }
   public function last_ordine($idUtente)
@@ -261,6 +270,15 @@ class DatabaseHelper
     $stmt->bind_param("iss", $idUtCreazione, $messagio, $titolo);
     return $stmt->execute();
   }
+  public function insert_user_fornitore($username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $piva)
+  {
+    $psw = $this->get_cripted_password($psw);
+    $query = "INSERT INTO `utente`(`Username`, `Psw`, `Nome`, `Cognome`, `DataDiNascita`,`EMail`,`Telefono`,`IdRuolo`, `ImagePath`, `PIVA_Fornitore`) 
+      VALUES (?,?,?,?,?,?,?,5,'base.png', ?)";
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("ssssssii", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $piva);
+    return $stmt->execute();
+  }
   public function insert_user($username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $IdRuolo)
   {
     $psw = $this->get_cripted_password($psw);
@@ -407,12 +425,12 @@ class DatabaseHelper
     $stmt->bind_param("si", $img, $idUtente);
     return $stmt->execute();
   }
-  public function update_user_psw($username, $newPsw)
+  public function update_user_psw($idUtente, $newPsw)
   {
     $newPsw = $this->get_cripted_password($newPsw);
-    $query = "UPDATE `utente` SET Psw = ? WHERE Username = ?";
+    $query = "UPDATE `utente` SET Psw = ? WHERE ID = ?";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("ss", $newPsw, $username);
+    $stmt->bind_param("si", $newPsw, $idUtente);
     return $stmt->execute();
   }
   public function update_user_ruolo($idUtente, $idRuolo, $p_iva)
