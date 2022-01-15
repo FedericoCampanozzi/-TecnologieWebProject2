@@ -1,8 +1,8 @@
 <section class="container top-40">
     <form action="utils/insert.php" method="post">
         <fieldset class="border p-3">
-            <input type="hidden" name="codiceInsert" value="user">
             <legend class="w-auto text-big">Registration Form</legend>
+            <input type="hidden" name="codiceInsert" value="user">
             <div class="form-group">
                 <label for="username">Username : </label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="">

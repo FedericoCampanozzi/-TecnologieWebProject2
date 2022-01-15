@@ -107,7 +107,7 @@ switch ($codice) {
                     for ($i = 0; $i < sizeof($usr_cart); $i++) {
                         $dbh->update_riga_carrello($_SESSION["IdUtente"], $usr_cart[$i]["IdProdotto"], $id_ordine);
                     }
-                    show_in_next_page("ordine inserito", "pagamento.php", "pagamento.php", MsgType::Successfull, $dbg);
+                    show_in_next_page("ordine inserito", "pagamento.php", "homepageUser.php", MsgType::Successfull, $dbg);
                 } else {
                     show_in_next_page("<strong>ordine non inserito</strong>", "pagamento.php", "pagamento.php", MsgType::Error, $dbg);
                 }

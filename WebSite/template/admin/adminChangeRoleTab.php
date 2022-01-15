@@ -25,7 +25,8 @@
                 <tr>
                     <td><?php echo $users[$i]["Username"]; ?></td>
                     <td>
-                        <select class="form-control" id="ruolo_<?php echo $i; ?>">";
+                        <label class="hidden-field" for="ruolo_<?php echo $i; ?>" >Ruolo:</label>
+                        <select class="form-control" id="ruolo_<?php echo $i; ?>" name="ruolo_<?php echo $i; ?>">
                             <?php
                             foreach ($all_role as $r) :
                                 if ($users[$i]["IdRuolo"] == $r["ID"]) :
@@ -38,7 +39,8 @@
                         </select>
                     </td>
                     <td> 
-                        <select class="form-control" id="forn_<?php echo $i; ?>">
+                        <label class="hidden-field" for="forn_<?php echo $i; ?>" >Fornitore:</label>
+                        <select class="form-control" id="forn_<?php echo $i; ?>" name="forn_<?php echo $i; ?>">
                             <option value="NULL"> NULL </option>
                             <?php
                             foreach ($all_az as $az) :

@@ -32,12 +32,15 @@
             <?php endforeach ?>
             <tr>
                 <td>
+                    <label class="hidden-field" for="numero">Numero:</label>
                     <input type="text" class="form-control grid-input-so-big" name="numero" id="numero" placeholder="Numero">
                 </td>
                 <td>
+                    <label class="hidden-field" for="datascadenza">DataScadenza:</label>
                     <input type="date" class="form-control" name="datascadenza" id="datascadenza">
                 </td>
                 <td>
+                    <label class="hidden-field" for="tipo_carta">Tipo Carta:</label>
                     <select class="form-control grid-input-big" id="tipo_carta" name="tipo_carta">
                         <option value="Visa">Visa</option>
                         <option value="Mastercard">Mastercard</option>
@@ -45,6 +48,7 @@
                     </select>
                 </td>
                 <td>
+                    <label class="hidden-field" for="ccv">CCV:</label>
                     <input type="password" class="form-control grid-input-big" name="ccv" id="ccv" maxlength="3" placeholder="CCV">
                 </td>
                 <td></td>

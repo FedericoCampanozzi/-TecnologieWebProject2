@@ -48,22 +48,23 @@
                     ?>
                     <tr>
                         <td>
+                            <label class="hidden-field" for="nome">Nome:</label>
                             <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
                         </td>
                         <td>
-                            <form>
-                        <div class="form-group">
+                            <label class="hidden-field" for="Immagine">Immagine:</label>
                             <input class="form-control form-control-sm" type="file" name="Immagine" id="Immagine" title="Immagine" accept="image/*" />
-                    </div>
-                            </form>
                         </td>
                         <td>
+                            <label class="hidden-field" for="desc">Descrizione:</label>
                             <textarea name="desc" id="desc" placeholder="Descrizione" class="md-textarea form-control gfx-not-resizable" rows="4"></textarea>
                         </td>
                         <td>
+                            <label class="hidden-field" for="prezzo">Prezzo:</label>
                             <input type="text" class="form-control inline-table-text grid-input-big" name="prezzo" id="prezzo" placeholder="Prezzo"> &euro;
                         </td>
                         <td>
+                            <label class="hidden-field" for="categoria">Categoria:</label>
                             <select id="categoria" name="categoria" class="form-control">
                                 <?php
                                 $categorie = $dbh->get_categoria();

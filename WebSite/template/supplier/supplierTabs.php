@@ -43,7 +43,7 @@ if (isset($_GET["showTab"])) {
     <div class="tab-pane container" id="supp_profile" role="tabpanel" aria-labelledby="supp_profile-tab">
         <?php require_once 'supplierTabProfile.php'; ?>
     </div>
-    <div class="tab-pane" id="forniture" role="tabpanel" aria-labelledby="ven-tab">
+    <div class="tab-pane" id="forniture" role="tabpanel" aria-labelledby="forniture">
         <?php require_once 'supplierTabForniture.php'; ?>
     </div>
     <div class="tab-pane" id="product" role="tabpanel" aria-labelledby="product">

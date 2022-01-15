@@ -30,15 +30,19 @@
                 ?>
                 <tr>
                     <td>
+                        <label class="hidden-field" for="via">Via:</label>
                         <input type="text" class="form-control" name="via" id="via" placeholder="Via">
                     </td>
                     <td>
+                        <label class="hidden-field" for="nc">Numero Civico:</label>
                         <input type="text" class="form-control" name="nc" id="nc" placeholder="Numero Civico">
                     </td>
                     <td>
+                        <label class="hidden-field" for="citta">Citt&agrave;:</label>
                         <input type="text" class="form-control" name="citta" id="citta" placeholder="Citta">
                     </td>
                     <td>
+                        <label class="hidden-field" for="interno">Interno:</label>
                         <input type="text" class="form-control" name="interno" id="interno" placeholder="Interno">
                     </td>
                     <td>

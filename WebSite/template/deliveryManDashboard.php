@@ -5,7 +5,6 @@
     <div class="table-description">
         In questa tabella sono elencate le consegne da fare. Appena un pacco viene consegnato all'utente premere su "consegnato".
     </div>
-    </div>
     <div class="p-5 table-responsive">
         <table id="tbl_consegne" class="table table-striped table-bordered">
             <thead>
@@ -47,6 +46,7 @@
                 <?php endforeach ?>
             </tbody>
         </table>
+    </div>
 </section>
 <section class="container top-40">
     Clicca <a href="logoutPage.php">qui</a> per effettuare il logout

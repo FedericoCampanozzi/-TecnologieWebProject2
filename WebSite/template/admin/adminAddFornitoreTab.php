@@ -1,8 +1,8 @@
 <div class="container">
     <form action="utils/insert.php" method="get">
         <fieldset class="border p-3">
-            <input type="hidden" name="codiceInsert" value="fornitore">
             <legend class="w-auto text-big">Inserimento Fornitore</legend>
+            <input type="hidden" name="codiceInsert" value="fornitore">
             <div class="form-group">
                 <label for="p_iva">Partita IVA (16 caratteri) : </label>
                 <input type="text" class="form-control" name="p_iva" id="p_iva" placeholder="Partita IVA">

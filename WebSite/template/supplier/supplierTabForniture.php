@@ -44,6 +44,7 @@
                     ?>
                     <tr>
                         <td>
+                            <label class="hidden-field" for="az_prodotto">Prodotto:</label>
                             <select class="form-control grid-input-so-big" id="az_prodotto" name="az_prodotto">
                                 <?php
                                 $product = $dbh->get_products_forn($_SESSION["PIVA_Azienda"]);
@@ -55,8 +56,9 @@
                         </td>
                         <td></td>
                         <td class="grid-input-so-small">
+                            <label class="hidden-field" for="qta">Quantit&agrave;:</label>
                             <input type="range" class="form-range" id="qta" name="qta">
-                            <label id="qta_out"></label>
+                            <p id="qta_out"></p>
                         </td>
                         <td></td>
                         <td></td>

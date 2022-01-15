@@ -34,8 +34,10 @@
 <body>
     <header>
         <div>
-            <h1><?php echo $templateParams["titoloHeader"] ?></h1>
-            <h2><?php echo $templateParams["sottotitoloHeader"] ?></h2>
+            <span><?php echo $templateParams["titoloHeader"] ?></span>
+            <?php if (isset($templateParams["sottotitoloHeader"]) && $templateParams["sottotitoloHeader"] != ""): ?>
+            <span><?php echo $templateParams["sottotitoloHeader"] ?></span>
+            <?php endif; ?>
         </div>
     </header>
     <?php

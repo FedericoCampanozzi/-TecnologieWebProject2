@@ -25,9 +25,11 @@
             ?>
             <tr>
                 <td>
+                    <label class="hidden-field" for="nome">Nome:</label>
                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
                 </td>
                 <td>
+                    <label class="hidden-field" for="desc">Descrizione:</label>
                     <textarea class="form-control gfx-not-resizable" name="desc" id="desc" placeholder="Descrizione" rows="3"> </textarea>
                 </td>
                 <td>

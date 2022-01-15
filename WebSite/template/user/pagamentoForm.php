@@ -44,6 +44,7 @@
             <input type="hidden" value="ordine" name="codiceInsert" id="codiceInsert">
             <p> Quale metodo di pagamento vuoi utilizzare ?</p>
             <div class="form-check form-check-inline">
+                <label class="hidden-field" for="usaContanti">Usare Contanti?</label>
                 <input class="form-check-input" type="radio" name="usaContanti" id="usaContanti" value="SI" checked>
                 <p> Contanti (alla consegna) </p>
             </div>
@@ -78,8 +79,8 @@
                         <label for="select_add">Seleziona un indirizzo :</label>
                         <select class="form-control" id="select_add" name="select_add">
                             <?php
-                            foreach($dbh->get_recapiti($_SESSION["IdUtente"]) as $r):?>
-                                <option value="<?php echo $r["ID"];?>"><?php echo $r["Via"].",".$r["NumeroCivico"]." - ".$r["Citta"]; ?></option>
+                            foreach ($dbh->get_recapiti($_SESSION["IdUtente"]) as $r) : ?>
+                                <option value="<?php echo $r["ID"]; ?>"><?php echo $r["Via"] . "," . $r["NumeroCivico"] . " - " . $r["Citta"]; ?></option>
                             <?php
                             endforeach;
                             ?>

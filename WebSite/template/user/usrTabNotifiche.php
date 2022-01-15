@@ -15,14 +15,14 @@
                         if ((!isset($n["IdUtenteNotificato"]) && $_SESSION["IdRuolo"] == 4) || $n["IdUtenteNotificato"] == $_SESSION["IdUtente"]) : ?>
                             <div class="card <?php if (!isset($n["DataLettura"])) echo "notifica-non-letta";
                                                 elseif (!isset($n["IdUtenteNotificato"])) echo "notifica-broadcast"; ?>">
-                                <div class="card-header" id="notifica_ric_h_<?php echo $i; ?>">
+                                <div class="card-header" id="notifica_ric_h_<?php echo $n["IdNotifica"]; ?>">
                                     <h4 class="mb-0">
                                         <button class="btn btn-link btn-leggi" data-toggle="collapse" data-target="#notifica_ric_<?php echo $n["IdNotifica"]; ?>" aria-expanded="true" aria-controls="notifica_ric_<?php echo $n["IdNotifica"]; ?>">
                                             <?php echo $n["Titolo"]; ?>
                                         </button>
                                     </h4>
                                 </div>
-                                <div id="notifica_ric_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_ric_h_<?php echo $i; ?>" data-parent="#accordion_ricevuti">
+                                <div id="notifica_ric_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_ric_h_<?php echo $n["IdNotifica"]; ?>" data-parent="#accordion_ricevuti">
                                     <div class="card-body">
                                         <?php echo $n["Messaggio"]; ?> <br>
                                         <hr>
@@ -57,14 +57,14 @@
                     foreach ($dbh->get_notifiche($_SESSION["IdUtente"]) as $n) :
                         if ($n["IdUtenteCreazione"] == $_SESSION["IdUtente"]) : ?>
                             <div class="card <?php if (!isset($n["IdUtenteNotificato"])) echo "notifica-broadcast"; ?>">
-                                <div class="card-header" id="notifica_inv_h_<?php echo $i; ?>">
+                                <div class="card-header" id="notifica_inv_h_<?php echo $n["IdNotifica"]; ?>">
                                     <h4 class="mb-0">
                                         <button class="btn btn-link" data-toggle="collapse" data-target="#notifica_inv_<?php echo $n["IdNotifica"]; ?>" aria-expanded="true" aria-controls="notifica_inv_<?php echo $n["IdNotifica"]; ?>">
                                             <?php echo $n["Titolo"]; ?>
                                         </button>
                                     </h4>
                                 </div>
-                                <div id="notifica_inv_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_inv_h_<?php echo $i; ?>" data-parent="#accordion_inviati">
+                                <div id="notifica_inv_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_inv_h_<?php echo $n["IdNotifica"]; ?>" data-parent="#accordion_inviati">
                                     <div class="card-body">
                                         <?php echo $n["Messaggio"]; ?> <br>
                                         <hr>
