@@ -7,5 +7,6 @@ $templateParams["specificTemplate"] = "loginForm.php";
 $templateParams["modals"] = array("pswErr", "userErr", "accRec", "nuovoFornitore");
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
+$templateParams["fixedFooter"] = true;
 require 'template/base.php';
 ?>

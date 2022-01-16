@@ -74,7 +74,7 @@ if (isset($_GET["showTab"])) {
     <div class="tab-pane" id="ordini" role="tabpanel" aria-labelledby="ordini-tab">
         <?php require_once 'usrTabOrdini.php'; ?>
     </div>
-    <div class="tab-pane scrollable-item" id="notifiche" role="tabpanel" aria-labelledby="notifiche-tab">
+    <div class="tab-pane" id="notifiche" role="tabpanel" aria-labelledby="notifiche-tab">
         <?php require_once 'usrTabNotifiche.php'; ?>
     </div>
 </div>

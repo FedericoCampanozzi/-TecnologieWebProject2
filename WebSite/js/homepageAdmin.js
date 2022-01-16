@@ -16,7 +16,6 @@ $(document).ready(function() {
             P_IVA: piva
         }, function(response) {
             console.log("Response: " + response);
-            //location.reload();
         });
         return false;
     });

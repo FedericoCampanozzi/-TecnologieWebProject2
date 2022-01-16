@@ -46,11 +46,11 @@ switch ($codice) {
         list($result, $msg) = uploadImage("../".UPLOAD_PRODUCT_DIR, $_FILES["Immagine"]);
         if ($result) {
             if ($dbh->insert_prodotto($_REQUEST["nome"], $_REQUEST["desc"], $_REQUEST["prezzo"], $_SESSION["PIVA_Azienda"], $msg, $_REQUEST["categoria"]))
-            show_in_next_page("prodotto inserito correttamente", "addProduct", "homepageSupplier.php?showTab=product", MsgType::Successfull, $dbg);
+                show_ajax_next_page("prodotto inserito correttamente", "addProduct", MsgType::Successfull, $dbg);
             else
-                show_in_next_page("prodotto non inserito", "addProduct", "homepageSupplier.php?showTab=product", MsgType::Error, $dbg);
+                show_ajax_next_page("prodotto non inserito", "addProduct", MsgType::Error, $dbg);
         } else {
-            show_in_next_page("Immagine non caricata per il seguente motivo : <br>" . $msg, "addProduct", "homepageSupplier.php?showTab=product", MsgType::Error, $dbg);
+            show_ajax_next_page("Immagine non caricata per il seguente motivo : <br>" . $msg, "addProduct", MsgType::Error, $dbg);
         }
         break;
     case ("user"):

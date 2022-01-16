@@ -8,5 +8,6 @@ $templateParams["specificNavbar"] = null;
 $templateParams["modals"] = array("cambio", "nuovoFornitore", "categoria", "ruolo");
 $templateParams["usaGrafici"] = true;
 $templateParams["usaTabelle"] = true;
+$templateParams["fixedFooter"] = true;
 require 'template/base.php';
 ?>

@@ -32,7 +32,7 @@ switch ($codice) {
         else
             show_in_next_page("le password non corrispondono", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
         break;
-    case("immagine"):
+    case("user_img"):
         list($result, $msg) = uploadImage("../".UPLOAD_USER_DIR, $_FILES["Immagine"]);
         if($result && $dbh->update_image_user($_SESSION["IdUtente"], $msg)) {
             registerUser($dbh->get_login_by_id($_SESSION["IdUtente"]));

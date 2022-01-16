@@ -6,6 +6,7 @@ $templateParams["sottotitoloHeader"] = null;
 $templateParams["specificTemplate"] = "template/logoutForm.php";
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
+$templateParams["fixedFooter"] = true;
 require 'template/base.php';
 $_SESSION = array();
 session_destroy();

@@ -1,33 +1,50 @@
-<div class="scrollable-item">
+<div class="hidden-x">
     <?php
     $products = $dbh->get_products();
     for ($i = 0; $i < sizeof($products); $i++) :
-        $g = 0;
-        if (isset($products[$i]["Giacenza"])) $g = $products[$i]["Giacenza"];
+        if ($i % 3 == 0) :
     ?>
-        <div class="product-container">
-            <input type="hidden" id="IdProdtto_<?php echo $i; ?>" value="<?php echo $products[$i]["ID"]; ?>">
-            <div class="nome-prodotto"><?php echo $products[$i]["Nome"]; ?></div>
-            <div class="immagine">
-                <img alt="" src="<?php echo UPLOAD_PRODUCT_DIR . $products[$i]["ImagePath"] ?>" width="176" height="176">
-            </div>
-            <div class="giacenza">
-                Pezzi Rimanenti : <span id="giacenza_<?php echo $i; ?>"><?php echo $g; ?></span>
-            </div>
-            <div class="prezzo"><?php echo $products[$i]["Prezzo"]; ?>&euro;</div>
+            <div class="row">
             <?php
-            if ($products[$i]["Giacenza"] > 0) :
+        endif;
             ?>
-                <div class="acquista">
-                    <button type="submit" class="custom-btn btn-17 bg-white add-product" id="add_<?php echo $i; ?>"> Aggiungi </button>
+            <div class="col-lg-4">
+                <div class="product-container">
+                    <input type="hidden" id="IdProdtto_<?php echo $i; ?>" value="<?php echo $products[$i]["ID"]; ?>">
+                    <div class="nome-prodotto"><?php echo $products[$i]["Nome"]; ?></div>
+                    <img alt="" src="<?php echo UPLOAD_PRODUCT_DIR . $products[$i]["ImagePath"] ?>">
+                    <div class="prezzo">Prezzo : <span><?php echo $products[$i]["Prezzo"]; ?></span> &euro;</div>
+                    <?php
+                    if ($products[$i]["Giacenza"] > 0) :
+                    ?>
+                        <button class="add-product" id="add_<?php echo $i; ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                            </svg>
+                        </button>
+                    <?php
+                    endif
+                    ?>
+                    <p>for more info click <a href="productDetails.php?id=<?php echo $products[$i]["ID"]; ?>">here</a></p>
                 </div>
+            </div>
             <?php
-            endif
+            if ($i % 3 == 2) :
             ?>
-            <a class="dettaglio" href="productDetails.php?id=<?php echo $products[$i]["ID"]; ?>">dettaglio</a>
-        </div>
+            </div>
+        <?php
+            endif;
+        endfor;
+        if ($i % 3 != 0) :
+            while ($i % 3 == 0) : ?>
+            <div class="col-lg-4">
+            </div>
     <?php
-    endfor
+                $i++;
+            endwhile;
+            echo "</div>";
+        endif;
     ?>
     <script src="js/homepageUser.js"></script>
 </div>

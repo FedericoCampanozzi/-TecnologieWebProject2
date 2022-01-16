@@ -7,5 +7,6 @@ $templateParams["specificTemplate"] = "recoveryAccountForm.php";
 $templateParams["messages"] = array("newUser", "accRec");
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
+$templateParams["fixedFooter"] = true;
 require 'template/base.php';
 ?>

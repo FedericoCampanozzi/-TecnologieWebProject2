@@ -4,8 +4,32 @@ $(document).ready(function() {
         $("#qta_out").text($(this).val())
     });
 
-    $("#imageLoad").click(function() {
+    $("#loadImage").click(function(){
+        document.getElementById("Immagine").click();
+    });
 
+    $("a.btn-grid-1").click(function(){
+        let formData = new FormData($("#formLoadImage")[0]);
+        jQuery.ajax({
+            url: 'utils/insert.php',
+            type: "POST",
+            data: formData,
+            success: function(data) {
+                console.log("ok");
+                let url = new URL(window.location.href);
+                url.searchParams.set('showTab', 'product');
+                window.location.href = url.href;
+            },
+            error: function(data) {
+                console.log("errore");
+                let url = new URL(window.location.href);
+                url.searchParams.set('showTab', 'product');
+                window.location.href = url.href;
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+        });
     });
 
     $("#tbl_prodotti").DataTable();
@@ -13,32 +37,4 @@ $(document).ready(function() {
     $('#tbl_ruoli_utente').DataTable();
     $('#tbl_fornitori').DataTable();
     $('#tbl_ordini').DataTable();
-
-    $(".changeInAdmin").click(function() {
-        const id_parts = $(this).attr("id").split("_");
-        $.post("utils/update.php", {
-            codiceUpdate: "usr_ruolo",
-            IdUtenteCambio: document.getElementById("IdUtente_" + id_parts[1]).value,
-            IdNuovoRuolo: 3,
-            P_IVA: null
-        }, function(response) {
-            console.log("Response: " + response);
-            location.reload();
-        });
-    });
-
-    $(".change_ruolo").click(function() {
-        const id_parts = $(this).attr("id").split("_");
-        const new_idr = parseInt(document.getElementById("ruolo_" + id_parts[1]).value);
-        let piva = null;
-        $.post('utils/update.php', {
-            codiceUpdate: "usr_ruolo",
-            IdUtenteCambio: document.getElementById("IdUtente_" + id_parts[1]).value,
-            IdNuovoRuolo: new_idr,
-            P_IVA: piva
-        }, function(response) {
-            console.log("Response: " + response);
-            location.reload();
-        });
-    });
 });

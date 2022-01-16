@@ -2,7 +2,7 @@
     <div class="col-6">
         <img id="loadImg" class="usr-profile-image" alt="" src="<?php echo UPLOAD_USER_DIR . $_SESSION["usr_image"]; ?>">
         <form action="utils/update.php" method="post" enctype="multipart/form-data" id="formLoadImage">
-            <input type="hidden" name="codiceUpdate" value="immagine">
+            <input type="hidden" name="codiceUpdate" value="user_img">
             <input class="hidden-field" type="file" name="Immagine" id="Immagine" title="Immagine" accept="image/*" />
         </form>
     </div>
