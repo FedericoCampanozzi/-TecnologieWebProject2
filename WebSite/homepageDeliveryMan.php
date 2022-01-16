@@ -8,6 +8,5 @@ $templateParams["specificNavbar"] = null;
 $templateParams["checkNotifiche"] = true;
 $templateParams["usaGrafici"] = true;
 $templateParams["usaTabelle"] = true;
-$templateParams["fixedFooter"] = true;
 require 'template/base.php';
 ?>

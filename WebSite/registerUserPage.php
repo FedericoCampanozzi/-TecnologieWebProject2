@@ -7,7 +7,6 @@ $templateParams["specificTemplate"] = "registration/registerUserForm.php";
 $templateParams["messages"] = array("newUser");
 $templateParams["usaGrafici"] = false;
 $templateParams["usaTabelle"] = false;
-$templateParams["fixedFooter"] = true;
 $templateParams["IdRuolo"] = 4;
 require 'template/base.php';
 ?>
