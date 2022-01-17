@@ -97,10 +97,8 @@
                 </div>
             </div>
             <button type="submit" class="custom-btn btn-4">Acquista</button>
+            <a class="custom-btn btn-4 annulla-btn">Annulla</a>
         </form>
-        <div class="gfx-link l-0">
-            premi <a href="homepageUser.php">qui </a> per annullare il pagamento e tornare alla homepage
-        </div>
     </div>
 </div>
 <script src="js/radioButton.js"></script>

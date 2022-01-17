@@ -56,7 +56,7 @@
                         </td>
                         <td>
                             <input class="hidden-field" type="file" name="Immagine" id="Immagine" title="Immagine" accept="image/*" />
-                            <img id="loadImage" alt="" src="<?php echo UPLOAD_PRODUCT_DIR."default.png"; ?>" height="136" width="136"></img>
+                            <img id="loadImage" alt="" src="<?php echo UPLOAD_PRODUCT_DIR."default.png"; ?>" height="136" width="136" >
                         </td>
                         <td>
                             <label class="hidden-field" for="desc">Descrizione:</label>
@@ -80,7 +80,7 @@
                             </select>
                         </td>
                         <td>
-                            <a class="custom-btn btn-grid-1">Aggiungi</button>
+                            <a class="custom-btn btn-grid-1">Aggiungi</a>
                         </td>
                     </tr>
                 </tbody>

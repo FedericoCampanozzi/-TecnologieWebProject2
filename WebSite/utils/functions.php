@@ -96,7 +96,7 @@ function show_in_next_page($msg, $cod_msg, $page_to, $msg_type, $dgb)
 function check_modals($check)
 {
     if (isset($_SESSION["show_modal"]) && $_SESSION["show_modal"] && $_SESSION["cod_msg"] == $check) :
-        ?><div class="alt-backpanel"></div><?php
+        ?><script src="js/alert.js"></script><div class="alt-backpanel"></div><?php
         if ($_SESSION["msg_type"] == MsgType::Successfull) alert_successfull();
         else if ($_SESSION["msg_type"] == MsgType::Error) alert_error();
         else if ($_SESSION["msg_type"] == MsgType::Warning) alert_warnings();

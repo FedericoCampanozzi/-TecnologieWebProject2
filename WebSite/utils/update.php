@@ -96,6 +96,9 @@ switch ($codice) {
     case("notifica"):
         $dbh->update_notica($_REQUEST["idNotifica"]);
         break;
+    case("annulla_ordine"):
+        show_ajax_next_page("Ordine annullato", "ordAnnullato", MsgType::Information, $dbg);
+        break;
     default:
         die("codice inserimento non trovato");
         break;

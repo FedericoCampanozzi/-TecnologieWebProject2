@@ -13,4 +13,12 @@ $(document).ready(function() {
         $("#usaContanti").val("no");
     });
     $("#tbl_riepilogo").DataTable();
+    $(".annulla-btn").click(function(){
+        $.get('utils/update.php', {
+            codiceUpdate: "annulla_ordine"
+        }, function(response) {
+            console.log("Response : " + response);
+            window.location.href = "homepageUser.php";
+        });
+    });
 });
