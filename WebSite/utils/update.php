@@ -14,23 +14,23 @@ switch ($codice) {
     case ("fornitore"):
         if ($dbh->update_fornitore($_SESSION["PIVA_Azienda"],$_REQUEST["via"],$_REQUEST["numero_civico"],$_REQUEST["citta"],$_REQUEST["pecMail"],$_REQUEST["infoMail"],$_REQUEST["tell"],$_REQUEST["fax"])){
             registerSupplier($dbh->get_login_by_id($_SESSION["IdUtente"]));
-            show_in_next_page("i dati sono stati aggiornati correttamente", "datiAgg", "homepageSupplier.php", MsgType::Successfull, $dbg);
+            show_in_next_page("I dati sono stati aggiornati correttamente", "datiAgg", "homepageSupplier.php", MsgType::Successfull, $dbg);
         }
         else
-            show_in_next_page("i dati non sono stati aggiornati", "datiAgg", "homepageSupplier.php", MsgType::Error, $dbg);
+            show_in_next_page("I dati non sono stati aggiornati", "datiAgg", "homepageSupplier.php", MsgType::Error, $dbg);
         break;
     case ("password"):
         if ($_REQUEST["conf_psw"] == $_REQUEST["new_psw"])
             if($_SESSION["IdUtente"] == $dbh->get_id_utente($_SESSION["usr_un"], $_REQUEST["old_psw"])){
                 if ($dbh->update_user_psw($_SESSION["IdUtente"], $_REQUEST["new_psw"]))
-                    show_in_next_page("i dati sono stati aggiornati correttamente", "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
+                    show_in_next_page("I dati sono stati aggiornati correttamente", "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
                 else
-                    show_in_next_page("dati non aggiornati", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
+                    show_in_next_page("I dati non sono stati aggiornati", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
             }else{
-                show_in_next_page("la vecchia password non corrisponde", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
+                show_in_next_page("La vecchia password non corrisponde con quella inserita", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
             }
         else
-            show_in_next_page("le password non corrispondono", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
+            show_in_next_page("La password di conferma non corrisponde con la nuova password", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
         break;
     case("user_img"):
         list($result, $msg) = uploadImage("../".UPLOAD_USER_DIR, $_FILES["Immagine"]);
@@ -44,9 +44,9 @@ switch ($codice) {
     case ("user"):
         if ($dbh->update_user($_SESSION["IdUtente"], $_REQUEST["username"], $_REQUEST["email"], $_REQUEST["tell"])) {
             registerUser($dbh->get_login_by_id($_SESSION["IdUtente"]));
-            show_in_next_page("dati aggiornati", "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
+            show_in_next_page("I dati sono stati aggiornati correttamente", "datiAgg", "userProfilePage.php", MsgType::Successfull, $dbg);
         } else
-            show_in_next_page("dati non aggiornati", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
+            show_in_next_page("I dati non sono stati aggiornati", "datiAgg", "userProfilePage.php", MsgType::Error, $dbg);
         break;
     case ("login"):
         if ($dbh->find_user_from_username($_REQUEST["user"])) {
@@ -58,10 +58,10 @@ switch ($codice) {
                 }
                 header("Location: ../".$login[0]["Homepage"]);
             } else {
-                show_in_next_page("password non corrispondente", "pswErr", "index.php", MsgType::Error, $dbg);
+                show_in_next_page("La password per l'utente / mail ".$_REQUEST["username"]." non &egrave; corretta", "pswErr", "index.php", MsgType::Error, $dbg);
             }
         } else {
-            show_in_next_page("utente non trovato", "userErr", "index.php", MsgType::Error, $dbg);
+            show_in_next_page("L'utente / mail ".$_REQUEST["username"]." non &egrave; registrato/a nel sistema", "userErr", "index.php", MsgType::Error, $dbg);
         }
         break;
     case ("account"):
@@ -73,25 +73,25 @@ switch ($codice) {
             var_dump($newPsw);
             $dbh->update_user_psw($_REQUEST["user"], $newPsw);
             $login = $dbh->get_login($_REQUEST["user"], $newPsw);
-            show_in_next_page("abbiamo cambiato la password per l'utente \"" . $login[0]["Username"] . "\" con e-mail : \"" . $login[0]["EMail"] . "\" in \"" . $newPsw,"\" accRec", "index.php", MsgType::Information, $dbg);
+            show_in_next_page("Abbiamo cambiato la password per l'utente \"" . $login[0]["Username"] . "\" con e-mail : \"" . $login[0]["EMail"] . "\" in \"" . $newPsw,"\" accRec", "index.php", MsgType::Information, $dbg);
         } else {
-            show_in_next_page("utente non trovato", "accRec", "recoveryAccountPage.php", MsgType::Error, $dbg);
+            show_in_next_page("L'utente / mail ".$_REQUEST["username"]." non &egrave; registrato/a nel sistema", "accRec", "recoveryAccountPage.php", MsgType::Error, $dbg);
         }
         break;
     case ("ordine"):
         if ($dbh->update_ordine($_SESSION["IdUtente"], $_REQUEST["id_ordine"]))
             show_in_next_page("Consegna registrata correttamente", "cons", "homepageDeliveryMan.php", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("Consegna errata", "cons", "homepageDeliveryMan.php", MsgType::Error, $dbg);
+            show_in_next_page("Consegna non registrata correttamente", "cons", "homepageDeliveryMan.php", MsgType::Error, $dbg);
         break;
     case ("usr_ruolo"):
         $dbh->update_user_ruolo($_REQUEST["IdUtenteCambio"], $_REQUEST["IdNuovoRuolo"], $_REQUEST["P_IVA"]);
         break;
     case ("denaro"):
         if ($dbh->update_conto($_REQUEST["numero_carta"], 100.0))
-            show_in_next_page("Transazione avvenuta corretamente", "denaro", "userProfilePage.php?showTab=card", MsgType::Successfull, $dbg);
+            show_in_next_page("Ricaricata avvenuta corretamente", "denaro", "userProfilePage.php?showTab=card", MsgType::Successfull, $dbg);
         else
-            show_in_next_page("<strong>Transazione annullata</strong>", "denaro", "userProfilePage.php?showTab=card", MsgType::Error, $dbg);
+            show_in_next_page("C'&egrave; stato un errore durante la fase di versamento, la ricarica &egrave; stata annullata", "denaro", "userProfilePage.php?showTab=card", MsgType::Error, $dbg);
         break;
     case("notifica"):
         $dbh->update_notica($_REQUEST["idNotifica"]);
