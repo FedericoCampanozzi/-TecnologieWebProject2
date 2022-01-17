@@ -137,9 +137,11 @@ class DatabaseHelper
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
   }
-  public function get_products()
-  {
-    $stmt = $this->db->prepare("SELECT * FROM info_prodotto");
+  public function get_products($maxPrezzo, $minPrezzo, $nomeProdotto, $idCategoria)
+  { 
+    $nomeProdotto = "%".$nomeProdotto."%";
+    $stmt = $this->db->prepare("SELECT * FROM info_prodotto WHERE Prezzo >= ? AND Prezzo <= ? AND Nome LIKE ? AND (IdCategoria = ? OR ? = -1)");
+    $stmt->bind_param("ddsii", $minPrezzo, $maxPrezzo, $nomeProdotto, $idCategoria, $idCategoria);
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
@@ -270,11 +272,11 @@ class DatabaseHelper
     $stmt->bind_param("iss", $idUtCreazione, $messagio, $titolo);
     return $stmt->execute();
   }
-  public function insert_user_fornitore($username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $piva)
+  public function insert_user_fornitore($username, $psw, $piva)
   {
     $psw = $this->get_cripted_password($psw);
     $query = "INSERT INTO `utente`(`Username`, `Psw`, `Nome`, `Cognome`, `DataDiNascita`,`EMail`,`Telefono`,`IdRuolo`, `ImagePath`, `PIVA_Fornitore`) 
-      VALUES (?,?,?,?,?,?,?,5,'base.png', ?)";
+      VALUES (?,?,' ',' ',' ',' ',' ',5,'default.jpg', ?)";
     $stmt = $this->db->prepare($query);
     $stmt->bind_param("ssssssii", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $piva);
     return $stmt->execute();
@@ -283,7 +285,7 @@ class DatabaseHelper
   {
     $psw = $this->get_cripted_password($psw);
     $query = "INSERT INTO `utente`(`Username`, `Psw`, `Nome`, `Cognome`, `DataDiNascita`,`EMail`,`Telefono`,`IdRuolo`, `ImagePath`, `PIVA_Fornitore`) 
-      VALUES (?,?,?,?,?,?,?,?,'base.png', NULL)";
+      VALUES (?,?,?,?,?,?,?,?,'default.jpg', NULL)";
     $stmt = $this->db->prepare($query);
     $stmt->bind_param("ssssssii", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $IdRuolo);
     return $stmt->execute();

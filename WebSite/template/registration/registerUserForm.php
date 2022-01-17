@@ -6,19 +6,19 @@
             <input type="hidden" name="IdRuolo" value="<?php echo $templateParams["IdRuolo"];?>">
             <div class="form-group">
                 <label for="username">Username : </label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
             </div>
             <div class="form-group">
                 <label for="psw">Password : </label>
-                <input type="password" class="form-control" name="psw" id="psw" placeholder="">
+                <input type="password" class="form-control" name="psw" id="psw" placeholder="Password">
             </div>
             <div class="form-group">
                 <label for="nome">Nome : </label>
-                <input type="text" class="form-control" name="nome" id="nome" placeholder="">
+                <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
             </div>
             <div class="form-group">
                 <label for="cognome">Cognome : </label>
-                <input type="text" class="form-control" name="cognome" id="cognome" placeholder="">
+                <input type="text" class="form-control" name="cognome" id="cognome" placeholder="Cognome">
             </div>
             <div class="form-group">
                 <label for="dataNascita">Data di Nascita : </label>
@@ -26,11 +26,11 @@
             </div>
             <div class="form-group">
                 <label for="email">EMail : </label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="">
+                <input type="email" class="form-control" name="email" id="email" placeholder="EMail">
             </div>
             <div class="form-group">
                 <label for="telefono">Telefono : </label>
-                <input type="text" class="form-control" name="telefono" id="telefono" placeholder="">
+                <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Numero di telefono">
             </div>
             <button type="submit" class="custom-btn btn-14">Registrazione</button>
         </fieldset>

@@ -14,4 +14,32 @@ $(document).ready(function() {
         $(this).removeAttr("disabled");
         return false;
     });
+    $("#minPrezzo").on('input', function() {
+        let valoreMassimo = parseFloat($("#maxPrezzo").val());
+        let valoreMinimo  = parseFloat($("#minPrezzo").val());
+        if(valoreMinimo >= valoreMassimo){
+            let vOk = valoreMinimo+0.1;
+            $("#maxPrezzo").val(vOk);
+            $("#maxPrezzoOutput").text(vOk.toFixed(1));
+        }
+        $("#minPrezzoOutput").text(valoreMinimo);
+    });
+    $("#maxPrezzo").on('input', function() {
+        let valoreMassimo = parseFloat($("#maxPrezzo").val());
+        let valoreMinimo  = parseFloat($("#minPrezzo").val());
+        if(valoreMassimo <= valoreMinimo){
+            let vOk = valoreMassimo-0.1;
+            $("#minPrezzo").val(vOk);
+            $("#minPrezzoOutput").text(vOk.toFixed(1));
+        }
+        $("#maxPrezzoOutput").text(valoreMassimo);
+    });
+    $("#searchButton").click(function(){
+        let url = new URL(window.location.href);
+        url.searchParams.set('maxPrezzo', $("#maxPrezzo").val());
+        url.searchParams.set('minPrezzo', $("#minPrezzo").val());
+        url.searchParams.set('nomeProdotto', $("#ricercaNome").val());
+        url.searchParams.set('idCategoria', $("#categoria").val());
+        window.location.href = url.href;
+    });
 });

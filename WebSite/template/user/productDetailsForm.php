@@ -29,6 +29,6 @@
         </form>
     </div>
 </section>
-<section class="container top-40">
+<section class="container top-40 bot-40">
     clicca <a href="homepageUser.php">qui</a> per tornare alla homepage
 </section>

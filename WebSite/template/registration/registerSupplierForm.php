@@ -1,36 +1,16 @@
 <div class="container">
     <form action="utils/insert.php" method="get">
         <fieldset class="border p-3">
-            <legend class="w-auto text-big">Registrazione Utente</legend>
+            <legend class="w-auto text-big">Registrazione Utente Base</legend>
             <input type="hidden" name="IdRuolo" value="5">
             <input type="hidden" name="codiceInsert" value="fornitore">
             <div class="form-group">
                 <label for="username">Username : </label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
             </div>
             <div class="form-group">
                 <label for="psw">Password : </label>
-                <input type="password" class="form-control" name="psw" id="psw" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="nome">Nome : </label>
-                <input type="text" class="form-control" name="nome" id="nome" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="cognome">Cognome : </label>
-                <input type="text" class="form-control" name="cognome" id="cognome" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="dataNascita">Data di Nascita : </label>
-                <input type="date" class="form-control" name="dataNascita" id="dataNascita">
-            </div>
-            <div class="form-group">
-                <label for="email">EMail : </label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="telefono">Telefono : </label>
-                <input type="text" class="form-control" name="telefono" id="telefono" placeholder="">
+                <input type="password" class="form-control" name="psw" id="psw" placeholder="Password">
             </div>
         </fieldset>
         <fieldset class="border p-3">

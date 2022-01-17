@@ -18,7 +18,7 @@ switch ($codice) {
             show_in_next_page("<strong> categoria non inserita</strong>", "categoria", "homepageAdmin.php?showTab=categorie", MsgType::Error, $dbg);
         break;
     case ("fornitore"):
-        if ($dbh->insert_user_fornitore($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"], $_REQUEST["p_iva"])){
+        if ($dbh->insert_user_fornitore($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["p_iva"])){
             if ($dbh->insert_fornitore($_REQUEST["p_iva"], $_REQUEST["ragione_sociale"], $_REQUEST["via"], $_REQUEST["numero_civico"], $_REQUEST["citta"]))
                 show_in_next_page("fornitore inserito correttamente", "nuovoFornitore", "index.php", MsgType::Successfull, $dbg);
             else
