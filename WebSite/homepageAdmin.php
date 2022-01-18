@@ -1,5 +1,6 @@
 <?php
 require_once 'bootstrap.php';
+if(!isUserLoggedIn()) header("Location: index.php");
 $templateParams["titolo"] = "Admin Page";
 $templateParams["titoloHeader"] = "Admin Dashboard";
 $templateParams["sottotitoloHeader"] = "";

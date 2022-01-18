@@ -1,5 +1,6 @@
 <?php
 require_once 'bootstrap.php';
+if(!isUserLoggedIn()) header("Location: index.php");
 $templateParams["titolo"] = "Homepage";
 $templateParams["titoloHeader"] = "Lista Prodotti";
 $templateParams["sottotitoloHeader"] = "";

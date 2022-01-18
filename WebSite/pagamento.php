@@ -1,5 +1,6 @@
 <?php
 require_once 'bootstrap.php';
+if(!isUserLoggedIn()) header("Location: index.php");
 $templateParams["titolo"] = "Pagamento";
 $templateParams["titoloHeader"] = "Pagamento";
 $templateParams["sottotitoloHeader"] = null;

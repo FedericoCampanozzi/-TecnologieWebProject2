@@ -1,4 +1,7 @@
 <?php
+function isUserLoggedIn(){
+    return isset($_SESSION["IdUtente"]);
+}
 function registerUser($user)
 {
     $_SESSION["IdUtente"] = $user[0]["ID"];
