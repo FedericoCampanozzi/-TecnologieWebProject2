@@ -24,7 +24,7 @@ if(isset($_REQUEST["idCategoria"])) $idCategoria = $_REQUEST["idCategoria"];
             <div class="card-body fancy-collapse">
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="ricercaNome">Ricerca :</label>
+                        <label for="ricercaNome" class="w-100">Ricerca per nome :</label>
                         <input type="text" id="ricercaNome" name="ricercaNome" class="form-control" placeholder="Nome" value="<?php echo $nomeProdotto; ?>">
                     </div>
                     <div class="col-md-4">

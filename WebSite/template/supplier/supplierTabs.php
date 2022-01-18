@@ -3,6 +3,8 @@ $tab = "supp_profile";
 if (isset($_GET["showTab"])) {
     $tab = $_GET["showTab"];
 }
+if(!isset($_SESSION["PIVA_Azienda"])) die("Partita Iva non trovata");
+$piva = $_SESSION["PIVA_Azienda"];
 ?>
 <ul class="nav nav-tabs" id="userTab" role="tablist">
     <li class="nav-item">
@@ -74,11 +76,11 @@ if (isset($_GET["showTab"])) {
 <script src="./js/graph.js"></script>
 <script>
     $(document).ready(function() {
-        let fornLabel = [<?php generate_js_array_2($dbh->get_tot_forniture($_SESSION["PIVA_Azienda"]), array("MeseNome", "Nome")) ?>];
-        let fornData = [<?php generate_js_array($dbh->get_tot_forniture($_SESSION["PIVA_Azienda"]), "Totale") ?>];
-        let venLabel = [<?php generate_js_array($dbh->get_tot_products($_SESSION["PIVA_Azienda"]), "Nome") ?>];
-        let venGuadagnoData = [<?php generate_js_array($dbh->get_tot_products($_SESSION["PIVA_Azienda"]), "GuadagnoTotale") ?>];
-        let venData = [<?php generate_js_array($dbh->get_tot_products($_SESSION["PIVA_Azienda"]), "QtaVenduta") ?>];
+        let fornLabel = [<?php generate_js_array_2($dbh->get_tot_forniture($piva), array("MeseNome", "Nome")) ?>];
+        let fornData = [<?php generate_js_array($dbh->get_tot_forniture($piva), "Totale") ?>];
+        let venLabel = [<?php generate_js_array($dbh->get_tot_products($piva), "Nome") ?>];
+        let venGuadagnoData = [<?php generate_js_array($dbh->get_tot_products($piva), "GuadagnoTotale") ?>];
+        let venData = [<?php generate_js_array($dbh->get_tot_products($piva), "QtaVenduta") ?>];
 
         let gd_forn = []
         let gd_ven = []

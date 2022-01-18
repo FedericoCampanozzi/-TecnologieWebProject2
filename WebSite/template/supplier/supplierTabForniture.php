@@ -5,7 +5,7 @@
     <canvas id="graficoForniture" height="200">
     </canvas>
     <div class="table-description">
-        In questa grafico sono riportate le consegne mensili suddivise per prodotto.
+        In questa grafico sono riportate le consegne mensili suddivise per prodotto <?php if ($_SESSION["IdRuolo"] == 3) : echo "e azienda"; endif; ?>.
     </div>
 </div>
 <form action="utils/insert.php" method="get">
@@ -18,6 +18,9 @@
             <thead>
                 <tr>
                     <th>Nome Prodotto</th>
+                    <?php if ($_SESSION["IdRuolo"] == 3) : ?>
+                    <th>Fornitore</th>
+                    <?php endif; ?>
                     <th class="grid-input-so-big">Data Consegna Merce</th>
                     <th class="grid-input-so-small">Qta</th>
                     <th class="text-small">Prezzo</th>
@@ -27,11 +30,12 @@
             </thead>
             <tbody>
                 <?php
-                $forniture = $dbh->get_forniture($_SESSION["PIVA_Azienda"]);
+                $forniture = $dbh->get_forniture($piva);
                 foreach ($forniture as $f) :
                 ?>
                     <tr>
                         <td><?php echo $f["Nome"]; ?></td>
+                        <?php if ($_SESSION["IdRuolo"] == 3) : echo "<td>".$f["RagioneSociale"]."</td>"; endif; ?>
                         <td><?php echo $f["DataConsegnaMerce"]; ?></td>
                         <td><?php echo $f["Qta"]; ?></td>
                         <td><?php echo $f["Prezzo"]; ?>&euro;</td>
@@ -41,6 +45,7 @@
                 <?php
                 endforeach
                 ?>
+                <?php if ($_SESSION["IdRuolo"] == 5) : ?>
                 <tr>
                     <td>
                         <label class="hidden-field" for="az_prodotto">Prodotto:</label>
@@ -49,8 +54,8 @@
                             $product = $dbh->get_products_forn($_SESSION["PIVA_Azienda"]);
                             foreach ($product as $p) :
                             ?> <option value="<?php echo $p["ID"]; ?>"><?php echo $p["Nome"]; ?></option><?php
-                                                                                                                endforeach
-                                                                                                                    ?>
+                            endforeach
+                            ?>
                         </select>
                     </td>
                     <td></td>
@@ -65,6 +70,7 @@
                         <button type="submit" class="custom-btn btn-grid-1">Inserisci</button>
                     </td>
                 </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>

@@ -3,14 +3,22 @@ $tab = "wb-vendite";
 if (isset($_GET["showTab"])) {
     $tab = $_GET["showTab"];
 }
+$piva = "-1";
 ?>
 <ul class="nav nav-tabs" id="userTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link" id="wb-vendite-tab" data-toggle="tab" href="#wb-vendite" role="tab" aria-controls="wb-vendite" aria-selected="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
-            </svg> Vendite
+                <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+            </svg> Analisi Vendite
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="forniture-tab" data-toggle="tab" href="#forniture" role="tab" aria-controls="forniture" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.5 4a.5.5 0 0 1 .5.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-4 0 1 1 0 0 1-1-1v-1h11V4.5a.5.5 0 0 1 .5-.5zM3 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm1.732 0h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4a2 2 0 0 1 1.732 1z" />
+            </svg><span>Analisi Forniture</span>
         </a>
     </li>
     <li class="nav-item">
@@ -50,6 +58,9 @@ if (isset($_GET["showTab"])) {
     <div class="tab-pane top-40" id="wb-vendite" role="tabpanel" aria-labelledby="wb-vendite-tab">
         <?php require_once 'template/supplier/supplierTabProduct.php'; ?>
     </div>
+    <div class="tab-pane" id="forniture" role="tabpanel" aria-labelledby="forniture">
+        <?php require_once 'template/supplier/supplierTabForniture.php'; ?>
+    </div>
     <div class="tab-pane" id="categorie" role="tabpanel" aria-labelledby="categorie-tab">
         <?php require_once 'adminAddCategoriaTab.php'; ?>
     </div>
@@ -61,11 +72,20 @@ if (isset($_GET["showTab"])) {
 <script src="./js/graph.js"></script>
 <script>
     $(document).ready(function() {
-        let venLabel = [<?php generate_js_array_2($dbh->get_tot_products_admin(), array("Nome","PIVA_Fornitore")) ?>];
-        let venGuadagnoData = [<?php generate_js_array($dbh->get_tot_products_admin(), "GuadagnoTotale") ?>];
-        let venData = [<?php generate_js_array($dbh->get_tot_products_admin(), "QtaVenduta") ?>];
+        let fornLabel = [<?php generate_js_array_2($dbh->get_tot_forniture($piva), array("MeseNome", "Nome", "PIVA_Fornitore")) ?>];
+        let fornData = [<?php generate_js_array($dbh->get_tot_forniture($piva), "Totale") ?>];
+        let venLabel = [<?php generate_js_array_2($dbh->get_tot_products($piva), array("Nome", "PIVA_Fornitore")) ?>];
+        let venGuadagnoData = [<?php generate_js_array($dbh->get_tot_products($piva), "GuadagnoTotale") ?>];
+        let venData = [<?php generate_js_array($dbh->get_tot_products($piva), "QtaVenduta") ?>];
 
+        let gd_forn = []
         let gd_ven = []
+
+        gd_forn.push(new GraphDataGenerator(
+            new Color(255, 153, 0, 255),
+            new Color(102, 0, 204, 150),
+            fornData,
+            "forniture"));
 
         gd_ven.push(new GraphDataGenerator(
             new Color(55, 153, 153, 255),
@@ -80,6 +100,7 @@ if (isset($_GET["showTab"])) {
             "guadagno"
         ));
 
+        generateBarGraph("graficoForniture", gd_forn, "Prodotti al mese", "Qt.à Fornita", fornLabel, 0, 500);
         generateBarGraph("graficoVenditeProdUser", gd_ven, "Prodotti", "Qt.à Venduta / Guadagno(€)", venLabel, 0, 300);
 
         $('a[href="#<?php echo $tab; ?>"]').addClass("active");
