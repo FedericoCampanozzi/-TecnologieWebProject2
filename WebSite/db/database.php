@@ -243,7 +243,7 @@ class DatabaseHelper
   }
   public function get_user_ordini($idUtente)
   {
-    $stmt = $this->db->prepare("SELECT * FROM info_ordine WHERE IdUtente = ? ORDER BY DataOrdine DESC");
+    $stmt = $this->db->prepare("SELECT * FROM info_ordine WHERE IdUtente = ? ORDER BY info_ordine.IdUtenteFattorino, info_ordine.SceltaContanti, DataOrdine DESC");
     $stmt->bind_param("i", $idUtente);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -280,7 +280,7 @@ class DatabaseHelper
     $query = "INSERT INTO `utente`(`Username`, `Psw`, `Nome`, `Cognome`, `DataDiNascita`,`EMail`,`Telefono`,`IdRuolo`, `ImagePath`, `PIVA_Fornitore`) 
       VALUES (?,?,' ',' ',' ',' ',' ',5,'default.jpg', ?)";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("ssssssii", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $piva);
+    $stmt->bind_param("ssi", $username, $psw, $piva);
     return $stmt->execute();
   }
   public function insert_user($username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $IdRuolo)
@@ -429,12 +429,12 @@ class DatabaseHelper
     $stmt->bind_param("si", $img, $idUtente);
     return $stmt->execute();
   }
-  public function update_user_psw($idUtente, $newPsw)
+  public function update_user_psw($user, $newPsw)
   {
     $newPsw = $this->get_cripted_password($newPsw);
-    $query = "UPDATE `utente` SET Psw = ? WHERE ID = ?";
+    $query = "UPDATE `utente` SET Psw = ? WHERE Username = ? OR EMail = ?";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("si", $newPsw, $idUtente);
+    $stmt->bind_param("sss", $newPsw, $user, $user);
     return $stmt->execute();
   }
   public function update_user_ruolo($idUtente, $idRuolo, $p_iva)

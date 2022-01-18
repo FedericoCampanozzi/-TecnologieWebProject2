@@ -15,13 +15,11 @@ $(document).ready(function() {
             type: "POST",
             data: formData,
             success: function(data) {
-                console.log("ok");
                 let url = new URL(window.location.href);
                 url.searchParams.set('showTab', 'product');
                 window.location.href = url.href;
             },
             error: function(data) {
-                console.log("errore");
                 let url = new URL(window.location.href);
                 url.searchParams.set('showTab', 'product');
                 window.location.href = url.href;

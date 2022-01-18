@@ -41,19 +41,26 @@ switch ($codice) {
         $dbh->insert_notifica_broadcast($_SESSION["IdUtente"], $_REQUEST["Messaggio"], $_REQUEST["Titolo"]);
         break;
     case ("prodotto"):
-        list($result, $msg) = uploadImage("../".UPLOAD_PRODUCT_DIR, $_FILES["Immagine"]);
-        if ($result) {
-            if ($dbh->insert_prodotto($_REQUEST["nome"], $_REQUEST["desc"], $_REQUEST["prezzo"], $_SESSION["PIVA_Azienda"], $msg, $_REQUEST["categoria"]))
-                show_ajax_next_page("Prodotto inserito correttamente", "addProduct", MsgType::Successfull, $dbg);
-            else
-                show_ajax_next_page("Prodotto non inserito", "addProduct", MsgType::Error, $dbg);
+        if(isset($_FILES["Immagine"]["tmp_name"]) and $_FILES["Immagine"]["tmp_name"] <> ""){
+            list($result, $msg) = uploadImage("../".UPLOAD_PRODUCT_DIR, $_FILES["Immagine"]);
+            if ($result) {
+                if ($dbh->insert_prodotto($_REQUEST["nome"], $_REQUEST["desc"], $_REQUEST["prezzo"], $_SESSION["PIVA_Azienda"], $msg, $_REQUEST["categoria"]))
+                    show_ajax_next_page("Prodotto inserito correttamente", "addProduct", MsgType::Successfull, $dbg);
+                else
+                    show_ajax_next_page("Prodotto non inserito", "addProduct", MsgType::Error, $dbg);
+            } else {
+                show_ajax_next_page("Immagine non caricata per il seguente motivo : <br>" . $msg, "addProduct", MsgType::Error, $dbg);
+            }
         } else {
-            show_ajax_next_page("Immagine non caricata per il seguente motivo : <br>" . $msg, "addProduct", MsgType::Error, $dbg);
+            show_ajax_next_page("Si prega di inserire un'immagine per il nuovo prodotto", "addProduct", MsgType::Error, $dbg);
         }
         break;
     case ("user"):
         if ($dbh->insert_user($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"], $_REQUEST["IdRuolo"]))
-            show_in_next_page("Utente registrato corettamente <br>Buono shopping ;)", "newUser", "index.php", MsgType::Successfull, $dbg);
+            if($_REQUEST["IdRuolo"] == 6)
+                show_in_next_page("Fattorino registrato correttamente", "newUser", "index.php", MsgType::Successfull, $dbg);
+            else                
+                show_in_next_page("Utente registrato corettamente <br>Buono shopping ;)", "newUser", "index.php", MsgType::Successfull, $dbg);
         else
             show_in_next_page("Errore inserimento dati", "newUser", "registerUserPage.php", MsgType::Error, $dbg);
         break;
@@ -131,8 +138,6 @@ switch ($codice) {
     case ("rc_dlt"):
         if($dbh->insert_rc($_REQUEST["product_id"], $_SESSION["IdUtente"])){
             show_next_page("homepageUser.php", $dbg);
-        } else{
-            show_in_next_page(" ", "errCar", "homepageUser.php", MsgType::Error, $dbg);
         }
         break;
     default:
