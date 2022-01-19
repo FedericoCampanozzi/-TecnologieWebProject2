@@ -63,7 +63,7 @@
         <div>
             <p>Federico Campanozzi</p>
             <p>Matr.: 0000895693</p>
-            <p>Alma Mater Studiorum Bologna - Sede di Cesena</p>
+            <p>Alma Mater Studiorum Universit&agrave; di Bologna - Campus di Cesena</p>
         </div>
     </footer>
     <div id="footerFix" class="fixed-on-bot"></div>
