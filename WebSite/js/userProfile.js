@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $(".add-to-cart").click(function() {
-        $(this).attr("disabled", "disabled");
+        let thisBtn = $(this);
+        thisBtn.attr("disabled", "disabled");
         const id_parts = $(this).attr("id").split("_");
         $.post("utils/insert.php", {
             codiceInsert: "rc_usr_prof",
@@ -18,12 +19,13 @@ $(document).ready(function() {
             let n_pezzi = parseInt(document.getElementById("usr_cart_items").innerText);
             n_pezzi = n_pezzi + 1;
             document.getElementById("usr_cart_items").textContent = n_pezzi;
+            thisBtn.removeAttr("disabled");
         });
-        $(this).removeAttr("disabled");
         return false;
     });
     $(".remove-from-cart").click(function() {
-        $(this).attr("disabled", "disabled");
+        let thisBtn = $(this);
+        thisBtn.attr("disabled", "disabled");
         const id_parts = $(this).attr("id").split("_");
         $.post("utils/delete.php", {
             codiceDelete: "riga_carrello",
@@ -45,8 +47,8 @@ $(document).ready(function() {
             let n_pezzi = parseInt(document.getElementById("usr_cart_items").innerText);
             n_pezzi = n_pezzi - 1;
             document.getElementById("usr_cart_items").textContent = n_pezzi;
+            thisBtn.removeAttr("disabled");
         });
-        $(this).removeAttr("disabled");
         return false;
     });
     $("#addCard").click(function() {

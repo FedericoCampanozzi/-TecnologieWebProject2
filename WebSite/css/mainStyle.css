@@ -546,3 +546,13 @@ div.my-alert button span {
 body::-webkit-scrollbar {
     width: 0em;
 }
+
+.form-range{
+    width: 70%;
+    margin-right: 0 !important;
+}
+.my-form-range-label{
+    display: inline-table;
+    width: 20%;
+    padding-left: 20px;
+}

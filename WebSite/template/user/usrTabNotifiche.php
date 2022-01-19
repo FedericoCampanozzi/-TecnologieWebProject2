@@ -4,7 +4,7 @@
             <div class="card-header" id="ricevuti_h">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed show" data-toggle="collapse" data-target="#ricevuti" aria-expanded="false" aria-controls="ricevuti">
-                        Ricevuti
+                        Ricevute
                     </button>
                 </h5>
             </div>
@@ -47,7 +47,7 @@
             <div class="card-header" id="inviati_h">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed show" data-toggle="collapse" data-target="#inviati" aria-expanded="false" aria-controls="inviati">
-                        Inviati
+                        Inviate
                     </button>
                 </h5>
             </div>

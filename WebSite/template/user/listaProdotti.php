@@ -1,5 +1,5 @@
 <?php
-$maxPrezzo = 20;
+$maxPrezzo = 100;
 $minPrezzo = 0;
 $nomeProdotto = "";
 $idCategoria = -1;
@@ -28,12 +28,12 @@ if(isset($_REQUEST["idCategoria"])) $idCategoria = $_REQUEST["idCategoria"];
                         <input type="text" id="ricercaNome" name="ricercaNome" class="form-control" placeholder="Nome" value="<?php echo $nomeProdotto; ?>">
                     </div>
                     <div class="col-md-4">
-                        <label for="minPrezzo" class="form-label">Prezzo Minimo : </label>
-                        <input type="range" class="form-range" min="0" max="19.9" step="0.1" id="minPrezzo" value="<?php echo $minPrezzo; ?>">
-                        <p id="minPrezzoOutput"><?php echo $minPrezzo; ?></p>
-                        <label for="maxPrezzo" class="form-label">Prezzo Massimo : </label>
-                        <input type="range" class="form-range" min="0.1" max="20" step="0.1" id="maxPrezzo"  value="<?php echo $maxPrezzo; ?>">
-                        <p id="maxPrezzoOutput"><?php echo $maxPrezzo; ?></p>
+                        <label for="minPrezzo" class="form-label w-100">Prezzo Minimo : </label>
+                        <input type="range" class="form-range" min="0" max="99.9" step="0.1" id="minPrezzo" value="<?php echo $minPrezzo; ?>">
+                        <p id="minPrezzoOutput" class="my-form-range-label"><?php echo $minPrezzo; ?></p>
+                        <label for="maxPrezzo" class="form-label w-100">Prezzo Massimo : </label>
+                        <input type="range" class="form-range" min="0.1" max="100" step="0.1" id="maxPrezzo"  value="<?php echo $maxPrezzo; ?>">
+                        <p id="maxPrezzoOutput" class="my-form-range-label"><?php echo $maxPrezzo; ?></p>
                     </div>
                     <div class="col-md-4">
                         <label for="categoria">Categoria:</label>

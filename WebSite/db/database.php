@@ -289,7 +289,7 @@ class DatabaseHelper
     $query = "INSERT INTO `utente`(`Username`, `Psw`, `Nome`, `Cognome`, `DataDiNascita`,`EMail`,`Telefono`,`IdRuolo`, `ImagePath`, `PIVA_Fornitore`) 
       VALUES (?,?,?,?,?,?,?,?,'default.jpg', NULL)";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("ssssssii", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $IdRuolo);
+    $stmt->bind_param("sssssssi", $username, $psw, $nome, $cognome, $dataNascita, $email, $tell, $IdRuolo);
     return $stmt->execute();
   }
   public function insert_prodotto($nome, $descrizione, $prezzo, $piva, $imgPath, $categoria)

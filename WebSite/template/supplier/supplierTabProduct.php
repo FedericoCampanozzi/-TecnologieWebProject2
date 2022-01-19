@@ -5,7 +5,7 @@
     <canvas id="graficoVenditeProdUser" height="200">
     </canvas>
     <div class="table-description">
-        In questo grafico sono rappresentate, per ogni prodotto <?php if ($_SESSION["IdRuolo"] == 3) : echo "di ogni azienda"; endif; ?>, il numero di articoli venduti
+        In questo grafico sono rappresentate, per ogni prodotto <?php if ($_SESSION["IdRuolo"] == 3) : echo "di ogni azienda"; endif; ?>, il numero di articoli venduti e il guadagno lordo.
     </div>
 </div>
 <?php if ($_SESSION["IdRuolo"] == 5) : ?>

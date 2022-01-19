@@ -21,6 +21,7 @@
     width: 196px;
     height: 196px;
     margin-left: 37px;
+    border: 2px solid black;
 }
 
 .product-container>.prezzo {
@@ -131,4 +132,13 @@ strong{
 .product-dtl-container>.magazzino>span {
     color: #310FEE;
     font-size: 26px;
+}
+
+.product-dtl-container ul{
+    list-style: square;
+}
+
+.product-dtl-container li{
+    margin-left: 50px;
+    padding-left: 5px;
 }

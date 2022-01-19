@@ -12,7 +12,7 @@ if ($dbg) {
 $codice = $_REQUEST["codiceUpdate"];
 switch ($codice) {
     case ("fornitore"):
-        if ($dbh->update_fornitore($_SESSION["PIVA_Azienda"],$_REQUEST["via"],$_REQUEST["numero_civico"],$_REQUEST["citta"],$_REQUEST["pecMail"],$_REQUEST["infoMail"],$_REQUEST["tell"],$_REQUEST["fax"])){
+        if ($dbh->update_fornitore($_SESSION["PIVA_Azienda"],$_REQUEST["via"],$_REQUEST["numero_civico"],$_REQUEST["citta"],$_REQUEST["infoMail"],$_REQUEST["pecMail"],$_REQUEST["fax"],$_REQUEST["tell"])){
             registerSupplier($dbh->get_login_by_id($_SESSION["IdUtente"]));
             show_in_next_page("I dati sono stati aggiornati correttamente", "datiAgg", "homepageSupplier.php", MsgType::Successfull, $dbg);
         }
