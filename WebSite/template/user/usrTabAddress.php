@@ -1,13 +1,13 @@
 <form action="utils/insert.php" method="get">
     <input type="hidden" name="codiceInsert" value="recapito">
     <div class="p-5 table-responsive">
-        <table id="tbl_recapiti_utente" class="table table-striped table-bordered">
+        <table id="tbl_recapiti_utente" class="table table-striped table-bordered tbl tbl-orange-1">
             <thead>
                 <tr>
                     <th>Via</th>
                     <th>Numero Civico</th>
                     <th>Citt&agrave;</th>
-                    <th>Interno (Opzionale)</th>
+                    <th class="text-small">Interno (Opzionale)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,7 +28,7 @@
                 <?php
                 endforeach
                 ?>
-                <tr>
+                <tr class="reset-row">
                     <td>
                         <label class="hidden-field" for="via">Via:</label>
                         <input type="text" class="form-control" name="via" id="via" placeholder="Via">

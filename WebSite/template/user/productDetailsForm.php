@@ -6,11 +6,11 @@
         <div class="nome-prodotto">
             <span><?php echo $info[0]["Nome"] ?></span>
         </div>
-        <img alt="" src="<?php echo UPLOAD_PRODUCT_DIR . $info[0]["ImagePath"] ?>" class="responsive" >
+        <img alt="" src="<?php echo UPLOAD_PRODUCT_DIR . $info[0]["ImagePath"] ?>" class="responsive top-20" >
         <p><strong>Categoria</strong> : <span><?php echo $info[0]["NomeC"] ?></span></p>
         <p><strong>Fornitore</strong> : <span><?php echo $info[0]["RagioneSociale"] ?></span>
         <div class="descrizione">
-            Descrizione : <p><?php echo $info[0]["Descrizione"] ?></p>
+            Descrizione <p><?php echo $info[0]["Descrizione"] ?></p>
         </div>
         <hr>
         <div class="magazzino">
@@ -25,7 +25,7 @@
         <form action="utils/insert.php" method="post">
             <input type="hidden" name="codiceInsert" value="rc_dlt">
             <input type="hidden" name="product_id" value="<?php echo $products[$i]["ID"]; ?>">
-            <button type="submit" class="custom-btn">Aggiungi al carello</button>
+            <button type="submit" class="custom-btn top-20">Aggiungi al carello</button>
         </form>
     </div>
 </section>

@@ -29,10 +29,5 @@ $(document).ready(function() {
             processData: false,
         });
     });
-
-    $("#tbl_prodotti").DataTable();
     $("#tbl_forniture").DataTable();
-    $('#tbl_ruoli_utente').DataTable();
-    $('#tbl_fornitori').DataTable();
-    $('#tbl_ordini').DataTable();
 });

@@ -71,8 +71,6 @@ $(document).ready(function() {
         });
     });
     $("#tbl_carrello_utente").DataTable();
-    $("#tbl_carte_utente").DataTable();
-    $("#tbl_recapiti_utente").DataTable();
     $("#loadImg").click(function(){
         document.getElementById("Immagine").click();
     });

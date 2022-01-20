@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="p-5 table-responsive">
-            <table id="tbl_prodotti" class="table table-striped table-bordered">
+            <table id="tbl_prodotti" class="table table-striped table-bordered tbl tbl-green-1">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -48,7 +48,7 @@
                     <?php
                     endforeach
                     ?>
-                    <tr>
+                    <tr class="reset-row">
                         <td>
                             <label class="hidden-field" for="nome">Nome:</label>
                             <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">

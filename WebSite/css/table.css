@@ -23,7 +23,8 @@ table.tbl thead, table.tbl tr:last-child{
 }
 
 table.tbl-green-1 thead, table.tbl-green-1 tr:last-child{
-    background-color:  #008000;
+    background-color:  #00cc66;
+    font-weight: unset !important;
 }
 
 table.tbl-green-1 tr:nth-child(even){

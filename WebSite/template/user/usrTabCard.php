@@ -1,5 +1,5 @@
 <div class="p-5 table-responsive">
-    <table id="tbl_carte_utente" class="table table-striped table-bordered">
+    <table id="tbl_carte_utente" class="table table-striped table-bordered tbl tbl-blu-1">
         <thead>
             <tr>
                 <th>Numero</th>
@@ -30,7 +30,7 @@
                     </td>
                 </tr>
             <?php endforeach ?>
-            <tr>
+            <tr class="reset-row">
                 <td>
                     <label class="hidden-field" for="numero">Numero:</label>
                     <input type="text" class="form-control grid-input-so-big" name="numero" id="numero" placeholder="Numero">
