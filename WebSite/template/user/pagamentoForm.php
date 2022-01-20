@@ -3,7 +3,7 @@
         <div class="table-caption">
             Riepilogo Ordine
         </div>
-        <table id="tbl_riepilogo" class="table table-striped table-bordered">
+        <table id="tbl_riepilogo" class="table table-striped table-bordered tbl tbl-darkblu-1">
             <thead>
                 <tr>
                     <th></th>
@@ -29,10 +29,7 @@
                     $tot += $c["PrezzoTotale"];
                 endforeach ?>
                 <tr>
-                    <td class="bold"> Totale : </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
+                    <td class="bold" colspan="4"> Totale : </td>
                     <td class="bold"> <?php echo $tot; ?> &euro;</td>
                 </tr>
             </tbody>
@@ -40,67 +37,68 @@
     </div>
     <div class="payment-container">
         <form action="utils/insert.php" method="post">
-            <input type="hidden" name="totale" value="<?php echo $tot; ?>">
-            <input type="hidden" value="ordine" name="codiceInsert" id="codiceInsert">
-            <input type="hidden" name="usaContanti" id="usaContanti">
-            <div role="radiogroup" aria-labelledby="grpTipoPagamento" id="rgTipoPagamento"> 
+            <fieldset class="border p-3">
+                <legend class="w-auto text-big">Inserimento Ordine</legend>
+                <input type="hidden" name="totale" value="<?php echo $tot; ?>">
+                <input type="hidden" value="ordine" name="codiceInsert" id="codiceInsert">
+                <input type="hidden" name="usaContanti" id="usaContanti">
                 <h3 id="grpTipoPagamento"> Quale metodo di pagamento vuoi utilizzare ? </h3>
-                <div role="radio" aria-checked="true" tabindex="0" id="contanti">
-                    Contanti     
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipoPagamento" id="contanti" value="contanti" checked>
+                    <label class="form-check-label" for="contanti">Contanti</label>
                 </div>
-                <div role="radio" aria-checked="false" tabindex="-1" id="carta">
-                    Carta
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipoPagamento" id="carte" value="carte">
+                    <label class="form-check-label" for="carte">Carte</label>
                 </div>
-            </div>
-            <div class="row" id="carta_div">
-                <div class="col-8">
-                    <div class="form-group">
-                        <label for="select_carta">Seleziona una carta di pagamento : </label>
-                        <select class="form-control" id="select_carta" name="select_carta">
-                            <?php
-                            foreach ($dbh->get_carte($_SESSION["IdUtente"]) as $c) : ?>
-                                <option value="<?php echo $c["Numero"]; ?>"> Numero Carta : <?php echo $c["Numero"]; ?> Disponibilit&agrave; : <?php echo $c["Disponibilita"]; ?> &euro;</option>
-                            <?php
-                            endforeach
-                            ?>
-                        </select>
+                <div class="row" id="carta_div">
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="select_carta">Seleziona una carta di pagamento : </label>
+                            <select class="form-control" id="select_carta" name="select_carta">
+                                <?php
+                                foreach ($dbh->get_carte($_SESSION["IdUtente"]) as $c) : ?>
+                                    <option value="<?php echo $c["Numero"]; ?>"> Numero Carta : <?php echo $c["Numero"]; ?> Disponibilit&agrave; : <?php echo $c["Disponibilita"]; ?> &euro;</option>
+                                <?php
+                                endforeach
+                                ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="CCV">CCV : </label>
-                        <input class="form-control" type="password" name="CCV" id="CCV">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="select_add">Seleziona un indirizzo :</label>
-                        <select class="form-control" id="select_add" name="select_add">
-                            <?php
-                            foreach ($dbh->get_recapiti($_SESSION["IdUtente"]) as $r) : ?>
-                                <option value="<?php echo $r["ID"]; ?>"><?php echo $r["Via"] . "," . $r["NumeroCivico"] . " - " . $r["Citta"]; ?></option>
-                            <?php
-                            endforeach;
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <div class="md-form">
-                            <label for="note">Inserire alcune note per il fattorino : </label>
-                            <textarea id="note" name="note" class="md-textarea form-control gfx-not-resizable" rows="4"></textarea>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="CCV">CCV : </label>
+                            <input class="form-control" type="password" name="CCV" id="CCV">
                         </div>
                     </div>
                 </div>
-            </div>
-            <button type="submit" class="custom-btn btn-4">Acquista</button>
-            <a class="custom-btn btn-4 annulla-btn">Annulla</a>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="select_add">Seleziona un indirizzo :</label>
+                            <select class="form-control" id="select_add" name="select_add">
+                                <?php
+                                foreach ($dbh->get_recapiti($_SESSION["IdUtente"]) as $r) : ?>
+                                    <option value="<?php echo $r["ID"]; ?>"><?php echo $r["Via"] . "," . $r["NumeroCivico"] . " - " . $r["Citta"]; ?></option>
+                                <?php
+                                endforeach;
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="md-form">
+                                <label for="note">Inserire alcune note per il fattorino : </label>
+                                <textarea id="note" name="note" class="md-textarea form-control gfx-not-resizable" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="custom-btn btn-4">Acquista</button>
+                <button type="reset" class="custom-btn btn-4" id="annulla-btn">Annulla</button>
+            </fieldset>
         </form>
     </div>
 </div>
-<script src="js/radioButton.js"></script>
-<script src="js/radioGroup.js"></script>
 <script src="js/pagamento.js"></script>
