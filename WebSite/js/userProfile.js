@@ -70,7 +70,6 @@ $(document).ready(function() {
             window.location.href = url.href;
         });
     });
-    $("#tbl_carrello_utente").DataTable();
     $("#loadImg").click(function(){
         document.getElementById("Immagine").click();
     });

@@ -32,7 +32,7 @@
     <div class="col-md-4">
         <p>Cognome : <?php echo $_SESSION["usr_cognome"]; ?></p>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
         <p>Data di nascita : <?php echo $_SESSION["usr_dn"]; ?></p>
     </div>
 </div>

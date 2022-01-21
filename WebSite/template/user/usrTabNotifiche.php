@@ -28,7 +28,7 @@
                                         <hr>
                                         <span>Inviato Il : <?php echo $n["DataInvio"]; ?></span><span> da : <?php echo $n["UsernameUC"]; ?></span>
                                         <?php
-                                        if (isset($n["DataLettura"])) :
+                                        if (isset($n["DataLettura"]) && isset($n["IdUtenteNotificato"])) :
                                         ?><span>Letta il : <?php echo $n["DataLettura"]; ?></span>
                                         <?php
                                         endif

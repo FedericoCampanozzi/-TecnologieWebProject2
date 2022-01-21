@@ -87,7 +87,7 @@ switch ($codice) {
             }
         }
         if ($disp) {
-            if ($_REQUEST["usaContanti"] == "no") {
+            if ($_REQUEST["tipoPagamento"] == "carte") {
                 // USO CARTA --> CONTROLLO SE IL CCV E' CORRETTO
                 if ($dbh->check_ccv($_REQUEST["select_carta"], $_REQUEST["CCV"])) {
                     // CONTROLLO SE CI SONO I SOLDI

@@ -30,7 +30,7 @@
                 endforeach ?>
                 <tr>
                     <td class="bold" colspan="4"> Totale : </td>
-                    <td class="bold"> <?php echo $tot; ?> &euro;</td>
+                    <td class="bold"> <?php echo number_format($tot,2); ?> &euro;</td>
                 </tr>
             </tbody>
         </table>
@@ -41,7 +41,6 @@
                 <legend class="w-auto text-big">Inserimento Ordine</legend>
                 <input type="hidden" name="totale" value="<?php echo $tot; ?>">
                 <input type="hidden" value="ordine" name="codiceInsert" id="codiceInsert">
-                <input type="hidden" name="usaContanti" id="usaContanti">
                 <h3 id="grpTipoPagamento"> Quale metodo di pagamento vuoi utilizzare ? </h3>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="tipoPagamento" id="contanti" value="contanti" checked>
@@ -68,7 +67,7 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label for="CCV">CCV : </label>
-                            <input class="form-control" type="password" name="CCV" id="CCV">
+                            <input class="form-control" type="password" name="CCV" id="CCV" maxlength="3">
                         </div>
                     </div>
                 </div>
