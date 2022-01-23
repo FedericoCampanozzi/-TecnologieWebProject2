@@ -35,10 +35,10 @@
                 <label for="citta">Citt&agrave; : </label>
                 <input type="text" class="form-control" name="citta" id="citta" placeholder="citt&agrave;">
             </div>
-            <button type="submit" class="custom-btn btn-6 text-small">
-                Registrazione
-            </button>
         </fieldset>
+        <button type="submit" class="custom-btn btn-6 text-small">
+            Registrazione
+        </button>
     </form>
 </div>
 <section class="container top-40 gfx-link">

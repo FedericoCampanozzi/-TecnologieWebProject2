@@ -6,8 +6,8 @@
                 <th>Nome</th>
                 <th>Fornitore</th>
                 <th>Qt.&agrave;</th>
-                <th>Prezzzo Unitario</th>
-                <th>Prezzo Totale</th>
+                <th class="text-small-2">Prezzzo Unitario</th>
+                <th class="text-small-2">Prezzo Totale</th>
                 <th></th>
                 <th></th>
             </tr>

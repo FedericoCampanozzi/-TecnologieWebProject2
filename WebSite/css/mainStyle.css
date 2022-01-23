@@ -102,6 +102,10 @@ a>span {
     font-size: 12px;
 }
 
+.text-small-2 {
+    font-size: 14px;
+}
+
 .display-inline {
     display: inline-block;
 }
