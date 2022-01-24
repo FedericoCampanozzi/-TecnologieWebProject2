@@ -491,3 +491,11 @@ body::-webkit-scrollbar {
 .top-20{
     margin-top: 20px;
 }
+
+.accordion-title{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    margin: 4px 0;
+    font-size: 22px;
+}

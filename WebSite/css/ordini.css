@@ -30,7 +30,7 @@
 
 .ordini-container>.indirizzo>p {
     display: unset;
-    color: #A80004;
+    color: #2104C3;
     font-size: 14px;
     font-weight: bold;
     word-break: break-all !important;
@@ -60,7 +60,7 @@
 
 .ordini-container>.data>p {
     font-size: 20px;
-    color: #5034E8;
+    color: #2104C3;
 }
 
 .ordini-container>.totale {
