@@ -348,6 +348,7 @@ h4.mb-0>button {
     box-shadow: 2px 2px 6px rgb(114, 113, 113);
     border: transparent;
     border-radius: 5px;
+    font-weight: unset !important;
 }
 
 .custom-grid-btn:active {
@@ -478,6 +479,7 @@ body::-webkit-scrollbar {
     width: 70%;
     margin-right: 0 !important;
 }
+
 .my-form-range-label{
     display: inline-table;
     width: 20%;

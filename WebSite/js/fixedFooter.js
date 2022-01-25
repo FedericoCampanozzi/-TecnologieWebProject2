@@ -1,20 +1,10 @@
-let stopUpdateFooter = false;
-
 $(document).ready(function() {
     resizeEvent();
     window.addEventListener("resize", resizeEvent);
-    setInterval(resizeEvent, 5);
-    $('.collapse').on('transitionstart', function(e) {
-        stopUpdateFooter = true;
-    });
-    $('.collapse').on('transitionend', function(e) {
-        stopUpdateFooter = false;
-    });
+    setInterval(resizeEvent, 1);
 });
 
 function resizeEvent() {
-    if(stopUpdateFooter) return;
-
     let footer = document.getElementsByTagName("footer")[0].getBoundingClientRect();
     let footerNoFix = document.getElementById("footerNoFix").getBoundingClientRect();
     let footerFix = document.getElementById("footerFix").getBoundingClientRect();

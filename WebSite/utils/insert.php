@@ -20,7 +20,7 @@ switch ($codice) {
     case ("fornitore"):
         if ($dbh->insert_user_fornitore($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["p_iva"])){
             if ($dbh->insert_fornitore($_REQUEST["p_iva"], $_REQUEST["ragione_sociale"], $_REQUEST["via"], $_REQUEST["numero_civico"], $_REQUEST["citta"]))
-                show_in_next_page("Fornitore inserito correttamente", "nuovoFornitore", "index.php", MsgType::Successfull, $dbg);
+                show_in_next_page("Benvenuto nel portale web E-Plant", "nuovoFornitore", "index.php", MsgType::Successfull, $dbg);
             else
                 show_in_next_page("Fornitore non inserito", "nuovoFornitore", "registerSupplierPage.php", MsgType::Error, $dbg);
         }
@@ -58,9 +58,9 @@ switch ($codice) {
     case ("user"):
         if ($dbh->insert_user($_REQUEST["username"], $_REQUEST["psw"], $_REQUEST["nome"], $_REQUEST["cognome"], $_REQUEST["dataNascita"], $_REQUEST["email"], $_REQUEST["telefono"], $_REQUEST["IdRuolo"]))
             if($_REQUEST["IdRuolo"] == 6)
-                show_in_next_page("Fattorino registrato correttamente", "newUser", "index.php", MsgType::Successfull, $dbg);
+                show_in_next_page("Ora puoi lavorare come fattorino per Unibo e usufruire del servizio gestionale web<br>Grazie e buon lavoro", "newUser", "index.php", MsgType::Successfull, $dbg);
             else                
-                show_in_next_page("Utente registrato corettamente <br>Buono shopping ;)", "newUser", "index.php", MsgType::Successfull, $dbg);
+                show_in_next_page("Ora fai parte anche tu del portare E-Plant<br>Buona permanenza e Buono shopping ;)", "newUser", "index.php", MsgType::Successfull, $dbg);
         else
             show_in_next_page("Errore inserimento dati", "newUser", "registerUserPage.php", MsgType::Error, $dbg);
         break;

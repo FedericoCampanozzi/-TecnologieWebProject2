@@ -1,77 +1,79 @@
-<div class="container top-40 row">
-    <div class="col-lg-6">
-        <div class="accordion-title">Ricevute</div>
-        <div id="accordion_ricevuti">
-            <?php
-            foreach ($dbh->get_notifiche($_SESSION["IdUtente"]) as $n) :
-                if (!isset($n["IdUtenteNotificato"]) || $n["IdUtenteNotificato"] == $_SESSION["IdUtente"]) : ?>
-                    <div class="card <?php if (!isset($n["DataLettura"])) echo "notifica-non-letta";
-                                        elseif (!isset($n["IdUtenteNotificato"])) echo "notifica-broadcast"; ?>">
-                        <div class="card-header" id="notifica_ric_h_<?php echo $n["IdNotifica"]; ?>">
-                            <h4 class="mb-0">
-                                <button class="btn btn-link btn-leggi" data-toggle="collapse" data-target="#notifica_ric_<?php echo $n["IdNotifica"]; ?>" aria-expanded="true" aria-controls="notifica_ric_<?php echo $n["IdNotifica"]; ?>">
-                                    <?php echo $n["Titolo"]; ?>
-                                </button>
-                            </h4>
-                        </div>
-                        <div id="notifica_ric_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_ric_h_<?php echo $n["IdNotifica"]; ?>" data-parent="#accordion_ricevuti">
-                            <div class="card-body">
-                                <?php echo $n["Messaggio"]; ?> <br>
-                                <hr>
-                                <span>Inviato Il : <?php echo $n["DataInvio"]; ?></span><span> da : <?php echo $n["UsernameUC"]; ?></span>
-                                <?php
-                                if (isset($n["DataLettura"]) && isset($n["IdUtenteNotificato"])) :
-                                ?><span>Letta il : <?php echo $n["DataLettura"]; ?></span>
-                                <?php
-                                endif
-                                ?>
+<div class="p-3 bot-20 top-20">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="accordion-title">Ricevute</div>
+            <div id="accordion_ricevuti">
+                <?php
+                foreach ($dbh->get_notifiche($_SESSION["IdUtente"]) as $n) :
+                    if (!isset($n["IdUtenteNotificato"]) || $n["IdUtenteNotificato"] == $_SESSION["IdUtente"]) : ?>
+                        <div class="card <?php if (!isset($n["DataLettura"])) echo "notifica-non-letta";
+                                            elseif (!isset($n["IdUtenteNotificato"])) echo "notifica-broadcast"; ?>">
+                            <div class="card-header" id="notifica_ric_h_<?php echo $n["IdNotifica"]; ?>">
+                                <h4 class="mb-0">
+                                    <button class="btn btn-link btn-leggi" data-toggle="collapse" data-target="#notifica_ric_<?php echo $n["IdNotifica"]; ?>" aria-expanded="true" aria-controls="notifica_ric_<?php echo $n["IdNotifica"]; ?>">
+                                        <?php echo $n["Titolo"]; ?>
+                                    </button>
+                                </h4>
+                            </div>
+                            <div id="notifica_ric_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_ric_h_<?php echo $n["IdNotifica"]; ?>" data-parent="#accordion_ricevuti">
+                                <div class="card-body">
+                                    <?php echo $n["Messaggio"]; ?> <br>
+                                    <hr>
+                                    <span>Inviato Il : <?php echo $n["DataInvio"]; ?></span><span> da : <?php echo $n["UsernameUC"]; ?></span>
+                                    <?php
+                                    if (isset($n["DataLettura"]) && isset($n["IdUtenteNotificato"])) :
+                                    ?><span>Letta il : <?php echo $n["DataLettura"]; ?></span>
+                                    <?php
+                                    endif
+                                    ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            <?php
-                endif;
-            endforeach
-            ?>
+                <?php
+                    endif;
+                endforeach
+                ?>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="accordion-title">Inviate</div>
-        <div id="accordion_inviati">
-            <?php
-            foreach ($dbh->get_notifiche($_SESSION["IdUtente"]) as $n) :
-                if ($n["IdUtenteCreazione"] == $_SESSION["IdUtente"]) : ?>
-                    <div class="card <?php if (!isset($n["IdUtenteNotificato"])) echo "notifica-broadcast"; ?>">
-                        <div class="card-header" id="notifica_inv_h_<?php echo $n["IdNotifica"]; ?>">
-                            <h4 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#notifica_inv_<?php echo $n["IdNotifica"]; ?>" aria-expanded="true" aria-controls="notifica_inv_<?php echo $n["IdNotifica"]; ?>">
-                                    <?php echo $n["Titolo"]; ?>
-                                </button>
-                            </h4>
-                        </div>
-                        <div id="notifica_inv_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_inv_h_<?php echo $n["IdNotifica"]; ?>" data-parent="#accordion_inviati">
-                            <div class="card-body">
-                                <?php echo $n["Messaggio"]; ?> <br>
-                                <hr>
-                                <span>Inviato Il : <?php echo $n["DataInvio"]; ?></span><span> a : <?php echo $n["UsernameUN"]; ?></span>
+        <div class="col-lg-6">
+            <div class="accordion-title">Inviate</div>
+            <div id="accordion_inviati">
+                <?php
+                foreach ($dbh->get_notifiche($_SESSION["IdUtente"]) as $n) :
+                    if ($n["IdUtenteCreazione"] == $_SESSION["IdUtente"]) : ?>
+                        <div class="card <?php if (!isset($n["IdUtenteNotificato"])) echo "notifica-broadcast"; ?>">
+                            <div class="card-header" id="notifica_inv_h_<?php echo $n["IdNotifica"]; ?>">
+                                <h4 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#notifica_inv_<?php echo $n["IdNotifica"]; ?>" aria-expanded="true" aria-controls="notifica_inv_<?php echo $n["IdNotifica"]; ?>">
+                                        <?php echo $n["Titolo"]; ?>
+                                    </button>
+                                </h4>
+                            </div>
+                            <div id="notifica_inv_<?php echo $n["IdNotifica"]; ?>" class="collapse" aria-labelledby="notifica_inv_h_<?php echo $n["IdNotifica"]; ?>" data-parent="#accordion_inviati">
+                                <div class="card-body">
+                                    <?php echo $n["Messaggio"]; ?> <br>
+                                    <hr>
+                                    <span>Inviato Il : <?php echo $n["DataInvio"]; ?></span><span> a : <?php echo $n["UsernameUN"]; ?></span>
+                                    <?php
+                                    if (isset($n["DataLettura"])) :
+                                    ?>Letta il : <?php echo $n["DataLettura"]; ?>
                                 <?php
-                                if (isset($n["DataLettura"])) :
-                                ?>Letta il : <?php echo $n["DataLettura"]; ?>
-                            <?php
-                                endif
-                            ?>
+                                    endif
+                                ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            <?php
-                endif;
-            endforeach
-            ?>
+                <?php
+                    endif;
+                endforeach
+                ?>
+            </div>
         </div>
     </div>
 </div>
-<div class="container top-40">
+<div class="container">
     <form>
-        <fieldset class="border p-3">
+        <fieldset class="border p-5">
             <legend class="w-auto text-big">Invia Messaggio</legend>
             <div class="row">
                 <div class="col-md-4">
